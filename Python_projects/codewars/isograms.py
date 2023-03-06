@@ -5,7 +5,6 @@
 def is_isogram(string):
     for i in range(0, len(string)):
         temp_char = string[i].lower()
-        temp_numb = i
         for j in range(0,len(string)):
             temp_char_two = string[j].lower()
             if j == i:
