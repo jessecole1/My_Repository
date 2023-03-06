@@ -2,6 +2,10 @@
 # if the first argument(string) passed in ends with 
 # the 2nd argument (also a string).
 
+# =================
+# DONE
+# =================
+
 def strings(text, ending):
     text_arr = []
     end_arr = []
