@@ -15,3 +15,5 @@ def arrayList(array):
 
 x = [8,1,8,9,3,2,8,0,6,1]
 arrayList(x)
+y = [8,1,8,4,8,9,1,4,0,3]
+arrayList(y)

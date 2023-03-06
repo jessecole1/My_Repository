@@ -2,7 +2,7 @@
 # If anything in the text isn't a letter, ignore it and don't return it.
 
 # =================
-# SAVE FOR LATER
+# DONE
 # =================
 
 import string
