@@ -3,11 +3,8 @@
 def pig_it(text):
     temp = []
     for i in text:
-        if i == " ":
-            continue
-        else:
-            temp.append(i)
+        temp.append(i)
     for i in temp:
-        print(i)
+        
 
 print(pig_it('hello my name is jesse'))

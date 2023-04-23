@@ -1,0 +1,100 @@
+@charset "UTF-8";
+
+* {
+	margin: 0px;
+	padding: 0px;
+}
+
+.indexNav {
+	background-color: rgb(164,164,164);
+	height: 70px;
+	border-bottom: 3px solid black;
+	display: flex;
+	align-items: center;
+	padding-left: 30px;
+}
+
+body {
+	background-color: rgb(229,229,229);
+}
+
+.indexMainCont {
+	background-color: white;
+	margin: 20px;
+	padding: 10px;
+	height: 700px;
+	border-radius: 5px;
+	box-shadow: 1px 1px 5px black;
+}
+
+.exerciseTitle {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: space-evenly;
+/* 	padding-bottom: 20px; */
+}
+
+.exercises {
+	background-color: rgb(229,229,229);
+	height: 80%;
+	border-radius: 5px;
+	display: flex;
+	justify-content: space-evenly;
+	padding-top: 40px;
+	margin-top: 20px;
+	box-shadow: 1px 1px 5px black;
+}
+
+.bodyTitle {
+	font-size: 50px;
+}
+
+.indexBoxes {
+	background-color: white;
+	height: 300px;
+	width: 300px;
+	border-radius: 25px;
+/* 	border: 5px solid black; */
+	display: flex;
+	flex-direction: column;
+	justify-content: space-evenly;
+}
+
+.topBox {
+	background-color: rgb(102,102,102);
+	height: 100%;
+	flex: 5;
+	border-radius: 0px 25px 0px 0px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.bottomBox {
+	background-color: rgb(102,102,102);
+	height: 100%;
+	flex: 1;
+	border-radius: 0px 0px 0px 25px;
+}
+
+.innerTop {
+	border: 3px solid black;
+	height: 90%;
+	width: 90%;
+	border-radius: 15px;
+	margin-top: 25px;
+	margin-bottom: 25px;
+	background-color: white;
+}
+
+
+
+
+
+
+
+
+
+
+
