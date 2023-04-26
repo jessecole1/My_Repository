@@ -13,7 +13,7 @@
 <body>
 	<div class="formCon">
 		<div class="formConOne">
-			<form:form action="" method="post" modelAttribute="newUser">
+			<form:form class="registerTable" action="" method="post" modelAttribute="newUser">
 				<table>
 					<tbody>
 						<tr>

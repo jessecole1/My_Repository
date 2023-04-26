@@ -8,14 +8,26 @@
 .formCon {
 	display: flex;
 	flex-direction: column;
-	justify-content: center;
+	justify-content: space-evenly;
 	width: 30%;
+	height: 500px;
 }
 
 .formConOne {
 	border: 1px solid red;
+	display: flex;
+	justify-content: center;
 }
 
 .formConTwo {
 	border: 1px solid red;
+}
+
+body {
+	display: flex;
+	justify-content: center;
+}
+
+.registerTable {
+	width: 100%;
 }
