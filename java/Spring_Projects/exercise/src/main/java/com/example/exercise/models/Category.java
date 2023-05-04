@@ -38,8 +38,8 @@ public class Category {
 	
 	@NotNull
 	@ManyToOne(fetch=FetchType.LAZY)
-	@JoinColumn(name="user_id")
-	private User user;
+	@JoinColumn(name="admin_id")
+	private Admin admin;
 	
 	public Category() {}
 
@@ -74,15 +74,15 @@ public class Category {
 	public void setUpdatedAt(Date updatedAt) {
 		this.updatedAt = updatedAt;
 	}
-
-	public User getUser() {
-		return user;
+	
+	public Admin getAdmin() {
+		return admin;
 	}
 
-	public void setUser(User user) {
-		this.user = user;
-	} 
-	
+	public void setAdmin(Admin admin) {
+		this.admin = admin;
+	}
+
 	@PrePersist
 	protected void onCreate() {
 		this.createdAt = new Date();

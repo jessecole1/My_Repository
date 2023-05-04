@@ -13,24 +13,24 @@
 <body>
 	<div class="formCon">
 		<div class="formConOne">
-			<form:form class="registerTable" action="" method="post" modelAttribute="newUser">
+			<form:form class="registerTable" action="/register" method="post" modelAttribute="newUser">
 				<table>
 					<tbody>
 						<tr>
-							<td><form:label path="">Username: </form:label></td>
-							<td><form:input type="text" path=""></form:input></td>
+							<td><form:label path="username">Username: </form:label></td>
+							<td><form:input type="text" path="username"></form:input></td>
 						</tr>
 						<tr>
-							<td><form:label path="">Email: </form:label></td>
-							<td><form:input path="" type="text"></form:input></td>
+							<td><form:label path="email">Email: </form:label></td>
+							<td><form:input path="email" type="text"></form:input></td>
 						</tr>
 						<tr>
-							<td><form:label path="">Password: </form:label></td>
-							<td><form:input path="" type="text"/></td>
+							<td><form:label path="password">Password: </form:label></td>
+							<td><form:input path="password" type="text"/></td>
 						</tr>
 						<tr>
-							<td><form:label path="">Confirm: </form:label></td>
-							<td><form:input path="" type="text"/></td>
+							<td><form:label path="confirm">Confirm: </form:label></td>
+							<td><form:input path="confirm" type="text"/></td>
 						</tr>
 						<tr>
 							<td><button>Register</button>
@@ -40,21 +40,22 @@
 			</form:form>
 		</div>
 		<div class="formConTwo">
-			<form:form action="" method="post" modelAttribute="newLoginUser">
+			<form:form action="/login" method="post" modelAttribute="newLogin">
 				<tbody>
 					<tr>
-						<td><form:label path="">Email: </form:label></td>
-						<td><form:input type="text" path=""/></td>
+						<td><form:label path="email">Email: </form:label></td>
+						<td><form:input type="text" path="email"/></td>
 					</tr>
 					<tr>
-						<td><form:label path="">Password: </form:label></td>
-						<td><form:input path="" type="text"/></td>
+						<td><form:label path="password">Password: </form:label></td>
+						<td><form:input path="password" type="text"/></td>
 					</tr>
 					<tr>
 						<td><button>Login</button></td>
 					</tr>
 				</tbody>
 			</form:form>
+			<a href="/admin/login">admin login</a>
 		</div>
 	</div>
 </body>

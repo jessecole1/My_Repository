@@ -19,31 +19,29 @@ import javax.validation.constraints.Size;
 
 import org.springframework.format.annotation.DateTimeFormat;
 
-
 @Entity
-@Table(name="users")
-public class User {
+@Table(name="admins")
+public class Admin {
 	
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Long id;
 	
-	@NotEmpty(message="Username is required")
-	@Size(min=3, max=20, message="Username must be 3 - 20 characters long")
-	private String username;
-	
 	@NotEmpty(message="Email is required")
-	@Email(message="Enter a valid email address")
+	@Email(message="Enter a valid email")
 	private String email;
 	
-	@NotEmpty(message="Password is required")
-	@Size(min=3, max=128, message="Password must be at least 8 characters")
-	private String password;
-	
-	@Transient
-	@NotEmpty(message="Please confirm password")
-	@Size(min=3, max=128, message="Please confirm your password")
-	private String confirm;
+	public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
+	}
+
+	@NotEmpty(message="Username is required")
+	@Size(min=3, max=128, message="Username must be at least 3 characters long")
+	private String username;
 	
 	@DateTimeFormat(pattern="yyyy-MM-dd")
 	private Date createdAt;
@@ -51,7 +49,19 @@ public class User {
 	@DateTimeFormat(pattern="yyyy-MM-dd")
 	private Date updatedAt;
 	
-	public User() {}
+	@NotEmpty(message="Password required")
+	@Size(min=3, max=128, message="Password must be at least 8 characters long")
+	private String password;
+	
+	@Transient
+	@NotEmpty(message="Please confirm password")
+	@Size(min=3, max=128, message="Passwords don't match")
+	private String confirm;
+	
+	@OneToMany(mappedBy="admin", fetch=FetchType.LAZY)
+	private List<Category> categories; 
+	
+	public Admin() {}
 
 	public Long getId() {
 		return id;
@@ -69,12 +79,28 @@ public class User {
 		this.username = username;
 	}
 
-	public String getEmail() {
-		return email;
+	public Date getCreatedAt() {
+		return createdAt;
 	}
 
-	public void setEmail(String email) {
-		this.email = email;
+	public void setCreatedAt(Date createdAt) {
+		this.createdAt = createdAt;
+	}
+
+	public Date getUpdatedAt() {
+		return updatedAt;
+	}
+
+	public void setUpdatedAt(Date updatedAt) {
+		this.updatedAt = updatedAt;
+	}
+
+	public List<Category> getCategories() {
+		return categories;
+	}
+
+	public void setCategories(List<Category> categories) {
+		this.categories = categories;
 	}
 
 	public String getPassword() {
@@ -93,22 +119,6 @@ public class User {
 		this.confirm = confirm;
 	}
 
-	public Date getCreatedAt() {
-		return createdAt;
-	}
-
-	public void setCreatedAt(Date createdAt) {
-		this.createdAt = createdAt;
-	}
-
-	public Date getUpdatedAt() {
-		return updatedAt;
-	}
-
-	public void setUpdatedAt(Date updatedAt) {
-		this.updatedAt = updatedAt;
-	}
-	
 	@PrePersist
 	protected void onCreate() {
 		this.createdAt = new Date();
@@ -117,7 +127,7 @@ public class User {
 	@PreUpdate
 	protected void onUpdate() {
 		this.updatedAt = new Date();
+		
 	}
-	
 
 }
