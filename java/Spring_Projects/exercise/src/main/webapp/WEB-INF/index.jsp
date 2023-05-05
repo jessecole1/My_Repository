@@ -14,13 +14,18 @@
 	<div class="indexNav">
 		<h1>Exercise Page</h1>
 		<c:choose>
-			<c:when test="${logUser.id != null }">
+			<c:when test="${adId != null || userId != null}">
 				<p><a href="/logout">Logout</a>
 				<p>Hello, <c:out value="${logUser.username}"/></p>
 			</c:when>
 			<c:otherwise>
 				<p><a href="/account">Login/Register</a>
 			</c:otherwise>
+		</c:choose>
+		<c:choose>
+			<c:when test="${adId != null}">
+				<p><a href="/category/create">Create category</a></p>
+			</c:when>
 		</c:choose>
 	</div>
 	<div class="indexMainCont">
@@ -29,7 +34,19 @@
 			<p>Find the perfect exercises for your workouts</p>		
 		</div>
 		<div class="exercises">
+			<c:forEach var="cat" items="${categories}">
 			<div class="indexBoxes">
+				<div class="topBox">
+					<div class="innerTop">
+					
+					</div>
+				</div>
+				<div class="bottomBox">
+					<p class="catText"><c:out value="${cat.categoryName}"/></p>
+				</div>
+			</div>
+			</c:forEach>
+<!--  			<div class="indexBoxes">
 				<div class="topBox">
 					<div class="innerTop">
 					
@@ -48,17 +65,7 @@
 				<div class="bottomBox">
 				
 				</div>
-			</div>
-			<div class="indexBoxes">
-				<div class="topBox">
-					<div class="innerTop">
-					
-					</div>
-				</div>
-				<div class="bottomBox">
-				
-				</div>
-			</div>
+			</div>  -->
 		</div>
 	</div>
 

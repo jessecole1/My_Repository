@@ -13,7 +13,9 @@ import org.springframework.web.bind.annotation.PostMapping;
 
 import com.example.exercise.models.Admin;
 import com.example.exercise.models.AdminLogin;
+import com.example.exercise.models.Category;
 import com.example.exercise.services.AdminService;
+import com.example.exercise.services.CategoryService;
 
 @Controller
 public class AdminController {
@@ -21,21 +23,60 @@ public class AdminController {
 	@Autowired
 	private AdminService adminServ;
 	
+	@Autowired
+	private CategoryService categoryServ;
+	
 	@GetMapping("/admin/login")
 	public String adminLogin(Model model) {
 		model.addAttribute("newAdminLogin", new AdminLogin());
+		model.addAttribute("admin", new Admin());
+		System.out.println("test display");
 		
 	return "adminReg.jsp";
 	}
 	
+	@PostMapping("/admin/register")
+	public String adRegister(@Valid @ModelAttribute("admin") Admin newAdmin, BindingResult result, Model model, HttpSession session) {
+		if(result.hasErrors()) {
+			System.out.println("test reg");
+			model.addAttribute("newAdminLogin", new AdminLogin());
+			return "adminReg.jsp";
+		}
+		adminServ.register(newAdmin, result);
+		session.setAttribute("userId", newAdmin.getAdminId());
+		return "redirect:/";
+	}
+	
 	@PostMapping("/admin/login")
 	public String login(@Valid @ModelAttribute("newAdmin") AdminLogin newLoginAdmin, BindingResult result, Model model, HttpSession session) {
+		System.out.println("test log");
 		Admin admin = adminServ.adminLogin(newLoginAdmin, result);
 		if (result.hasErrors()) {
 			model.addAttribute("newAdminLogin", new AdminLogin());
 			return "adminReg.jsp";
 		}
-		session.setAttribute("userId", admin.getId());
+		session.setAttribute("userId", admin.getAdminId());
+		return "redirect:/";
+	}
+	
+	@GetMapping("/category/create")
+	public String categoryCreation(@ModelAttribute("newCategory") Category newCategory, BindingResult result, Model model, HttpSession session) {
+		Long userId = (Long) session.getAttribute("userId");
+		if(userId == null) {
+			return "redirect:/";
+		}
+		Admin theAdmin = adminServ.getById(userId);
+		model.addAttribute("adId", theAdmin);
+		return "newCategory.jsp";
+	}
+	
+	@PostMapping("/category/create")
+	public String createCategory(@Valid @ModelAttribute("newCategory") Category newCategory, BindingResult result) {
+		if(result.hasErrors()) {
+			System.out.println("test");
+			return "newCategory.jsp";
+		}
+		categoryServ.addCategory(newCategory);
 		return "redirect:/";
 	}
 	

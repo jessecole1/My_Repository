@@ -16,27 +16,55 @@ public class AdminService {
 
 	@Autowired
 	private AdminRepository adminRepo;
+	
+	public Admin register(Admin newAdmin, BindingResult result) {
+		Optional<Admin> potentialAdmin = adminRepo.findByEmail(newAdmin.getEmail());
+		
+		if(potentialAdmin.isPresent()) {
+			result.rejectValue("email", "Matches", "Email address already used");
+		}
+		
+		if(!newAdmin.getPassword().equals(newAdmin.getConfirm())) {
+			result.rejectValue("Confirm", "Matches", "Passwords don't match");
+		}
+		
+		if(result.hasErrors()) {
+			return null;
+		}
+		
+		String hashed = BCrypt.hashpw(newAdmin.getPassword(), BCrypt.gensalt());
+		newAdmin.setPassword(hashed);
+		return adminRepo.save(newAdmin);
+	}
 
 
 	public Admin adminLogin(AdminLogin newLoginAdmin, BindingResult result) {
 		Optional<Admin> potentialAdmin = adminRepo.findByEmail(newLoginAdmin.getEmail());
 		
 		if(!potentialAdmin.isPresent()) {
-			result.rejectValue("username","Matches", "Invalid");
+			result.rejectValue("email","Matches", "Invalid");
 			return null;
 		}
 		
 		Admin admin = potentialAdmin.get();
 		
-//		if (!BCrypt.checkpw(newLoginAdmin.getPassword(), admin.getPassword())) {
-//			result.rejectValue("password", "Matches", "Invalid");
-//		}
+		if (!BCrypt.checkpw(newLoginAdmin.getPassword(), admin.getPassword())) {
+			result.rejectValue("password", "Matches", "Invalid");
+		}
 		
 		if (result.hasErrors()) {
 			return null;
 		}
 		
 		return admin;
+	}
+	
+	public Admin getById(Long id) {
+		Optional<Admin> admin = adminRepo.findById(id);
+		if(!admin.isPresent()) {
+			return null;
+		}
+		return admin.get();
 	}
 	
 }

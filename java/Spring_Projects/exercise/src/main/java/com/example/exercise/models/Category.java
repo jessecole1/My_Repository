@@ -38,7 +38,7 @@ public class Category {
 	
 	@NotNull
 	@ManyToOne(fetch=FetchType.LAZY)
-	@JoinColumn(name="admin_id")
+	@JoinColumn(name="admin_admin_id")
 	private Admin admin;
 	
 	public Category() {}

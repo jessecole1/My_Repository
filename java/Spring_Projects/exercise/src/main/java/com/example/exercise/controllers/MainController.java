@@ -11,9 +11,11 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 
+import com.example.exercise.models.Admin;
 import com.example.exercise.models.LoginUser;
 import com.example.exercise.models.User;
 import com.example.exercise.services.AdminService;
+import com.example.exercise.services.CategoryService;
 import com.example.exercise.services.UserService;
 
 @Controller
@@ -24,6 +26,9 @@ public class MainController {
 	
 	@Autowired
 	private AdminService adminServ;
+	
+	@Autowired
+	private CategoryService catServ;
 	
 	@GetMapping("/")
 	public String index(Model model, HttpSession session) {
@@ -40,8 +45,19 @@ public class MainController {
 				
 				User theUser = userServ.getById(userId);
 //				System.out.println("testing 4");
-	
+				if (theUser == null) {
+					Admin theAdmin = adminServ.getById(userId);
+					model.addAttribute("adId", theAdmin.getAdminId());
+					model.addAttribute("logUser", theAdmin);
+					model.addAttribute("categories", catServ.findAll());
+					System.out.println(catServ.findAll());
+					return "index.jsp";
+				}
+				
+				model.addAttribute("userId", theUser.getId());
 				model.addAttribute("logUser", theUser);
+				model.addAttribute("categories", catServ.findAll());
+				System.out.println(catServ.findAll());
 //				System.out.println("testing 5");
 
 //				System.out.println("testing 6");
@@ -49,9 +65,9 @@ public class MainController {
 				return "index.jsp";
 
 			}
-		
+		model.addAttribute("categories", catServ.findAll());
+		System.out.println(catServ.findAll());
 		return "index.jsp";
-		
 	}
 	
 	@GetMapping("/account")
