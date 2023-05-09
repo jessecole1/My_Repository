@@ -15,7 +15,9 @@
 		<h1>Exercise Page</h1>
 		<c:choose>
 			<c:when test="${adId != null || userId != null}">
-				<p><a href="/logout">Logout</a>
+				<a href="#">Add an exercise</a>
+				<p> | </p>
+				<p><a href="/logout">Logout</a><p>
 				<p>Hello, <c:out value="${logUser.username}"/></p>
 			</c:when>
 			<c:otherwise>
@@ -34,7 +36,8 @@
 			<p>Find the perfect exercises for your workouts</p>		
 		</div>
 		<div class="exercises">
-			<c:forEach var="cat" items="${categories}">
+			<c:forEach var="cat" items="${categories}" varStatus="status">
+			<%-- <c:if  --%>
 			<div class="indexBoxes">
 				<div class="topBox">
 					<div class="innerTop">
