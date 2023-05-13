@@ -1,6 +1,7 @@
 package com.example.exercise.services;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -20,6 +21,14 @@ public class CategoryService {
 	
 	public List<Category> findAll() {
 		return catRepo.findAll();
+	}
+	
+	public Category getOne(Long catId) {
+		Optional<Category> category = catRepo.findById(catId);
+		if (category.isPresent()) {
+			return category.get();
+		}
+		return null;
 	}
 
 }

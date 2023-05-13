@@ -15,7 +15,7 @@
 		<h1>Exercise Page</h1>
 		<c:choose>
 			<c:when test="${adId != null || userId != null}">
-				<a href="#">Add an exercise</a>
+				<a href="/exercise/new">Add an exercise</a>
 				<p> | </p>
 				<p><a href="/logout">Logout</a><p>
 				<p>Hello, <c:out value="${logUser.username}"/></p>
@@ -36,9 +36,33 @@
 			<p>Find the perfect exercises for your workouts</p>		
 		</div>
 		<div class="exercises">
-			<c:forEach var="cat" items="${categories}" varStatus="status">
-			<%-- <c:if  --%>
-			<div class="indexBoxes">
+			<table style="width: 100%">
+				<tbody>
+					<c:forEach var="cat" items="${categories}" varStatus="status">
+						<c:if test="${status.index % 3 == 0}">
+							<tr class="catRow">
+						</c:if>
+						<td>
+							<div class="indexBoxes catTd">
+								<div class="topBox">
+									<div class="innerTop">
+								
+									</div>
+								</div>
+							<div class="bottomBox">
+								<p class="catText"><a href="/exercise/all/${cat.id}"><c:out value="${cat.categoryName}"/></a></p>
+							</div>
+						</div>
+						</td>
+						<c:if test="${status.index % 3 == 2}">
+							</tr>
+						</c:if>
+					</c:forEach>
+				</tbody>
+			</table>
+		</div>
+	</div>
+<%-- 			<div class="indexBoxes">
 				<div class="topBox">
 					<div class="innerTop">
 					
@@ -47,8 +71,7 @@
 				<div class="bottomBox">
 					<p class="catText"><c:out value="${cat.categoryName}"/></p>
 				</div>
-			</div>
-			</c:forEach>
+			</div> --%>
 <!--  			<div class="indexBoxes">
 				<div class="topBox">
 					<div class="innerTop">
@@ -69,8 +92,6 @@
 				
 				</div>
 			</div>  -->
-		</div>
-	</div>
 
 </body>
 </html>

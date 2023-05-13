@@ -35,23 +35,33 @@ public class MainController {
 //		
 //		model.addAttribute("newUser", new User());
 //		model.addAttribute("newLoginUser", new LoginUser());
-//			System.out.println("testing 1");
-			
+			System.out.println("testing 1");
 			Long userId = (Long) session.getAttribute("userId");
-//			System.out.println("testing 2");
+			System.out.println("testing 2");
 			
 			if (session.getAttribute("userId") != null) {
-//				System.out.println("testing 3");
+				System.out.println("testing 3");
 				
 				User theUser = userServ.getById(userId);
-//				System.out.println("testing 4");
+				System.out.println("testing 4");
 				if (theUser == null) {
 					Admin theAdmin = adminServ.getById(userId);
-					model.addAttribute("adId", theAdmin.getAdminId());
-					model.addAttribute("logUser", theAdmin);
-					model.addAttribute("categories", catServ.findAll());
-					System.out.println(catServ.findAll());
-					return "index.jsp";
+					System.out.println("testing 5");
+					if (theAdmin == null) {
+						model.addAttribute("categories", catServ.findAll());
+						return "index.jsp";
+//						System.out.println("testing 6");
+//						model.addAttribute("adId", theAdmin.getAdminId());
+//						System.out.println("testing 7");
+//						model.addAttribute("logUser", theAdmin);
+//						model.addAttribute("categories", catServ.findAll());
+					} else {
+						model.addAttribute("adId", theAdmin.getAdminId());
+						model.addAttribute("logUser", theAdmin);
+						model.addAttribute("categories", catServ.findAll());
+						return "index.jsp";
+					}
+//					System.out.println(catServ.findAll());
 				}
 				
 				model.addAttribute("userId", theUser.getId());

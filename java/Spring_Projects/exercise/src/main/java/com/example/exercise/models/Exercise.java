@@ -15,6 +15,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.PrePersist;
 import javax.persistence.PreUpdate;
 import javax.persistence.Table;
+import javax.validation.constraints.Min;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
@@ -22,8 +23,8 @@ import javax.validation.constraints.Size;
 import org.springframework.format.annotation.DateTimeFormat;
 
 @Entity
-@Table(name="category")
-public class Category {
+@Table(name="exercises")
+public class Exercise {
 	
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
@@ -31,7 +32,15 @@ public class Category {
 	
 	@NotEmpty(message="Exercise name is required")
 	@Size(min=3, max=128, message="Name must be at least 3 characters long")
-	private String categoryName;
+	private String exerciseName;
+	
+	@NotEmpty(message="Please enter equipment used")
+	@Size(min=3, max=128, message="Please enter equipment used")
+	private String equipment;
+	
+	@NotNull(message="Please enter a difficulty from 1 - 10, 10 being very difficult")
+	@Min(value=1, message="Please enter a difficulty from 1 - 10, 10 being very difficult")
+	private Integer difficulty;
 	
 	@DateTimeFormat(pattern="yyyy-MM-dd")
 	private Date createdAt;
@@ -39,30 +48,22 @@ public class Category {
 	@DateTimeFormat(pattern="yyyy-MM-dd")
 	private Date updatedAt;
 	
-	@NotNull
-	@ManyToOne(fetch=FetchType.LAZY)
-	@JoinColumn(name="admin_admin_id")
-	private Admin admin;
-	
+	@NotEmpty(message="Please give a category")
 	@ManyToMany(fetch=FetchType.LAZY)
 	@JoinTable(
 			name = "categories_exercises",
-			joinColumns = @JoinColumn(name = "category_id"),
-			inverseJoinColumns = @JoinColumn(name = "exercise_id")
+			joinColumns = @JoinColumn(name="exercise_id"),
+			inverseJoinColumns = @JoinColumn(name="category_id")
 			)
-	private List<Exercise> exercises;
+	private List<Category> categories;
 	
+	@NotNull
+	@ManyToOne(fetch=FetchType.LAZY)
+	@JoinColumn(name="user_id")
+	private User user;
+	
+	public Exercise() {}
 
-	public Category() {}
-
-	public List<Exercise> getExercises() {
-		return exercises;
-	}
-	
-	public void setExercises(List<Exercise> exercises) {
-		this.exercises = exercises;
-	}
-	
 	public Long getId() {
 		return id;
 	}
@@ -71,12 +72,28 @@ public class Category {
 		this.id = id;
 	}
 
-	public String getCategoryName() {
-		return categoryName;
+	public String getExerciseName() {
+		return exerciseName;
 	}
 
-	public void setCategoryName(String categoryName) {
-		this.categoryName = categoryName;
+	public void setExerciseName(String exerciseName) {
+		this.exerciseName = exerciseName;
+	}
+
+	public String getEquipment() {
+		return equipment;
+	}
+
+	public void setEquipment(String equipment) {
+		this.equipment = equipment;
+	}
+
+	public Integer getDifficulty() {
+		return difficulty;
+	}
+
+	public void setDifficulty(Integer difficulty) {
+		this.difficulty = difficulty;
 	}
 
 	public Date getCreatedAt() {
@@ -94,15 +111,23 @@ public class Category {
 	public void setUpdatedAt(Date updatedAt) {
 		this.updatedAt = updatedAt;
 	}
+
+	public List<Category> getCategories() {
+		return categories;
+	}
+
+	public void setCategories(List<Category> categories) {
+		this.categories = categories;
+	}
+
+	public User getUser() {
+		return user;
+	}
+
+	public void setUser(User user) {
+		this.user = user;
+	}
 	
-	public Admin getAdmin() {
-		return admin;
-	}
-
-	public void setAdmin(Admin admin) {
-		this.admin = admin;
-	}
-
 	@PrePersist
 	protected void onCreate() {
 		this.createdAt = new Date();
@@ -113,6 +138,5 @@ public class Category {
 		this.updatedAt = new Date();
 		
 	}
-	
 
 }

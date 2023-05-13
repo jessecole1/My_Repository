@@ -11,6 +11,9 @@
 </head>
 <body>
 	<div>
+		<a href="/"><button>Home</button></a>
+	</div>
+	<div>
 		<form:form action="/category/create" method="post" modelAttribute="newCategory">
 		<form:input type="hidden" path="admin" value="${adId.adminId}"/>
 			<table>
