@@ -4,16 +4,19 @@
 }
 
 .body {
-	background-color: rgb(229,229,229);
+	background-color: black;
+	
 }
 
 .indexNav {
-	background-color: rgb(164,164,164);
+	/* background-color: rgb(164,164,164); */
 	height: 70px;
-	border-bottom: 3px solid black;
+	/* border-bottom: 3px solid black; */
 	display: flex;
 	align-items: center;
 	padding-left: 30px;
+	background-color: white;
+	border: 3px solid gray;
 }
 
 .indexMainCont {

@@ -36,7 +36,6 @@ public class ExerciseService {
 	public Exercise getById(Long id) {
 		Optional<Exercise> exercise = exerRepo.findById(id);
 		if (exercise.isPresent()) {
-			System.out.println(exercise.get());
 			return exercise.get();
 		}
 		return null;
@@ -50,5 +49,6 @@ public class ExerciseService {
 	public void destroyExercise(Long id) {
 		exerRepo.deleteById(id);
 	}
+
 
 }

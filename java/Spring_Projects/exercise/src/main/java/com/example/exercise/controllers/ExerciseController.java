@@ -52,7 +52,15 @@ public class ExerciseController {
 	}
 	
 	@PostMapping("/exercise/add")
-	public String addExercise(Model model, @Valid @ModelAttribute("newExercise") Exercise newExercise, BindingResult result) {
+	public String addExercise(Model model, @Valid @ModelAttribute("newExercise") Exercise newExercise, BindingResult result, HttpSession session) {
+		Long userId = (Long) session.getAttribute("userId");
+		User theUser = userServ.getById(userId);
+		if (theUser == null) {
+			Admin theAdmin = adminServ.getById(userId);
+			model.addAttribute("user", theAdmin);
+		} else {
+			model.addAttribute("user", theUser);
+		}
 		if(result.hasErrors()) {
 			model.addAttribute("category", catServ.findAll());
 			return "newExercise.jsp";
@@ -65,26 +73,38 @@ public class ExerciseController {
 	public String getExercises(@PathVariable("catId") Long catId, Model model, HttpSession session) {
 		Long userId = (Long) session.getAttribute("userId");
 		System.out.println(userId);
-		if (userId == null) {
+		if (userId != null) {
 			model.addAttribute("category", catServ.getOne(catId));
+			User theUser = userServ.getById(userId);
+			model.addAttribute("logUser", theUser);
 			return "categoriesExercises.jsp";
-		}
-		
-		User theUser = userServ.getById(userId);
-		System.out.println("test userId: " + theUser);
-		if (theUser == null) {
-			Admin theAdmin = adminServ.getById(userId);
-			model.addAttribute("user", theAdmin);
-			if (theAdmin == null) {
+		} else if ((Long) session.getAttribute("adminId") != null) {
+			Long adminId = (Long) session.getAttribute("adminId");
+			Admin admin = adminServ.getById(adminId);
+			if (adminId != null) {
 				model.addAttribute("category", catServ.getOne(catId));
+				model.addAttribute("admin", admin);
 				return "categoriesExercises.jsp";
 			}
-		} else {
-			model.addAttribute("logUser", theUser);
-		}
+		} 
 		model.addAttribute("category", catServ.getOne(catId));
 		return "categoriesExercises.jsp";
 	}
+//		
+//		User theUser = userServ.getById(userId);
+//		if (theUser == null) {
+//			Admin theAdmin = adminServ.getById(userId);
+//			System.out.println("Testing admin: " + theAdmin);
+//			model.addAttribute("user", theAdmin);
+//			if (theAdmin == null) {
+//				model.addAttribute("category", catServ.getOne(catId));
+//				return "categoriesExercises.jsp";
+//			}
+//		} else {
+//			model.addAttribute("logUser", theUser);
+//		}
+//		model.addAttribute("category", catServ.getOne(catId));
+//		return "categoriesExercises.jsp";
 	
 	@GetMapping("/exercise/edit/{exerciseId}")
 	public String editExercise(@PathVariable("exerciseId") Long exId, Model model, HttpSession session) {
@@ -98,7 +118,6 @@ public class ExerciseController {
 			}
 		}
 		model.addAttribute("user", theUser);
-		System.out.println(theUser.getId());
 		Exercise exercise = exerServ.getById(exId);
 		model.addAttribute("newExercise", exercise);
 		model.addAttribute("category", catServ.findAll());
@@ -112,7 +131,6 @@ public class ExerciseController {
 //			return "editExercise.jsp";
 			return "redirect:/exercise/edit/{id}";
 		} else {
-			System.out.println("Testing exercise: " + newExercise);
 			exerServ.editExercise(newExercise);		
 		}
 		return "redirect:/";
@@ -120,6 +138,12 @@ public class ExerciseController {
 	
 	@DeleteMapping("/exercise/{exerciseId}/destroy")
 	public String destroyExercise(Model model, @PathVariable("exerciseId") Long exerciseId, HttpSession session) {
+		if ((Long) session.getAttribute("adminId") != null) {
+			Long adminId = (Long) session.getAttribute("adminId");
+			Admin admin = adminServ.getById(adminId);
+			exerServ.destroyExercise(exerciseId);
+			return "redirect:/";
+		}
 		Long userId = (Long) session.getAttribute("userId");
 		User theUser = userServ.getById(userId);
 		if (theUser == null) {

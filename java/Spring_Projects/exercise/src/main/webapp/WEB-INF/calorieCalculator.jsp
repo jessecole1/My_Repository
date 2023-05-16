@@ -7,7 +7,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Exercise Page</title>
+<title>Calorie Calculator</title>
 <link rel="stylesheet" type="text/css" href="/css/style.css">
 </head>
 <body>
@@ -48,66 +48,33 @@
 	</div>
 	<div>
 		<div class="exerciseTitle">
-			<h2 class="bodyTitle">Exercises</h2>
-			<p style="color: white">Find the perfect exercises for your workouts</p>		
+			<h2 class="bodyTitle">Calorie Calculator</h2>
+			<p style="color: white">Find your recommended daily caloric intake</p>		
 		</div>
-		<div class="exercises">
-			<table style="width: 100%">
-				<tbody>
-					<c:forEach var="cat" items="${categories}" varStatus="status">
-						<c:if test="${status.index % 3 == 0}">
-							<tr class="catRow">
-						</c:if>
-						<td>
-							<div class="indexBoxes catTd">
-								<div class="topBox">
-									<div class="innerTop">
-								
-									</div>
-								</div>
-							<div class="bottomBox">
-								<p class="catText"><a class="catLinks catLinksLink" href="/exercise/all/${cat.id}"><c:out value="${cat.categoryName}"/></a></p>
-							</div>
-						</div>
-						</td>
-						<c:if test="${status.index % 3 == 2}">
-							</tr>
-						</c:if>
-					</c:forEach>
-				</tbody>
-			</table>
+		<div>
+			<form:form action="#" method="post">
+				<table>
+					<tbody>
+						<tr>
+							<td><form:label>Sex: </form:label></td>
+							<td><form:checkbox value="male"/>
+						</tr>
+						<tr>
+						
+						</tr>
+						<tr>
+						
+						</tr>
+						<tr>
+						
+						</tr>
+						<tr>
+						
+						</tr>
+					</tbody>
+				</table>
+			</form:form>
 		</div>
 	</div>
-<%-- 			<div class="indexBoxes">
-				<div class="topBox">
-					<div class="innerTop">
-					
-					</div>
-				</div>
-				<div class="bottomBox">
-					<p class="catText"><c:out value="${cat.categoryName}"/></p>
-				</div>
-			</div> --%>
-<!--  			<div class="indexBoxes">
-				<div class="topBox">
-					<div class="innerTop">
-					
-					</div>
-				</div>
-				<div class="bottomBox">
-				
-				</div>
-			</div>
-			<div class="indexBoxes">
-				<div class="topBox">
-					<div class="innerTop">
-					
-					</div>
-				</div>
-				<div class="bottomBox">
-				
-				</div>
-			</div>  -->
-
 </body>
 </html>

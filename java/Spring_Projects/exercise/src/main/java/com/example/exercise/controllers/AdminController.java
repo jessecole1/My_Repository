@@ -7,8 +7,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import com.example.exercise.models.Admin;
@@ -16,6 +18,7 @@ import com.example.exercise.models.AdminLogin;
 import com.example.exercise.models.Category;
 import com.example.exercise.services.AdminService;
 import com.example.exercise.services.CategoryService;
+import com.example.exercise.services.ExerciseService;
 
 @Controller
 public class AdminController {
@@ -25,6 +28,9 @@ public class AdminController {
 	
 	@Autowired
 	private CategoryService categoryServ;
+	
+	@Autowired
+	private ExerciseService exerServ;
 	
 	@GetMapping("/admin/login")
 	public String adminLogin(Model model) {
@@ -38,30 +44,28 @@ public class AdminController {
 	@PostMapping("/admin/register")
 	public String adRegister(@Valid @ModelAttribute("admin") Admin newAdmin, BindingResult result, Model model, HttpSession session) {
 		if(result.hasErrors()) {
-			System.out.println("test reg");
 			model.addAttribute("newAdminLogin", new AdminLogin());
 			return "adminReg.jsp";
 		}
 		adminServ.register(newAdmin, result);
-		session.setAttribute("userId", newAdmin.getAdminId());
+		session.setAttribute("adminId", newAdmin.getAdminId());
 		return "redirect:/";
 	}
 	
 	@PostMapping("/admin/login")
 	public String login(@Valid @ModelAttribute("newAdmin") AdminLogin newLoginAdmin, BindingResult result, Model model, HttpSession session) {
-		System.out.println("test log");
 		Admin admin = adminServ.adminLogin(newLoginAdmin, result);
 		if (result.hasErrors()) {
 			model.addAttribute("newAdminLogin", new AdminLogin());
 			return "adminReg.jsp";
 		}
-		session.setAttribute("userId", admin.getAdminId());
+		session.setAttribute("adminId", admin.getAdminId());
 		return "redirect:/";
 	}
 	
 	@GetMapping("/category/create")
 	public String categoryCreation(@ModelAttribute("newCategory") Category newCategory, BindingResult result, Model model, HttpSession session) {
-		Long userId = (Long) session.getAttribute("userId");
+		Long userId = (Long) session.getAttribute("adminId");
 		if(userId == null) {
 			return "redirect:/";
 		}
@@ -73,10 +77,20 @@ public class AdminController {
 	@PostMapping("/category/create")
 	public String createCategory(@Valid @ModelAttribute("newCategory") Category newCategory, BindingResult result) {
 		if(result.hasErrors()) {
-			System.out.println("test");
 			return "newCategory.jsp";
 		}
 		categoryServ.addCategory(newCategory);
+		return "redirect:/";
+	}
+	
+	@DeleteMapping("/admin/delete/{exerciseId}/destroy")
+	public String destroyExerciseByAdmin(Model model, @PathVariable("exerciseId") Long exerciseId, HttpSession session) {
+		Long adminId = (Long) session.getAttribute("adminId");
+		Admin admin = adminServ.getById(adminId);
+		if (admin == null) {
+			return "redirect:/";
+		}
+		exerServ.destroyExercise(exerciseId);
 		return "redirect:/";
 	}
 	
