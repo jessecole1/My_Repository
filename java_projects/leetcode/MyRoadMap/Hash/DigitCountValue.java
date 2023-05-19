@@ -10,3 +10,5 @@ class DigitCountValue {
         System.out.println(hash);
     }
 }
+
+// testing
