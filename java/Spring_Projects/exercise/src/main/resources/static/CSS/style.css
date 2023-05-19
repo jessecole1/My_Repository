@@ -325,3 +325,15 @@ a.aLink:hover {
 .errors {
 	color: red;
 }
+
+.adminLogin {
+	border: 2px solid white;
+	border-radius: 10px;
+	padding: 10px;
+	margin-right: 700px;
+	background-color: rgb(48,49,52);
+	color: white;
+	margin-bottom: 50px;
+}
+
+

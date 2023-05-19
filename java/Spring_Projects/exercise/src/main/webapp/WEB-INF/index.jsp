@@ -13,8 +13,7 @@
 <body>
 	<div class="indexNav">
 		<div class="leftNav">
-			<h1><a class="homeLink" href="/">Exercise Page</a></h1>	
-			<p><a href="/calorie/calculator">Calorie Calculator</a></p>
+			<h1><a class="homeLink" href="/">Exercise Page</a></h1>
 		</div>
 		<div class="rightNav">
 			<c:choose>

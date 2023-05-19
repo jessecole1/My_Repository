@@ -63,14 +63,14 @@
 						</tr>
 						<tr>
 							<td><form:label path="password">Password: </form:label></td>
-							<td><form:input path="password" type="text"/></td>
+							<td><form:input path="password" type="password"/></td>
 						</tr>
 						<tr>
 							<td><form:errors path="password" class="errors"/><td>
 						</tr>
 						<tr>
 							<td><form:label path="confirm">Confirm: </form:label></td>
-							<td><form:input path="confirm" type="text"/></td>
+							<td><form:input path="confirm" type="password"/></td>
 						</tr>
 						<tr>
 							<td><form:errors path="confirm" class="errors"/><td>
@@ -98,7 +98,7 @@
 						</tr>
 						<tr>
 							<td><form:label path="password">Password: </form:label></td>
-							<td><form:input path="password" type="text"/></td>
+							<td><form:input path="password" type="password"/></td>
 						</tr>
 						<tr>
 							<td><form:errors path="password" class="errors"/><td>

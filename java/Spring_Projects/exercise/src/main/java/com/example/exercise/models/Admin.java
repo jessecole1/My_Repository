@@ -31,13 +31,6 @@ public class Admin {
 	@Email(message="Enter a valid email")
 	private String email;
 	
-	public String getEmail() {
-		return email;
-	}
-
-	public void setEmail(String email) {
-		this.email = email;
-	}
 
 	@NotEmpty(message="Username is required")
 	@Size(min=3, max=128, message="Username must be at least 3 characters long")
@@ -77,6 +70,14 @@ public class Admin {
 
 	public void setUsername(String username) {
 		this.username = username;
+	}
+	
+	public String getEmail() {
+		return email;
+	}
+	
+	public void setEmail(String email) {
+		this.email = email;
 	}
 
 	public Date getCreatedAt() {

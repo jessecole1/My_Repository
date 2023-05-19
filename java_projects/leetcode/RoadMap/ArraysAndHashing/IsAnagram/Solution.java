@@ -25,7 +25,7 @@ public class Solution {
             if (hash.containsKey(String.valueOf(t.charAt(i)))) {
                 hash.merge(String.valueOf(t.charAt(i)), -1, Integer::sum);
             } else {
-                hash.put(String.valueOf(t.charAt(i)), -1)
+                hash.put(String.valueOf(t.charAt(i)), -1);
             }
         }
         for (Map.Entry<String, Integer> entry : hash.entrySet()) {

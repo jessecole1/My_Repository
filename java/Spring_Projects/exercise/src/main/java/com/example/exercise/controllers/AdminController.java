@@ -34,7 +34,7 @@ public class AdminController {
 	
 	@GetMapping("/admin/login")
 	public String adminLogin(Model model) {
-		model.addAttribute("newAdminLogin", new AdminLogin());
+		model.addAttribute("newLogin", new AdminLogin());
 		model.addAttribute("admin", new Admin());
 		System.out.println("test display");
 		
@@ -53,11 +53,12 @@ public class AdminController {
 	}
 	
 	@PostMapping("/admin/login")
-	public String login(@Valid @ModelAttribute("newAdmin") AdminLogin newLoginAdmin, BindingResult result, Model model, HttpSession session) {
+	public String login(@Valid @ModelAttribute("newLogin") AdminLogin newLoginAdmin, BindingResult result, Model model, HttpSession session) {
 		Admin admin = adminServ.adminLogin(newLoginAdmin, result);
 		if (result.hasErrors()) {
 			model.addAttribute("newAdminLogin", new AdminLogin());
-			return "adminReg.jsp";
+			System.out.println("testing admin 2");
+			return "redirect:/admin/login";
 		}
 		session.setAttribute("adminId", admin.getAdminId());
 		return "redirect:/";

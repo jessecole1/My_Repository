@@ -43,6 +43,7 @@ public class AdminService {
 		
 		if(!potentialAdmin.isPresent()) {
 			result.rejectValue("email","Matches", "Invalid");
+			System.out.println("testing admin");
 			return null;
 		}
 		
