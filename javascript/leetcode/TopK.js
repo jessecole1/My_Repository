@@ -18,10 +18,6 @@ var topK = function(nums, k) {
     for (let i = 0; i < k; i++) {
         result.push(entries[i][0])
     }
-    // result.push(entries[0][0]);
-    // if (entries.length > 1) {
-    //     result.push(entries[1][0]);
-    // } 
     return result;
 }
 // topK([-1],1);
