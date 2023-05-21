@@ -6,38 +6,23 @@ var topK = function(nums, k) {
             let currentValue = map.get(keyToUpdate);
             let updatedValue = currentValue + 1;
             map.set(keyToUpdate, updatedValue);
+            // console.log(map.get(updatedValue));
         } else {
             map.set(nums[i], 1);
         }
     }
-    let mapKeys = [];
-    let mapVals = [];
-    map.forEach((value, key) => {
-        if (map.size === 1) {
-            mapKeys.push(key);
-        } else {
-            mapKeys.push(value);
-        }
-    });
-    // console.log(mapKeys);
+    let result = [];
 
-    for (let i = 0; i < mapKeys.length; i++) {
-        if (mapKeys.length > 1) {
-            let temp = mapKeys[i-1];
-            if (mapKeys[i-1] < mapKeys[i]) {
-                mapKeys[i-1] = mapKeys[i];
-                mapKeys[i] = temp;
-            }
-        }
+    const entries = Array.from(map);
+    entries.sort((a,b) => b[1] - a[1]);
+    for (let i = 0; i < k; i++) {
+        result.push(entries[i][0])
     }
-    if (mapKeys.length <= 1) {
-        mapVals.push(mapKeys[0]);
-    } else {
-        console.log(mapVals.push(map.get(mapKeys[0])));
-        console.log(mapVals.push(map.get(mapKeys[1])));
-    }
-    return mapVals;
+    // result.push(entries[0][0]);
+    // if (entries.length > 1) {
+    //     result.push(entries[1][0]);
+    // } 
+    return result;
 }
-
 // topK([-1],1);
-console.log(topK([1,2],2));
+console.log(topK([3,0,1,0,3,3,1,1],2));
