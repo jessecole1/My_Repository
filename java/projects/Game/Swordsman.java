@@ -10,5 +10,6 @@ public class Swordsman extends Troop{
         this.setAttack(swordsmanAttack);
         this.setDefense(swordsmanDefense);
         this.setName(swordsmanName);
+
     }
 }

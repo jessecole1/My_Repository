@@ -1,16 +1,27 @@
-public class Troop extends Army {
+public class Troop {
     private String name = "";
     private int health = 100;
     private int attack = 0;
     private int defense = 0;
+    private Room location = new Room("Starter");
 
     public void basicAttack(Troop target) {
-        int charactersAttack = this.getAttack();
-        int blow = charactersAttack - target.getDefense();
-        int newHealth = target.getHealth() - blow;
-        target.setHealth(newHealth);
-        System.out.println("You attacked " + target.getName() + " for " + blow + " attack!");
-        System.out.println(" - " + target.getName() + "'s new health: " + target.getHealth());
+        if (this.getLocation() != target.getLocation()) {
+            System.out.println("Target not in line of sight.");
+
+        } else {
+            int charactersAttack = this.getAttack();
+            int blow = charactersAttack - target.getDefense();
+            int newHealth = target.getHealth() - blow;
+            target.setHealth(newHealth);
+            System.out.println("You attacked " + target.getName() + " for " + blow + " attack!");
+            System.out.println(" - " + target.getName() + "'s new health: " + target.getHealth());
+        }
+    }
+
+    public void enterRoom(Room room) {
+        System.out.println("Entering '" + room.getRoomName() + "'...");
+        this.setLocation(room);
     }
 
     public String getName() {
@@ -43,6 +54,14 @@ public class Troop extends Army {
 
     public void setDefense(int newDefense) {
         this.defense = newDefense;
+    }
+
+    public Room getLocation() {
+        return this.location;
+    }
+
+    public void setLocation(Room room) {
+        this.location = room;
     }
 
 }
