@@ -1,9 +1,12 @@
+import java.util.*;
+
 public class Troop {
     private String name = "";
     private int health = 100;
     private int attack = 0;
     private int defense = 0;
     private Room location = new Room("Starter");
+
 
     public void basicAttack(Troop target) {
         if (this.getLocation() != target.getLocation()) {
@@ -22,6 +25,11 @@ public class Troop {
     public void enterRoom(Room room) {
         System.out.println("Entering '" + room.getRoomName() + "'...");
         this.setLocation(room);
+    }
+
+    public void viewGuards() {
+        int guardNum = this.location.getNumOfCharacters();
+        System.out.println("There are " + guardNum + " guards in " + this.location.getRoomName());
     }
 
     public String getName() {
