@@ -8,6 +8,7 @@ import java.awt.Graphics2D;
 import javax.swing.JPanel;
 
 import entity.Player;
+import tile.TileManager;
 
 // To run threat, we need to implement Runnable to the GamePanel class 
 public class GamePanel extends JPanel implements Runnable{
@@ -17,13 +18,17 @@ public class GamePanel extends JPanel implements Runnable{
 	final int scale = 3; // the size of the character will be 16x16 pixels, but will look 48x48 -> (16 X 3 or originalTileSize X scale)
 	
 	public final int tileSize = originalTileSize * scale; 
-	final int maxScreenCol = 16; // 16 tiles going from left to right 
-	final int maxScreenRow = 12; // 12 tiles going from top to bottom  (total ratio is 4:3)
-	final int screenWidth = tileSize * maxScreenCol; // (48 X 16 = 768)
-	final int screenHeight = tileSize * maxScreenRow; // (48 X 12 = 576) -> total size of game screen will be 768x576 tiles
+	public final int maxScreenCol = 16; // 16 tiles going from left to right 
+	public final int maxScreenRow = 12; // 12 tiles going from top to bottom  (total ratio is 4:3)
+	public final int screenWidth = tileSize * maxScreenCol; // (48 X 16 = 768)
+	public final int screenHeight = tileSize * maxScreenRow; // (48 X 12 = 576) -> total size of game screen will be 768x576 tiles
 	
 	// FPS
 	int FPS = 60;
+	
+	// Classes
+	
+	TileManager tileM = new TileManager(this);
 	
 	// Instantiate KeyHandler
 	KeyHandler keyH = new KeyHandler();
@@ -32,12 +37,6 @@ public class GamePanel extends JPanel implements Runnable{
 	Thread gameThread;
 	
 	Player player = new Player(this, keyH);
-	
-	
-	// Set players default position 
-	int playerX = 100;
-	int playerY = 100;
-	int playerSpeed = 4;
 	
 	
 	public GamePanel() {
@@ -159,6 +158,8 @@ public class GamePanel extends JPanel implements Runnable{
 		
 		Graphics2D g2 = (Graphics2D)g;
 		
+		// Draw tiles before player so the background tiles are the bottom layer and not the player
+		tileM.draw(g2);
 		player.draw(g2);
 		
 		g2.dispose();
