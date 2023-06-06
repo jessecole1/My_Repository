@@ -18,4 +18,8 @@
     <fullyQualifiedTypeName name="com.example.exercise.models.Admin"/>
     <fullyQualifiedTypeName name="java.util.List"/>
     <fullyQualifiedTypeName name="java.util.Optional"/>
+    <fullyQualifiedTypeName name="java.lang.System"/>
+    <fullyQualifiedTypeName name="main.KeyHandler"/>
+    <fullyQualifiedTypeName name="java.io.IOException"/>
+    <fullyQualifiedTypeName name="javax.imageio.ImageIO"/>
 </qualifiedTypeNameHistroy>
