@@ -24,6 +24,9 @@ public class Main {
 		window.setLocationRelativeTo(null);
 		window.setVisible(true);
 		
+		// Starts the function that sets the gameThread variable to a new thread
+		gamePanel.startGameThread();
+		
 		
 	}
 
