@@ -7,20 +7,17 @@
 
 
 const generateParentheses = function(n) {
+    let str = "";
+    let openParen = "(";
+    let closeParen = ")";
     let stack = [];
-    let string = "";
-    const parens = "()";
-    let i = 0;
-    while (i < n) {
-        const left = "(";
-        const right = ")";
-        string += left;
-        string += right;
-        stack.push(string);
-        string = "";
-        i++;
+    let open, close = 0;
+    for (let i = 0; i < n; i++) {
+        if (open === close) {
+            str += openParen;
+            open++;
+        }
     }
-    console.log(stack);
-}
 
+}
 generateParentheses(2);

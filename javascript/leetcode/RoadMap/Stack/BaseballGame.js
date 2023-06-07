@@ -6,7 +6,6 @@ const calPoints = function(operations) {
     stack = [];
     for (let i = 0; i < operations.length; i++) {
         if (parens.includes(operations[i])) {
-            console.log(operations[i]);
             if (operations[i] === "+") {
                 let x = parseInt(stack[stack.length-1]);
                 let y = parseInt(stack[stack.length-2]);
@@ -15,11 +14,9 @@ const calPoints = function(operations) {
             else if (operations[i] === "D") {
                 let x = parseInt(stack[stack.length-1]);
                 stack.push(x*2);
-                console.log(stack);
             }
             else if (operations[i] === "C") {
                 stack.pop();
-                console.log(stack);
             }
         } else {
             stack.push(parseInt(operations[i]));
