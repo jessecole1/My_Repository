@@ -43,6 +43,9 @@ public class GamePanel extends JPanel implements Runnable{
 	// Thread is useful when you want to process 60 updates / second (or, 60 frames per second, or 60fps)
 	Thread gameThread;
 	
+	public CollisionChecker cChecker = new CollisionChecker(this);
+	
+	
 	public Player player = new Player(this, keyH);
 	
 	
