@@ -2,20 +2,20 @@
 
 export const projects = [
     {
-      title: "React Reserve",
-      subtitle: "MERN Stack",
+      title: "Twitter Clone",
+      subtitle: "Java Spring",
       description:
-        "Lorem ipsum dolor sit amet consectetur adipisicing elit. Praesentium dolore rerum laborum iure enim sint nemo omnis voluptate exercitationem eius?",
-      image: "./pic.jpg",
-      link: "https://reactbootcamp.com",
+        "Replication of Twitter with most of its features - Posting Tweets, Liking / Commenting, Notification Menu, Profile Page",
+      image: "./twitter.png",
+      link: "",
     },
     {
-      title: "React Tracks",
-      subtitle: "React and Python",
+      title: "2D Video Game",
+      subtitle: "Java Spring",
       description:
-        "Lorem ipsum dolor sit amet consectetur adipisicing elit. Praesentium dolore rerum laborum iure enim sint nemo omnis voluptate exercitationem eius?",
-      image: "./project-2.gif",
-      link: "https://reedbarger.com",
+        "2D RPG Video Game with world map, 60FPS, character sprites, movement keys, map rendering and moving camera.",
+      image: "./2DGame01.png",
+      link: "",
     },
     {
       title: "DevChat",
@@ -46,5 +46,10 @@ export const skills = [
     "Spring Tool Suite",
     "Flask",
     "HTML",
-    "CSS"
+    "CSS",
+    "Tailwind"
 ]
+
+export const git = "./git.png";
+export const linkedIn = "./linkedin.png";
+export const twitt = "./twitt.png";
