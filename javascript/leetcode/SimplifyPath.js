@@ -10,64 +10,77 @@
 // The path only contains the directories on the path from the root directory to the target file or directory (i.e., no period '.' or double period '..')
 
 const simplifyPath = function(path) {
-    // Declare stack array
-    let stack = [];
-    // Iterate through path string
+    let firstStack = [];
     for (let i = 0; i < path.length; i++) {
-        // console.log(i);
-        console.log("stack: " + stack[stack.length-1] + " " + stack[stack.length-2]);
-        
-        // Set a variable equal to what we push to stack 
-        let temp = "";
-        
-        if (path[i] === ".") {
-            temp += path[i];
-            stack.push(temp);
-            temp = "";
-        }
-        
-        if (stack[stack.length-1] === "." && stack[stack.length-2] === ".") {
-            stack.pop();
-            stack.pop();
-            stack.pop();
-            stack.pop();
-        }
-        if (path[i] === "/") {
-            if (stack[stack.length-1] === "/") {
-                continue;
-            } else {
-                stack.push("/");
-            }
-        }
-        // If path[i] equals a letter, loop through and add to stack each letter until not a letter
-        if (parseInt(path[i].charCodeAt(0)) >= 97 && parseInt(path[i].charCodeAt(0)) <= 122) {
+        firstStack.push(path[i]);
+    }
+
+    let stack = [];
+    j=0;
+    let valid = false;
+    while (j <= firstStack.length-1) {
+        stack.push(firstStack[j]);
+        console.log("after");
+        console.log(stack);
+        let z = stack[stack.length-1].charCodeAt(0);
+
+        if (z >= 97 && z <= 122) {
+            valid = false;
+            let temp = "";
             let count = 0;
-            for (let j = i; j < path.length; j++) {
-                if (j === path.length - 1) {
-                    if (path[j].charCodeAt(0) >= 97 && parseInt(path[i].charCodeAt(0)) <= 122) {
-                        temp += path[j];
-                    }
-                    stack.push(temp);
-                    temp = "";
-                    count = 0;
-                    return stack;
-                }
-                if (path[j].charCodeAt(0) >= 97 && parseInt(path[i].charCodeAt(0)) <= 122) {
-                    temp += path[j];
+            stack.pop();
+            for (let i = j; i <= firstStack.length-1; i++) {
+                if (firstStack[i].charCodeAt(0) >= 97 && firstStack[i].charCodeAt(0) <= 122) {
+                    temp += firstStack[i];
                     count++;
-                }
-                else {
+                } else {
                     stack.push(temp);
                     temp = "";
-                    i += count - 1;
-                    count = 0;
                     break;
                 }
             }
-        }
-    }
-    return stack;
-}
+            j += count -1;
+        } 
 
-console.log(simplifyPath("/home/abc/../your"));
-           //             0123456789
+        if (stack[stack.length-1] === "/") {
+            // console.log(j);
+            valid = false;
+            if (stack[stack.length-2] === "/") {
+                stack.pop();
+            }
+        }
+        
+
+        if (stack[stack.length-1] === "." && valid === false) {
+            stack.pop();
+            valid = true;
+        }
+
+        if (stack[stack.length-1] === "." && valid === true) {
+            stack.pop();
+            stack.pop();
+            stack.pop();
+            valid = false;
+        }
+        console.log("before")
+        console.log(stack);
+        j++;
+        }
+    let finalString = "";
+    if (stack[stack.length-1] === "/" && stack.length > 1) {
+        stack.pop();
+    } 
+    if (stack.length === 0) {
+        stack.push("/");
+    }
+    for (let i = 0; i < stack.length; i++) {
+        finalString += stack[i];
+    }
+    return finalString;
+}
+        
+
+
+console.log(simplifyPath("/.."));
+//                        012345678912
+                    //    /a/
