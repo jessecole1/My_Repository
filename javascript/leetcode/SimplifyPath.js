@@ -17,56 +17,49 @@ const simplifyPath = function(path) {
 
     let stack = [];
     j=0;
-    let valid = false;
     while (j <= firstStack.length-1) {
         stack.push(firstStack[j]);
-        console.log("after");
-        console.log(stack);
         let z = stack[stack.length-1].charCodeAt(0);
 
-        if (z >= 97 && z <= 122) {
-            valid = false;
-            let temp = "";
+
+        if (stack[stack.length-1] !== "/") {
+            let dotStr = "";
             let count = 0;
             stack.pop();
-            for (let i = j; i <= firstStack.length-1; i++) {
-                if (firstStack[i].charCodeAt(0) >= 97 && firstStack[i].charCodeAt(0) <= 122) {
-                    temp += firstStack[i];
+            for (let i = j; i<= firstStack.length-1; i++) {
+                if (firstStack[i] !== "/") {
+                    dotStr += firstStack[i];
                     count++;
-                } else {
-                    stack.push(temp);
-                    temp = "";
+                    if (i === firstStack.length-1) {
+                        stack.push(dotStr);
+                        break;
+                    }
+                } else if (firstStack[i] === "/") {
+                    stack.push(dotStr);
+                    dotStr = "";
                     break;
                 }
             }
-            j += count -1;
-        } 
-
-        if (stack[stack.length-1] === "/") {
-            // console.log(j);
-            valid = false;
-            if (stack[stack.length-2] === "/") {
+            let topStackValue = stack[stack.length-1];
+            if (topStackValue === ".") {
+                stack.pop();
+            } else if (topStackValue === "..") {
+                stack.pop();
+                stack.pop();
                 stack.pop();
             }
-        }
-        
-
-        if (stack[stack.length-1] === "." && valid === false) {
-            stack.pop();
-            valid = true;
+            j += count - 1;
         }
 
-        if (stack[stack.length-1] === "." && valid === true) {
-            stack.pop();
-            stack.pop();
-            stack.pop();
-            valid = false;
-        }
-        console.log("before")
-        console.log(stack);
+            if (stack[stack.length-1] === "/") {
+                if (stack[stack.length-2] === "/") {
+                    stack.pop();
+                }
+            }
         j++;
         }
     let finalString = "";
+
     if (stack[stack.length-1] === "/" && stack.length > 1) {
         stack.pop();
     } 
@@ -81,6 +74,4 @@ const simplifyPath = function(path) {
         
 
 
-console.log(simplifyPath("/.."));
-//                        012345678912
-                    //    /a/
+console.log(simplifyPath("/home//../..hidden/"));
