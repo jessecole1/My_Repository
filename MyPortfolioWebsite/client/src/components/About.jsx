@@ -20,7 +20,7 @@ const About = () => {
                 <div className="bg-indigo-950 pl-24 h-full mx-auto flex  md:flex-row flex-col justify-evenly">
                     <div style={{flex:1}} className="flex-col h-full flex justify-evenly items-center">
                         <div className="w-200 lg:flex-grow md:w-1/2 lg:pr-24 md:pr-16 flex flex-col md:items-start md:text-left mb-16 md:mb-0 text-center justify-center">
-                        <h1 className="title-font sm:text-4xl text-3xl mb-4 font-medium text-white">
+                        <h1 className="title-font text-2xl mb-4 font-medium text-white">
                             Hey I'm Jesse
                         </h1>
                         <div className="flex h-18">
@@ -56,9 +56,9 @@ const About = () => {
                     </div>
                     <div style={{backgroundImage:`url(${image})`, backgroundRepeat:"no-repeat", backgroundSize: "cover"}} className="bg-black h-full flex items-center justify-center lg:max-w-lg lg:w-full md:w-1/2 w-5/6">
                         <img style={{position: 'relative', right: 255}}
-                            className="object-cover object-center rounded"
+                            className="object-cover object-center rounded w-64"
                             alt="react"
-                            src="./logo192.png"
+                            src="./logo.png"
                         />
                     </div>
                 </div>
