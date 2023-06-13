@@ -21,6 +21,8 @@ public class GamePanel extends JPanel implements Runnable{
 	public final int tileSize = originalTileSize * scale; 
 	public final int maxScreenCol = 16; // 16 tiles going from left to right 
 	public final int maxScreenRow = 12; // 12 tiles going from top to bottom  (total ratio is 4:3)
+	
+	// The screenWidth and screenHeight are the sizes for what is seen on the screen. Remember it was used as the default size of the map.
 	public final int screenWidth = tileSize * maxScreenCol; // (48 X 16 = 768)
 	public final int screenHeight = tileSize * maxScreenRow; // (48 X 12 = 576) -> total size of game screen will be 768x576 tiles
 	
