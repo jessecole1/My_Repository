@@ -22,7 +22,7 @@ const maxProfit = function(prices) {
 }
 
 
-console.log(maxProfit([2,1,2,1,0,0,1]));
+console.log(maxProfit([2,10,1,6]));
 
 
 //          NeetCode Solution
