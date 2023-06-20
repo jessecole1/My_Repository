@@ -1,14 +1,18 @@
-import logo from './logo.svg';
-import './App.css';
-import Form from './components/Form';
-import People from './components/People';
-import {BrowserRouter, Routes, Route} from 'react-router-dom';
+import logo from "./logo.svg";
+import "./App.css";
+import Form from "./components/Form";
+import { Router } from "@reach/router";
+import People from "./components/People";
+import Planets from "./components/Planets";
 
 function App() {
   return (
-    <div className="App">
+    <div style={{ margin: "20px" }}>
       <Form />
-      
+      <Router>
+        <People path="/people/:id" />
+        <Planets path="/planets/:id" />
+      </Router>
     </div>
   );
 }

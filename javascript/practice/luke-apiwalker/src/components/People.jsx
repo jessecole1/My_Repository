@@ -1,56 +1,78 @@
-
-import React, {useState, useEffect} from 'react';
-import axios from 'axios';
-
+import { Link } from "@reach/router";
+import axios from "axios";
+import React, { useState, useEffect } from "react";
 const People = (props) => {
+  const { id } = props;
+  const [apiData, setApiData] = useState({});
+  const [homeworld, setHomeworld] = useState("");
+  const [homeworldId, setHomeworldId] = useState();
+  const [isError, setIsError] = useState(false);
+  useEffect(() => {
+    axios
+      .get(`https://swapi.dev/api/people/${id}`)
+      .then((response) => {
+        setIsError(false);
+        console.log(response.data);
+        setApiData(response.data);
+        getHomeworldId(response.data.homeworld);
+        axios
+          .get(response.data.homeworld)
+          .then((homeworldRes) => {
+            console.log(homeworldRes.data.name);
+            setHomeworld(homeworldRes.data.name);
+          })
+          .catch((err) => console.log(err));
+      })
+      .catch((err) => {
+        console.log(err);
+        setIsError(true);
+      });
+  }, [props]);
 
-    const {id} = props;
-
-    const [isError, setIsError] = useState(false);
-    const [apiData, setApiData] = useState({});
-    const [homeWorld, setHomeWorld] = useState("")
-    const [homeWorldId, setHomeWorldId] = useState();
-    
-    console.log("props")
-    console.log(props);
-
-
-    useEffect(() => {
-        axios.get(`https://swapi.dev/api/people/${id}/`)
-        .then((response) => {
-            setIsError(false);
-            setApiData(response.data)
-            setHomeWorld(response.data.homeWorld)
-            axios.get(response.data.homeWorld)
-                .then((homeWorldRes) => {
-                    setHomeWorld(homeWorldRes.data.name)
-                })
-                .catch((err) => {console.log(err)})
-        })
-        .catch((err) => {
-            console.log(err);
-            setIsError(true);
-        })
-    }, [props]);
-
-    if (!isError) {
-        return (
-            <div>
-                <h1>Height:</h1>
-                <p>Hair Color: </p>
-                <p>Eye Color: </p>
-                <p>Skin Color: </p>
-                <p>Home Planet: </p>
-            </div>
-        )
+  const getHomeworldId = (homeworldURL) => {
+    // check for 1 character ID
+    if (homeworldURL.charAt(homeworldURL.length - 3) === "/") {
+      const hwId = homeworldURL.charAt(homeworldURL.length - 2);
+      setHomeworldId(hwId);
     } else {
-        return (
-            <div>
-    
-            </div>
-        )
+      const firstCharId = homeworldURL.charAt(homeworldURL.length - 3);
+      const secondCharId = homeworldURL.charAt(homeworldURL.length - 2);
+      const idString = `${firstCharId}${secondCharId}`;
+      setHomeworldId(idString);
     }
-
-}
+    // check for 2 character ID
+  };
+  if (!isError) {
+    return (
+      <div>
+        <h1>{apiData.name}</h1>
+        <p>Height: {apiData.height}</p>
+        <p>Hair Color: {apiData.hair_color}</p>
+        <p>Eye Color: {apiData.eye_color}</p>
+        <p>Skin Color: {apiData.skin_color}</p>
+        <p>Homeworld: {homeworld}</p>
+        {/* <p> */}
+        <Link to={`/planets/${homeworldId}`}>homeworld</Link>
+        {/* </p> */}
+      </div>
+    );
+  } else {
+    return (
+      <>
+        <img
+          src="https://api.time.com/wp-content/uploads/2015/12/star-wars-episode-iii-revenge-of-the-sith-obi-wan.jpg?w=800&quality=85"
+          alt=""
+        />
+        <h3>These aren't the droids you're looking for</h3>
+      </>
+    );
+  }
+};
 
 export default People;
+
+const hw = "https://swapi.dev/api/planets/28/";
+// "https://swapi.dev/api/planets/28/"
+// "https://swapi.dev/api/planets/2/"
+console.log(hw.charAt(hw.length - 2));
+console.log(hw.charAt(hw.length - 3));
