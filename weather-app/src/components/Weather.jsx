@@ -2,28 +2,21 @@ import React, {useState, useEffect} from 'react';
 import axios from 'axios';
 import {useParams, useNavigate} from 'react-router-dom';
 import Form from './Form';
-// import { BrowserRouter, Routes, Route} from 'react-router-dom';
-
+import Card from './Card';
 
 
 const Weather = (props) => {
 
-    // console.log("useParams:" + theCity);
 
     const {theCity} = props;
     const {searchCity} = props;
-    const {setSearchCity} = props;
-
-    console.log("search city from Weather comp: " + searchCity);
-    console.log("theCity: " + theCity);
-
-
 
     const [measure, setMeasure] = useState("fahrenheit");
     const [speedMeasure, setSpeedMeasure] = useState("mph");
 
     const [localTime, setLocalTime] = useState();
     const [city, setCity] = useState();
+    const [region, setRegion] = useState();
 
     const [tempF, setTempF] = useState();
     const [feelsLikeF, setFeelsLikeF] = useState();
@@ -35,9 +28,10 @@ const Weather = (props) => {
     const [windM, setWindM] = useState();
     const [windK, setWindK] = useState();
 
+    const [date, setDate] = useState();
+
     
     useEffect(() => {
-        // if (theCity) {
             axios.get(`http://api.weatherapi.com/v1/current.json?key=772fe409b0a648b694d213844232006&q=${theCity}`)
                 .then((response) => {
                     setTempF(response.data.current.temp_f);
@@ -45,7 +39,8 @@ const Weather = (props) => {
                     setTempC(response.data.current.temp_c);
                     setFeelsLikeC(response.data.current.feelslike_c);
                     setLocalTime(response.data.location.localtime);
-                    setCity(response.data.location.name);
+                    setCity(response.data.location.name + ",");
+                    setRegion(response.data.location.region);
                     setGustM(response.data.current.gust_mph);
                     setGustK(response.data.current.gust_kph);
                     setWindM(response.data.current.wind_mph);
@@ -55,16 +50,18 @@ const Weather = (props) => {
                 .catch((err) => {
                     console.log(err);
                 });
-        // }
     
     }, [theCity]);
 
 
 
     return (
-        <div>
-            <h2>Hello there</h2>
-            <p>Check out the weather for: {city}</p>
+        <div className="bg-blue-200 h-96 flex justify-center">
+            <Card measure={measure} speedMeasure={speedMeasure} localTime={localTime} city={city} 
+            region={region} tempF={tempF} feelsLikeF={feelsLikeF} tempC={tempC} feelsLikeC={feelsLikeC}
+            gustM={gustM} gustK={gustK} windM={windM} windK={windK} date={date} setMeasure={setMeasure} setSpeedMeasure={setSpeedMeasure}/>
+            {/* <h2>Hello there</h2>
+            <p>Check out the weather for: {city}, {region}</p>
             <form>
                 <select onChange={(e) => { setMeasure(e.target.value)}}>
                     <option value="fahrenheit">Fahrenheit</option>
@@ -107,8 +104,10 @@ const Weather = (props) => {
                     </div>
                     
                 </div>
-
-            </div>
+                <div>
+                    Date: {date}
+                </div>
+            </div> */}
         </div>
     );
 };

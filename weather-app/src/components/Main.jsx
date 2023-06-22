@@ -5,22 +5,15 @@ import Weather from './Weather';
 
 const Main = (props) => {
 
-    // const {searchCity, setSearchCity} = props;
-
     const [searchCity, setSearchCity] = useState("");
     const [theCity, setTheCity] = useState([]);
-    // console.log("XX:" + theCity);
+    console.log("Main: " + searchCity);
 
     return (
         <div>
+            {/* <Navbar /> */}
             <Form theCity={theCity} setTheCity={setTheCity} searchCity={searchCity} setSearchCity={setSearchCity} />
             <Weather theCity={theCity} searchCity={searchCity} setSearchCity={setSearchCity} />
-            {/* <BrowserRouter>
-                <Routes> */}
-                    {/* <Route element={<Form searchCity={searchCity} setSearchCity={setSearchCity} />} path="/"/> */}
-                    {/* <Route path="/:theCity" element={<Weather/>} />
-                </Routes>
-            </BrowserRouter> */}
         </div>
     );
 };
