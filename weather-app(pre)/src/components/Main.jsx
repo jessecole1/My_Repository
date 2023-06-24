@@ -10,7 +10,6 @@ const Main = (props) => {
 
     return (
         <div>
-            {/* <Navbar /> */}
             <Form theCity={theCity} setTheCity={setTheCity} searchCity={searchCity} setSearchCity={setSearchCity} />
             <Weather theCity={theCity} searchCity={searchCity} setSearchCity={setSearchCity} />
         </div>

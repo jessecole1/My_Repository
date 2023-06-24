@@ -10,7 +10,7 @@ import Main from './components/Main';
 
 function App() {
   return (
-    <div className="bg-blue-200">
+    <div className="App">
       <Main />
       {/* <Form searchCity={searchCity} setSearchCity={setSearchCity}/> */}
       {/* <Form /> */}
