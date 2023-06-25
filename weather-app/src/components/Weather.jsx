@@ -18,7 +18,7 @@ const Weather = (props) => {
     const [city, setCity] = useState();
     const [region, setRegion] = useState();
 
-    const [tempF, setTempF] = useState();
+    const [tempF, setTempF] = useState([]);
     const [feelsLikeF, setFeelsLikeF] = useState();
     const [tempC, setTempC] = useState();
     const [feelsLikeC, setFeelsLikeC] = useState();
@@ -30,19 +30,11 @@ const Weather = (props) => {
 
     const [date, setDate] = useState();
 
-    const [forecastData, setForecastData] = useState([]);
+    const [forecastData, setForecastData] = useState({});
 
-    // let d = new Date().getHours();
-    // let dateArray = [];
-    // for (let i = 0; i < 10; i++) {
-    //     let timeDate = d + i;
-    //     if (timeDate > 23) {
-    //         timeDate -= 24;
-    //         dateArray.push(timeDate);
-    //     } else {
-    //         dateArray.push(timeDate);
-    //     }
-    // }
+    const [hourArray, setHourArray] = useState([]);
+
+ 
     // console.log("dateArray: " + dateArray);
 
     
@@ -67,37 +59,17 @@ const Weather = (props) => {
             //     });
     
     // }, [theCity]);
-            let d = new Date().getHours();
-            let dateArray = [];
-            for (let i = 0; i < 10; i++) {
-                let timeDate = d + i;
-                if (timeDate > 23) {
-                    timeDate -= 24;
-                    dateArray.push(timeDate);
-                } else {
-                    dateArray.push(timeDate);
-                }
-            };
-            console.log("date arrayyyy: " + dateArray);
+
             axios.get(`http://api.weatherapi.com/v1/forecast.json?key=772fe409b0a648b694d213844232006&q=${theCity}`)
                 .then((response) => {
-                    // console.log("forecast data: " + response.data.forecast.forecastday[0].hour[0].time);
-                    setForecastData([...forecastData, response.data.forecast.forecastday[0].hour[dateArray[0]].time]);
-                    setForecastData([...forecastData, response.data.forecast.forecastday[0].hour[dateArray[1]].time]);
-                    setForecastData([...forecastData, response.data.forecast.forecastday[0].hour[dateArray[2]].time]);
-                    setForecastData([...forecastData, response.data.forecast.forecastday[0].hour[dateArray[3]].time]);
-                    setForecastData([...forecastData, response.data.forecast.forecastday[0].hour[dateArray[4]].time]);
-                    setForecastData([...forecastData, response.data.forecast.forecastday[0].hour[dateArray[5]].time]);
-                    setForecastData([...forecastData, response.data.forecast.forecastday[0].hour[dateArray[6]].time]);
-                    setForecastData([...forecastData, response.data.forecast.forecastday[0].hour[dateArray[7]].time]);
-                    setForecastData([...forecastData, response.data.forecast.forecastday[0].hour[dateArray[8]].time]);
-                    setForecastData([...forecastData, response.data.forecast.forecastday[0].hour[dateArray[9]].time]);
-                    // setForecastDay(response.data.forecast);
+                    
                 })
                 .catch((err) => {
                     console.log(err);
-                },[theCity]);
+                });
             }, [theCity]);
+
+
 
 
 

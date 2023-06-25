@@ -5,7 +5,9 @@ const Card = (props) => {
     const {forecastData, measure, speedMeasure, localTime, city, region, tempF,
     feelsLikeF, tempC, feelsLikeC, gustM, gustK, windM, windK, date, setMeasure, setSpeedMeasure} = props;
 
-    console.log(forecastData);
+    // console.log("from card: " + JSON.stringify(forecastData));
+
+
 
     return (
         <div className="mt-10 bg-stone-100 p-3 w-5/12 rounded-sm h-3/4 border-4 border-sky-500 rounded-lg">

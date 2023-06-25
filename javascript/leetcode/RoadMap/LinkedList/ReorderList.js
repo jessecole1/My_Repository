@@ -18,22 +18,11 @@ class LinkedList {
             return this;
         }
         let current = this.head;
-        // console.log(current);
         while (current.next) {
             current = current.next;
         }
         current.next = newNode;
         return this;
-    }
-
-    removeBack() {
-        if (!this.head) {
-            return false;
-        }
-        let current = this.head;
-        while (current.next) {
-
-        }
     }
 }
 
@@ -45,41 +34,43 @@ const addList = function(list) {
     return linkedList;
 }
 
-// const reorderList = function(list) {
 
-//     const newList = new LinkedList();
 
-//     let current = list.head;
-//     let prev;
+const reorderList = function(list) {
+    let arr = [];
+    let reorderedArr = [];
+    let runner = list.head;
+    while (runner) {
+        arr.push(runner.data);
+        runner = runner.next;
+    }
+    let l = 0;
+    let r = arr.length-1;
 
-//     let i = 0;
+    while (l <= r) {
+        if (l === r) {
+            reorderedArr.push(arr[l]);
+            return reorderedArr;
+        }
+        reorderedArr.push(arr[l]);
+        l++;
+        reorderedArr.push(arr[r]);
+        r--;
+    }
+    return reorderedArr;
 
-//     while (i < 2) {
 
-//     }
+}
 
-//     while (current.next) {
-//         prev = current;
-//         current = current.next;
-//     }
-//     console.log(prev);
-//     console.log(current);
-//     newList.addBack(current.data);
-    
-// }
 
 const reverseList = function(list) {
-    console.log(list);
     let prev = null;
     while (list.head !== null) {
         let nextNode = list.head.next;
         list.head.next = prev;
-        console.log("2: ");
-        console.log(list);
         prev = list.head;
         list.head = nextNode;
     }
-    // console.log(prev);
     return prev;
 }
 
@@ -89,5 +80,4 @@ ll1.addBack(2);
 ll1.addBack(3);
 ll1.addBack(4);
 ll1.addBack(5);
-// console.log(ll1);
-reverseList(ll1);
+console.log(reorderList(ll1));
