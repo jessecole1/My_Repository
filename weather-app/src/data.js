@@ -1,0 +1,1 @@
+export const sunny = "./sunny-icon-23507.png";

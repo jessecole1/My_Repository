@@ -1,35 +1,69 @@
 import React from 'react';
+import {sunny} from '../data';
 
 const Card = (props) => {
 
-    const {forecastData, measure, speedMeasure, localTime, city, region, tempF,
-    feelsLikeF, tempC, feelsLikeC, gustM, gustK, windM, windK, date, setMeasure, setSpeedMeasure} = props;
+    const { kss, localTime, city, region, hourArray } = props;
 
-    // console.log("from card: " + JSON.stringify(forecastData));
+    console.log("hour array: " + hourArray);
 
-
+    if (!kss) {
+        return <div>Check out your cities weather</div>
+    }
+    
+    console.log("kss: " + kss[0].farenTemps);
+    // for (let i = 0; i < )
 
     return (
-        <div className="mt-10 bg-stone-100 p-3 w-5/12 rounded-sm h-3/4 border-4 border-sky-500 rounded-lg">
+        <div className="text-white mt-10 bg-gray-700 p-3 w-9/12 rounded-sm h-1/2 border-4 border-sky-500 rounded-lg">
             <div className="flex justify-between border-b-4">
                 <div className="">
                     <h2 className="text-3xl font-bold">{city}</h2>
                     <p><span className="text-xl font-bold">{region}</span></p>
                 </div>
                 <div className="content-center">
-                    <p>LocalTime: {localTime}</p>
+                    {/* <p>LocalTime: {localTime}</p> */}
                 </div>
             </div>
                 <br></br>
             <div>
-                <div>
-                   {/* {
-                    forecastData.map((item) => {
-                        return <div>
-                        item? {item}
-                        </div>
-                    })
-                   } */}
+                <div className="flex justify-evenly">
+                    {
+                        kss.map((item, key) => {
+                            let tt = kss[key].times;
+                            let ff = tt[11];
+                            ff += tt[12]
+                            let dd = parseInt(ff);
+                            let string = "";
+                            if (dd === 0) {
+                                string += dd + " am";
+                            }
+                            if (dd > 12) {
+                                dd -= 12;
+                                string += dd + " pm";
+                            } else if (dd < 12 && dd !== 0) {
+                                string += dd + " am";
+                            }
+                            return <div className="h-34 border-4 p-4 w-36 rounded-2xl bg-gray-600">
+                                {/* <img src={sunny} className="w-12" /> */}
+                                <p className="font-bold text-2xl">{string}</p>
+                                <p className="font-bold text-2xl">{kss[key].farenTemps}°</p>
+                                <img src={kss[key].icons} />
+                                <p className="ml-3 mb-4">{kss[key].texts}</p>
+                            <table className="w-16 flex:column justify-center">
+                                <tr className="flex justify-between w-full ml-3">
+                                    <td><span className="text-slate-400">Winds</span></td>
+                                    <td>{kss[key].mphWinds}</td>
+                                    
+                                </tr>
+                                <tr className="flex justify-between w-full ml-3">
+                                    <td><span className="text-slate-400">Humid</span></td>
+                                    <td>{kss[key].humidities}</td>
+                                </tr>
+                            </table>    
+                            </div>
+                        })
+                    }
                 </div>
                 {/* <div className="flex justify-between">
                     {

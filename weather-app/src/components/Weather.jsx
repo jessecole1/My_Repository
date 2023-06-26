@@ -11,58 +11,115 @@ const Weather = (props) => {
     const {theCity} = props;
     const {searchCity} = props;
 
-    const [measure, setMeasure] = useState("fahrenheit");
-    const [speedMeasure, setSpeedMeasure] = useState("mph");
-
+    
+    
+    // const [feelsLikeF, setFeelsLikeF] = useState();
+    // const [feelsLikeC, setFeelsLikeC] = useState();
+    
+    // const [gustM, setGustM] = useState();
+    // const [gustK, setGustK] = useState();
+    
+    const [date, setDate] = useState();
     const [localTime, setLocalTime] = useState();
+    
     const [city, setCity] = useState();
     const [region, setRegion] = useState();
+    const [measure, setMeasure] = useState("fahrenheit");
+    const [speedMeasure, setSpeedMeasure] = useState("mph");
+    const [forecastDate, setForecastDate] = useState();
 
+    const [hourArray, setHourArray] = useState();
     const [tempF, setTempF] = useState([]);
-    const [feelsLikeF, setFeelsLikeF] = useState();
-    const [tempC, setTempC] = useState();
-    const [feelsLikeC, setFeelsLikeC] = useState();
+    const [tempC, setTempC] = useState([]);
+    const [windM, setWindM] = useState([]);
+    const [windK, setWindK] = useState([]);
+    const [humidity, setHumidity] = useState([]);
+    const [conditionCode, setConditionCode] = useState([]);
+    const [icon, setIcon] = useState();
+    const [text, setText] = useState();
+    const [timeHour, setTimeHour] = useState();
 
-    const [gustM, setGustM] = useState();
-    const [gustK, setGustK] = useState();
-    const [windM, setWindM] = useState();
-    const [windK, setWindK] = useState();
-
-    const [date, setDate] = useState();
-
-    const [forecastData, setForecastData] = useState({});
-
-    const [hourArray, setHourArray] = useState([]);
-
- 
-    // console.log("dateArray: " + dateArray);
+    const [kss, setKss] = useState();
 
     
+    // let d = new Date().getHours();
+    // console.log(d);
+    // let arr = [];
+    // while (d < 24 && arr.length < 10) {
+    //     arr.push(d);
+    //     d++;
+    // }
+
+
+    // setHourArray(arr);
+
     useEffect(() => {
-            // axios.get(`http://api.weatherapi.com/v1/current.json?key=772fe409b0a648b694d213844232006&q=${theCity}`)
-            //     .then((response) => {
-            //         setTempF(response.data.current.temp_f);
-            //         setFeelsLikeF(response.data.current.feelslike_f);
-            //         setTempC(response.data.current.temp_c);
-            //         setFeelsLikeC(response.data.current.feelslike_c);
-            //         setLocalTime(response.data.location.localtime);
-            //         setCity(response.data.location.name + ",");
-            //         setRegion(response.data.location.region);
-            //         setGustM(response.data.current.gust_mph);
-            //         setGustK(response.data.current.gust_kph);
-            //         setWindM(response.data.current.wind_mph);
-            //         setWindK(response.data.current.wind_kph);
-            //         // console.log("current data: " + JSON.stringify(response.data.current.is_day))
-            //     })
-            //     .catch((err) => {
-            //         console.log(err);
-            //     });
-    
-    // }, [theCity]);
-
             axios.get(`http://api.weatherapi.com/v1/forecast.json?key=772fe409b0a648b694d213844232006&q=${theCity}`)
                 .then((response) => {
+                    setCity(response.data.location.name);
+                    setLocalTime(response.data.location.localtime);
+                    setRegion(response.data.location.region);
+                    console.log(response);
+                    let fTemps = [];
+                    let cTemps = [];
+                    let mWinds = [];
+                    let kWinds = [];
+                    let humidities = [];
+                    let conditionCodes = [];
+                    let icons = [];
+                    let texts = [];
+                    let times = [];
+
+                    let d = new Date().getHours();
+                    // console.log(d);
+                    let arr = [];
+                    while (d < 24 && arr.length < 10) {
+                        arr.push(d);
+                        fTemps.push(response.data.forecast.forecastday[0].hour[d].temp_f);
+                        cTemps.push(response.data.forecast.forecastday[0].hour[d].temp_c);
+                        mWinds.push(response.data.forecast.forecastday[0].hour[d].wind_mph);
+                        kWinds.push(response.data.forecast.forecastday[0].hour[d].wind_kph);
+                        humidities.push(response.data.forecast.forecastday[0].hour[d].humidity);
+                        conditionCodes.push(response.data.forecast.forecastday[0].hour[d].condition.code);
+                        icons.push(response.data.forecast.forecastday[0].hour[d].condition.icon);
+                        texts.push(response.data.forecast.forecastday[0].hour[d].condition.text);
+                        times.push(response.data.forecast.forecastday[0].hour[d].time);
+                        
+                        d++;
+                    }
+                    let ks = [];
+
+                    for (let i = 0; i < arr.length; i++) {
+                        let k = {farenTemps: fTemps[i], celcTemps: cTemps[i], mphWinds: mWinds[i], kphWinds: kWinds[i], humidities: humidities[i],
+                            conditionCodes: conditionCodes[i], icons: icons[i], texts: texts[i], times: times[i]};
+                        ks.push(k);
+                    }
+                    setKss(ks);
+                    console.log(ks);
                     
+                    // setHourArray(arr);
+                    
+                    // setTempF(fTemps);
+                    // setTempC(cTemps);
+                    // setWindM(mWinds);
+                    // setWindK(kWinds);
+                    // setHumidity(humidities);
+                    // setConditionCode(conditionCodes);
+                    // setIcon(icons);
+                    // setText(texts);
+                    // setTimeHour(times);
+                    
+
+                    // fTemps.push(response.data.forecast.forecastday[0].hour[0].temp_f);
+                    // fTemps.push(response.data.forecast.forecastday[0].hour[1].temp_f);
+                    // fTemps.push(response.data.forecast.forecastday[0].hour[2].temp_f);
+                    // fTemps.push(response.data.forecast.forecastday[0].hour[3].temp_f);
+                    // fTemps.push(response.data.forecast.forecastday[0].hour[4].temp_f);
+                    // fTemps.push(response.data.forecast.forecastday[0].hour[5].temp_f);
+                    // fTemps.push(response.data.forecast.forecastday[0].hour[6].temp_f);
+                    // fTemps.push(response.data.forecast.forecastday[0].hour[7].temp_f);
+                    // fTemps.push(response.data.forecast.forecastday[0].hour[8].temp_f);
+                    // fTemps.push(response.data.forecast.forecastday[0].hour[9].temp_f);
                 })
                 .catch((err) => {
                     console.log(err);
@@ -71,13 +128,9 @@ const Weather = (props) => {
 
 
 
-
-
     return (
-        <div className="bg-blue-200 h-96 flex justify-center">
-            <Card forecastData={forecastData} measure={measure} speedMeasure={speedMeasure} localTime={localTime} city={city} 
-            region={region} tempF={tempF} feelsLikeF={feelsLikeF} tempC={tempC} feelsLikeC={feelsLikeC}
-            gustM={gustM} gustK={gustK} windM={windM} windK={windK} date={date} setMeasure={setMeasure} setSpeedMeasure={setSpeedMeasure}/>
+        <div style={{height: "800px"}} className="bg-blue-200 h-100% flex justify-center">
+            <Card kss={kss} hourArray={hourArray} city={city} localTime={localTime} region={region}/>
         </div>
     );
 };

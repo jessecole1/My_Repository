@@ -37,29 +37,8 @@ const addList = function(list) {
 
 
 const reorderList = function(list) {
-    let arr = [];
-    let reorderedArr = [];
-    let runner = list.head;
-    while (runner) {
-        arr.push(runner.data);
-        runner = runner.next;
-    }
-    let l = 0;
-    let r = arr.length-1;
 
-    while (l <= r) {
-        if (l === r) {
-            reorderedArr.push(arr[l]);
-            return reorderedArr;
-        }
-        reorderedArr.push(arr[l]);
-        l++;
-        reorderedArr.push(arr[r]);
-        r--;
-    }
-    return reorderedArr;
-
-
+    
 }
 
 
