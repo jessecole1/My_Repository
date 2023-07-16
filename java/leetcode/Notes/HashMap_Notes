@@ -1,0 +1,3 @@
+// Creating a new HashMap
+Map<String, Integer> hashmap = new HashMap<String, Integer>();
+
