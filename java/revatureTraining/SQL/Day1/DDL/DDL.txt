@@ -1,0 +1,100 @@
+-- DDL (Data Definition Language) This sublanguage deals with
+creation, deletion, or alteration of the table itself.
+    -- CREATE, ALTER, DROP, TRUNCATE, RENAME, COMMENT
+
+
+========================================================================
+
+
+|-------------------|
+| CREATE OUR TABLES |
+|-------------------|
+
+CREATE TABLE table_name (
+    column_title_1 datatype constraints,
+    conlumn_title_2 datatype constraints,
+    .....
+);
+
+----------------------------------|
+|----------------------|          |
+| ADDING A PRIMARY KEY |          |
+|----------------------|          |
+-- can be done one of two ways    |
+                                  |
+CREATE TABLE table_name (         |
+    ID INT PRIMARY KEY,           |
+    name VARCHAR(25) NOT NULL     |
+);                                |
+            OR                    |
+CREATE TABLE table_name (         |
+    ID INT NOT NUL,               |
+    name VARCHAR(25) NOT NULL,    |
+    PRIMARY KEY(ID)               |
+);                                |
+----------------------------------|
+
+|--------------------------|
+| USING REFERENCES COMMAND |
+|--------------------------|
+    REFERENCES table_name(column_name of table_name);
+
+    -- We will use an example to show how to write the REFERENCES command.
+
+CREATE TABLE Company (
+    ID INT PRIMARY KEY,
+    Company_Name VARCHAR(25) NOT NULL,
+    Compnay_Address VARCHAR(25)
+);
+
+CREATE TABLE Employee (
+    ID INT PRIMARY KEY,
+    Full_Name VARCHAR(255) NOT NULL,
+    Company_By_ID REFERENCES Company(ID);
+);
+
+------------------------------------------------------------------------
+
+========================================================================
+|-----------------|
+|  USING A TABLE  |
+|-----------------|
+
+    USE table_name;
+
+========================================================================
+
+|-------------------|
+|  ALTER OUR TABLES |
+|-------------------|
+
+    -- ADD, DROP, MODIFY
+
+    ALTER TABLE Company ADD COLUMN column_name datatype constaints;
+    ALTER TABLE Company DROP COLUMN column_name;
+    ALTER TABLE Company MODIFY COLUMN column_name datatype constraints;
+
+========================================================================
+
+|-------------|
+|  DROP TABLE |
+|-------------|
+
+DROP TABLE table_name;
+
+|----------|
+|  CASCADE |
+|----------|
+
+-- When dropping a table, it wont be able to be dropped if it is being 
+referenced by another table (like in the example above, Company was 
+being referenced by Employee, so it wouldn't work with just DROP TABLE Company.)
+    -- To get around this, use the CASCADE command 
+
+DROP TABLE Company CASCADE;
+
+-- To test for myself: Would you be able to drop Employee table without CASCADE 
+if Company table was still actice with the reference? Use MySQL Workbench to test
+and write the results here!
+
+========================================================================
