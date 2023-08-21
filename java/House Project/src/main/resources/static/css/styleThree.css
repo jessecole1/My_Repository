@@ -1,0 +1,41 @@
+@charset "UTF-8";
+* {
+	margin: 0px;
+	padding: 0px;
+}
+
+body {
+	display: flex;
+	flex-direction: column;
+	justify-content: space-evenly;
+	padding-left: 20%;
+	padding-right: 20%;
+	padding-top: 5%;
+	height: 400px;
+}
+
+.errorColor {
+	color: red;
+}
+
+input, textarea {
+	border: 2px solid black;
+}
+
+.mainForm {
+	height: 150px;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-evenly;
+	height: 200px;
+}
+
+table {
+	height: 100%;
+}
+
+.deleteShow {
+	background-color: rgb(224,102,102);
+	color: white;
+	padding: 2px;
+}

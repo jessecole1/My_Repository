@@ -1,0 +1,36 @@
+@charset "UTF-8";
+
+* {
+	margin: 0px;
+	padding:0px;
+}
+
+body {
+	padding-left: 20%;
+	padding-right: 20%;
+	padding-top: 5%;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-evenly;
+	height: 450px;
+}
+
+.mainTable {
+	height: 200px;
+}
+
+.oneShowTitle {
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+	justify-content: space-between;
+}
+
+.editButton {
+	padding: 3px;
+	background-color: white;
+	color: black;
+	box-shadow: 2px 2px 2px;
+	border: 2px solid black;
+	width: 50px;
+}

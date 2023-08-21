@@ -53,5 +53,7 @@ public class HashMapPractice {
         for (String i : hashMap.keySet()) {
             System.out.println("The key " + i + " has the value: " + hashMap.get(i));
         }
+
+        
     }
 }
