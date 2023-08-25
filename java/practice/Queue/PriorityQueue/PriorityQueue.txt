@@ -1,0 +1,10 @@
+Adding Elements
+- Use the .add() method
+- The insertion order is not retained 
+
+Removing Elements
+- Use the .remove() method
+- Pass in the element we want to remove from the PriorityQueue in the .remove() method
+- If there are multiple occurances of the element, it will just remove the first one.
+- Or, dont pass in an element in the .remove() method to remove the head. 
+- Also, .poll() to remove the head of the PriorityQueue

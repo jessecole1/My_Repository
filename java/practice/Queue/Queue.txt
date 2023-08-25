@@ -1,0 +1,16 @@
+Queue is present in the java.util package 
+
+Queue extends the Collection interface 
+
+Queue is an ordered list, FIFO 
+
+Elements are added at the tail
+
+Elements are removed/popped from the head 
+
+Elements are retrieved from the order they were entered into the list. 
+
+Queue is an interface, objects cannot be created out of Queue alone. So it needs a concrete class 
+
+Most common concrete classes are PriorityQueue and LinkedList 
+    - Note: Neither of these classes are thread-safe 

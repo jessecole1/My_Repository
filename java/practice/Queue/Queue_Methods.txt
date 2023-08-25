@@ -1,0 +1,26 @@
+.add(element) 
+    - Adds an element to the tail of the queue 
+    - If the queue is full, it will throw an exception 
+
+.offer(element)
+    - Adds an element to the tail of the queue
+    - If the queue is full, it returns false 
+
+.remove()
+    - Removes and returns the element at the front of the queue. 
+    - If the queue is empty, it throws an exception. 
+
+.poll()
+    - Removes and return the element at the front of the queue. 
+    - If the queue is empty, it returns null. 
+
+.element()
+    - Returns the element at the front of the queue without removing it.
+    - If the queue is empty, it throws an exception. 
+
+.peek()
+    - Returns the element at the front of the queue without removing it. 
+    - If the queue is empty, it returns null. 
+
+.size()
+    - Returns the number of elements inside the queue. 
