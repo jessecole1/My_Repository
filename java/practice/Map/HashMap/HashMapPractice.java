@@ -5,6 +5,7 @@
 // Import with java.util
 
 import java.util.HashMap;
+import java.util.*;
 
 
 
@@ -54,6 +55,12 @@ public class HashMapPractice {
             System.out.println("The key " + i + " has the value: " + hashMap.get(i));
         }
 
-        
+        Set set = hashMap.entrySet();
+        System.out.println(set);
+
+        for (Map.Entry<String, String> m : hashMap.entrySet()) {
+            System.out.println(m.getKey() + " : " + m.getValue());
+        }
+
     }
 }

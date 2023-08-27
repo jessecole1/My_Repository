@@ -1,0 +1,4 @@
+Present in the java.util package 
+
+Perfect for key-value associations 
+

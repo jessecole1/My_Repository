@@ -1,0 +1,3 @@
+Every element stored is its own object 
+- It has a data part and an address part 
+
