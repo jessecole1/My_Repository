@@ -1,0 +1,7 @@
+Vector class implements a growable array of objects.
+Vector can grow or shrink.
+
+Implements the list interface and can use all of its methods. 
+
+Elements can be accessed via an index.
+

@@ -25,12 +25,12 @@ public class HashMapPractice {
 
         // Accessing an item method. 
         // Use the .get() method on the HashMap object.
-        // Pass in the index to get the value.
+        // Pass in the key to get the value.
         System.out.println(hashMap.get("One"));
 
         // Removing an item.
         // Use the .remove() method on the HashMap object.
-        // Pass in the index to delete the key/value pair.
+        // Pass in the key to delete the key/value pair.
         hashMap.remove("Five");
         System.out.println(hashMap);
 

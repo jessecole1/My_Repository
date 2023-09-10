@@ -12,6 +12,12 @@ public class PaintingService {
         System.out.println("PaintingService called...");
     }
 
+    public Painting savePaintingAndReturn(Painting painting) {
+        int id = paintingDAO.savePaintingReturnId(painting);
+        Painting persistedPainting = paintingDAO.getPaintingById(id);
+        return persistedPainting;
+    }
+
     public Painting getPaintingById(int id) {
 
         Painting paintingObj = paintingDAO.getPaintingById(id);
@@ -20,7 +26,6 @@ public class PaintingService {
         } else {
             return null;
         }
-
     }
 
 }
