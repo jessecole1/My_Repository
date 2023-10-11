@@ -8,8 +8,15 @@ const Main = () => {
     const [messageList, setMessageList] = useState([]);
 
     const submitHandler = (e) => {
+        if (message.length == 0) {
+            return;
+        }
         e.preventDefault();
-        setMessageList([...messageList, message]);
+        const item = {
+            message: message,
+            complete:false
+        }
+        setMessageList([...messageList, item]);
         setMessage("");
     }
 
@@ -24,7 +31,7 @@ const Main = () => {
                         <button className="submitButton" onClick = {(e) => {submitHandler(e)}}>Submit</button>
                     </div>
                 </div>
-            <Display message={message} messageList = {messageList}/>
+            <Display messageList = {messageList} setMessageList  = {setMessageList}/>
             </div>
 
         </>

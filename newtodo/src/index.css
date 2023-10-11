@@ -10,6 +10,8 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   padding: 5%;
+  padding-left: 10%;
+  padding-right: 10%;
   background-color: rgb(203 213 225);
 }
 

@@ -61,3 +61,27 @@
 .todoListTable {
   width: 75%;
 }
+
+.oneEntry {
+  border: 2px solid white;
+  padding-right: 200px;
+}
+
+.contentTable tr:nth-child(even) {
+  background-color: rgb(100 116 139);
+  /* background-color: red; */
+}
+
+.contentTable .oneEntry:hover {
+  background-color: rgb(148 163 184);
+}
+
+.checkBox {
+  font-family: system-ui, sans-serif;
+  font-size: 2rem;
+  font-weight: bold;
+  line-height: 1.1;
+  display: grid;
+  grid-template-columns: 1em auto;
+  gap: 0.5em;
+}
