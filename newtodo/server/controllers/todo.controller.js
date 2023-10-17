@@ -17,12 +17,12 @@ module.exports.findAllTodos = (req, res) => {
 }
 
 module.exports.findOneTodo = (req, res) => {
-    Todo.findOne({_id : request.params.id})
+    Todo.findOne({_id : req.params.id})
     .then(oneSingleTodo => {
-        res.json({ todo : oneSingleTodo })
+        res.json(oneSingleTodo);
     })
     .catch((err) => {
-        res.json({ message : "Something went wrong", error : err})
+        res.json(err)
     });
 }
 

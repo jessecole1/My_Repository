@@ -1,16 +1,23 @@
 import React from 'react';
 import '../App.css';
+import {useState, useEffect} from 'react';
+import axios from 'axios';
+import {Link} from 'react-router-dom';
 
 const Display = (props) => {
 
     
-    const {messageList, setMessageList} = props;
-    
+    const {messageList, setMessageList, message, setMessage} = props;
+    const {id, setId} = useState();
+    const {complete, setComplete} = useState();
 
 
     const handleComplete = (i) => {
         const updatedTodos = messageList.map((item, idx) => {
-            if (idx === i) {item.complete = !item.complete}
+            console.log(i);
+            if (item._id === i) {
+                item.complete = !item.complete;
+            }
             return item;
         })
         setMessageList(updatedTodos);
@@ -37,8 +44,8 @@ const Display = (props) => {
                         messageList.map((item, i) => {
                             return (
                                     <tr className="oneEntry bg-slate-600">
-                                        <td><input type="checkBox" onChange = {() => {handleComplete(i)}}/></td>
-                                        <td className="text-white text-xl p-3">{item.message}</td>
+                                        <td><input type="checkBox" onChange = {() => {handleComplete(item._id)}}/></td>
+                                        <Link to={`/todo/${item._id}`}><td className="text-white text-xl p-3">{item.message}</td></Link>
                                     </tr>
                             )
                         })

@@ -11,8 +11,13 @@ const Main = () => {
     useEffect(() => {
         axios.get("http://localhost:8000/api/todos")
         .then(res => {
-            console.log(res);
-            // setMessageList(res.data.todo);
+            console.log(res.data.todo);
+            let arr = [];
+            for (let i = 0; i < res.data.todo.length; i++) {
+                console.log(i);
+                arr.push(res.data.todo[i]);
+            }
+            setMessageList(arr);
         })
         .catch(err => {
             console.log(err);
@@ -53,7 +58,7 @@ const Main = () => {
                         <button className="submitButton" onClick = {(e) => {submitHandler(e)}}>Submit</button>
                     </div>
                 </div>
-            <Display messageList = {messageList} setMessageList  = {setMessageList}/>
+            <Display messageList = {messageList} setMessageList  = {setMessageList} message={message} setMessage={setMessage}/>
             </div>
 
         </>
