@@ -8,8 +8,8 @@ const Display = (props) => {
 
     
     const {messageList, setMessageList, message, setMessage} = props;
-    const {id, setId} = useState();
-    const {complete, setComplete} = useState();
+    // const {id, setId} = useState();
+    // const {complete, setComplete} = useState();
 
 
     const handleComplete = (i) => {
