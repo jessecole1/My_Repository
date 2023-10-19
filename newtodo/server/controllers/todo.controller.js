@@ -36,6 +36,19 @@ module.exports.createTodo = (req, res) => {
     });
 }
 
+module.exports.addItemsToTodo = (req, res) => {
+    Todo.updateOne( {_id:req.params.id},
+        req.body,
+        {new: true, runValidators: true}
+    )
+        .then(updatedTodo => {
+            res.json({todo:updatedTodo})
+        })
+        .catch((err) => {
+            res.json({message:"Something went wrong", error: err})
+        });
+}
+
 module.exports.findOneAndUpdate = (req,res) => {
     Todo.findOneAndUpdate(
         { _id : req.params.id },

@@ -7,7 +7,7 @@ const TodoSchema = new mongoose.Schema({
         minlength : [2, "At least 2 characters long"]
     }, complete: {
         type: Boolean
-    }
+    }, subItems: [String]
 });
 
 const Todo = mongoose.model("Todo", TodoSchema);
