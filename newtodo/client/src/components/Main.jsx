@@ -11,7 +11,7 @@ const Main = () => {
     useEffect(() => {
         axios.get("http://localhost:8000/api/todos")
         .then(res => {
-            console.log(res.data.todo);
+            console.log("RES: " + res.data.todo);
             let arr = [];
             for (let i = 0; i < res.data.todo.length; i++) {
                 console.log(i);
@@ -23,7 +23,7 @@ const Main = () => {
             console.log(err);
             console.log("failedddddd");
         })
-    }, []);
+    }, [messageList]);
 
     const submitHandler = (e) => {
         if (message.length == 0) {
