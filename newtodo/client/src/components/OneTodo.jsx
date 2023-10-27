@@ -83,7 +83,7 @@ const OneTodo = (props) => {
                                     return (
                                         <div>
                                             <tr>
-                                                <td className="bg-slate-300">{item}</td>
+                                                <td className="oneEntry text-xl p-3 bg-slate-600 text-white">{item}</td>
                                             </tr>
                                         </div>
                                     )

@@ -42,10 +42,15 @@ const Display = (props) => {
 
                     {
                         messageList.map((item, i) => {
+
+                            const classArr = ["text-white", "text-xl", "p-3"];
+                            if (item.complete) {classArr.push("line-through")}
+
                             return (
                                     <tr className="oneEntry bg-slate-600">
-                                        <td><input type="checkBox" onChange = {() => {handleComplete(item._id)}}/></td>
-                                        <Link to={`/todo/${item._id}`}><td className="text-white text-xl p-3">{item.message}</td></Link>
+                                        <td className="bg-slate-100"><button onClick={() => {handleComplete(item._id)}}>&#10003;</button></td>
+                                        {/* <td><input type="checkBox" onChange = {() => {handleComplete(item._id)}}/></td> */}
+                                        <Link to={`/todo/${item._id}`}><td className={classArr.join(" ")}>{item.message}</td></Link>
                                     </tr>
                             )
                         })
@@ -54,9 +59,9 @@ const Display = (props) => {
                 </tbody>
                 </table>
             </div>
-            <div>
+            {/* <div>
                 <button className="border bg-slate-800 p-3 rounded-xl text-white border-slate-800 deleteButton" onClick = {() => {handleRemove(messageList)}}>Delete</button>
-            </div>
+            </div> */}
         </>
     );
 };
