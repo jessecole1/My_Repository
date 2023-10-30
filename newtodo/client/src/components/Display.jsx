@@ -9,13 +9,18 @@ const Display = (props) => {
     
     const {messageList, setMessageList, message, setMessage} = props;
     // const {id, setId} = useState();
-    // const {complete, setComplete} = useState();
+    const {complete, setComplete} = useState();
 
 
-    const handleComplete = (i) => {
+    const handleComplete = (todo) => {
+        // setComplete(!todo.complete);
+        axios.patch('http://localhost:8000/api/todo/' + todo._id, {
+            complete: !todo.complete
+        })
+
         const updatedTodos = messageList.map((item, idx) => {
-            console.log(i);
-            if (item._id === i) {
+            console.log(todo._id);
+            if (item._id === todo._id) {
                 item.complete = !item.complete;
             }
             return item;
@@ -48,7 +53,7 @@ const Display = (props) => {
 
                             return (
                                     <tr className="oneEntry bg-slate-600">
-                                        <td className="bg-slate-100"><button onClick={() => {handleComplete(item._id)}}>&#10003;</button></td>
+                                        <td className="bg-slate-100"><button onClick={() => {handleComplete(item)}}>&#10003;</button></td>
                                         {/* <td><input type="checkBox" onChange = {() => {handleComplete(item._id)}}/></td> */}
                                         <Link to={`/todo/${item._id}`}><td className={classArr.join(" ")}>{item.message}</td></Link>
                                     </tr>

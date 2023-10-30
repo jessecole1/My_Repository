@@ -23,7 +23,7 @@ const Main = () => {
             console.log(err);
             console.log("failedddddd");
         })
-    }, [messageList]);
+    }, [message]);
 
     const submitHandler = (e) => {
         if (message.length == 0) {
