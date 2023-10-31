@@ -8,12 +8,11 @@ const Display = (props) => {
 
     
     const {messageList, setMessageList, message, setMessage} = props;
-    // const {id, setId} = useState();
     const {complete, setComplete} = useState();
 
 
+    // UPDATING MAIN TODO COMPLETE
     const handleComplete = (todo) => {
-        // setComplete(!todo.complete);
         axios.patch('http://localhost:8000/api/todo/' + todo._id, {
             complete: !todo.complete
         })

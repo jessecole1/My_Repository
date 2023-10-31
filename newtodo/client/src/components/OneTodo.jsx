@@ -17,8 +17,12 @@ const OneTodo = (props) => {
 
     const [arr, setArr] = useState([]);
 
+    const [newArr, setNewArr] = useState();
+
     const navigate = useNavigate();
 
+
+    // CREATING A NEW SUB ITEM
     const submitHandler = (e) => {
         console.log("ID: " + id);
         if (newItem.length === 0) {
@@ -26,10 +30,14 @@ const OneTodo = (props) => {
             return;
         }
         e.preventDefault();
+        const item = {
+            message: newItem,
+            complete: false
+        }
         axios.put('http://localhost:8000/api/todo/add/' + id, {
             message: message,
             complete: todo.complete,
-            subItems: [...todo.subItems, newItem]
+            subItems: [...todo.subItems, item]
         })
             .then((res) => {
                 console.log("Edit Success!");
@@ -40,6 +48,33 @@ const OneTodo = (props) => {
             })
     }
 
+
+    // HANDLING COMPLETE FOR SUB ITEM
+    const handleComplete = (sub) => {
+
+        let updatedSubItems = subItems.map((item, i) => {
+            console.log("Item: " + item.message + " | " + "ID: " + item._id);
+            console.log("Sub ID: " + sub._id + " | ");
+            console.log("Item ID: " + item._id + " | ");
+            if (item._id === sub._id) {
+                console.log("complete? = " + item.complete);
+                item.complete = !item.complete;
+            }
+            return item;
+        })
+
+        axios.patch("http://localhost:8000/api/todo/" + id, {
+            subItems: updatedSubItems
+        })
+        .then(() => {
+            console.log("Updated Successfully..");
+        })
+        .catch((err) => console.log(err));
+
+    }
+
+
+    // GETTING SUB ITEMS FROM SINGLE MAIN TODO
     useEffect(() => {
         axios.get("http://localhost:8000/api/todo/" + id)
         .then((res) => {
@@ -47,13 +82,14 @@ const OneTodo = (props) => {
             setMessage(res.data.message);
             setSubItems(res.data.subItems);
             setArr(res.data.subItems);
-            console.log("ARR: " + arr);
         })
         .catch(err => {
             console.log(err);
         })
-    }, [newItem]);
+    }, [subItems]);
 
+
+    // DELETING TODO
     const removeTodo = (id) => {
         axios.delete('http://localhost:8000/api/todo/' + id)
             .then((res) => {
@@ -80,10 +116,15 @@ const OneTodo = (props) => {
                         <tbody>
                             {
                                 arr.map((item, i) => {
+
+                                    const classArr = [];
+                                    if (item.complete) {classArr.push("line-through")};
+
                                     return (
                                         <div>
                                             <tr>
-                                                <td className="oneEntry text-xl p-3 bg-slate-600 text-white">{item}</td>
+                                                <td><button onClick={() => handleComplete(item)}>&#10003;</button></td>
+                                                <td key={i} className="oneEntry text-xl p-3 bg-slate-600 text-white"><span className={classArr.join(" ")}>{item.message}</span></td>
                                             </tr>
                                         </div>
                                     )

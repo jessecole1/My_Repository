@@ -1,5 +1,14 @@
 const mongoose = require('mongoose');
 
+const sub = {
+    message: {
+        type: String, 
+        minLength: [2, "At least 2 characters long"]
+    }, complete: {
+        type: Boolean
+    }
+}
+
 const TodoSchema = new mongoose.Schema({
     message: {
         type: String,
@@ -7,7 +16,7 @@ const TodoSchema = new mongoose.Schema({
         minlength : [2, "At least 2 characters long"]
     }, complete: {
         type: Boolean
-    }, subItems: [String]
+    }, subItems: [sub]
 });
 
 const Todo = mongoose.model("Todo", TodoSchema);

@@ -8,6 +8,7 @@ const Main = () => {
     const [message, setMessage] = useState("");
     const [messageList, setMessageList] = useState([]);
 
+    // GETTING USER'S TODO DATA
     useEffect(() => {
         axios.get("http://localhost:8000/api/todos")
         .then(res => {
@@ -25,6 +26,8 @@ const Main = () => {
         })
     }, [message]);
 
+
+    // CREATING A NEW TODO
     const submitHandler = (e) => {
         if (message.length == 0) {
             return;
