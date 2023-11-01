@@ -10,7 +10,7 @@ const OneTodo = (props) => {
     const [message, setMessage] = useState();
     const [subItems, setSubItems] = useState();
 
-    const [newItem, setNewItem] = useState();
+    const [newItem, setNewItem] = useState("");
 
     const {id} = useParams();
 
@@ -24,9 +24,7 @@ const OneTodo = (props) => {
 
     // CREATING A NEW SUB ITEM
     const submitHandler = (e) => {
-        console.log("ID: " + id);
         if (newItem.length === 0) {
-            console.log("nope.");
             return;
         }
         e.preventDefault();
@@ -53,11 +51,7 @@ const OneTodo = (props) => {
     const handleComplete = (sub) => {
 
         let updatedSubItems = subItems.map((item, i) => {
-            console.log("Item: " + item.message + " | " + "ID: " + item._id);
-            console.log("Sub ID: " + sub._id + " | ");
-            console.log("Item ID: " + item._id + " | ");
             if (item._id === sub._id) {
-                console.log("complete? = " + item.complete);
                 item.complete = !item.complete;
             }
             return item;
@@ -103,39 +97,38 @@ const OneTodo = (props) => {
     return (
         <>
             <div className="listContentMain bg-slate-900">
-                <div className="enterWrap">
+                <Link to={"/"}><button className="border bg-slate-800 p-3 mb-4 rounded-xl text-white border-slate-800 deleteButton">Home</button></Link>
+                <div className="enterWrap subItemsHead">
                     <div className="enterTodoMenu">
                         <input className="enterTodo" onChange = {(e) => setNewItem(e.target.value)} value={newItem}/>
                         <button className="submitButton" onClick={(e) => submitHandler(e)} >Submit</button>
                     </div>
                 </div>
-                <Link to={"/"}><button className="border bg-slate-800 p-3 rounded-xl text-white border-slate-800 deleteButton">Home</button></Link>
+                {/* <Link to={"/"}><button className="border bg-slate-800 p-3 rounded-xl text-white border-slate-800 deleteButton">Home</button></Link> */}
                 <h2 className="text-white self-start pl-[10%] text-3xl pb-[5%]">{todo.message}</h2>
+
+                <table className="todoListTable contentTable">
+                    <tbody>
+                        {
+                            arr.map((item, i) => {
+
+                                const classArr = ["text-white", "text-xl", "p-3"];
+                                if (item.complete) {classArr.push("line-through")};
+
+                                return (
+                                        <tr className="oneEntry bg-slate-600 h-full">
+                                            <td className="bg-slate-100 tdClassButton h-full"><button className="bg-white-600 checkButton h-full border" onClick={() => handleComplete(item)}>&#10003;</button></td>
+                                            <td key={i} className={classArr.join(" ")}><span className={classArr.join(" ")}>{item.message}</span></td>
+                                        </tr>
+                                )
+                            })
+                        }
+                    </tbody>
+                </table>
                 <div>
-                    <table>
-                        <tbody>
-                            {
-                                arr.map((item, i) => {
-
-                                    const classArr = [];
-                                    if (item.complete) {classArr.push("line-through")};
-
-                                    return (
-                                        <div>
-                                            <tr>
-                                                <td><button onClick={() => handleComplete(item)}>&#10003;</button></td>
-                                                <td key={i} className="oneEntry text-xl p-3 bg-slate-600 text-white"><span className={classArr.join(" ")}>{item.message}</span></td>
-                                            </tr>
-                                        </div>
-                                    )
-                                })
-                            }
-                        </tbody>
-                    </table>
-                    <div>
-                        <button className="border bg-slate-800 p-3 rounded-xl text-white border-slate-800 deleteButton" onClick={((e) => removeTodo(todo._id))}>Delete</button>
-                    </div>
+                    <button className="border bg-slate-800 p-3 rounded-xl text-white border-slate-800 deleteButton mt-4" onClick={((e) => removeTodo(todo._id))}>Delete</button>
                 </div>
+
                 
             </div>
             <div>

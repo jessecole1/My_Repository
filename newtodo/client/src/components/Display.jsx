@@ -51,10 +51,10 @@ const Display = (props) => {
                             if (item.complete) {classArr.push("line-through")}
 
                             return (
-                                    <tr className="oneEntry bg-slate-600">
-                                        <td className="bg-slate-100"><button onClick={() => {handleComplete(item)}}>&#10003;</button></td>
+                                    <tr className="oneEntry bg-slate-600 h-full">
+                                        <td className="bg-slate-100 tdClassButton h-full"><button className="bg-white-600 checkButton h-full border" onClick={() => {handleComplete(item)}}>&#10003;</button></td>
                                         {/* <td><input type="checkBox" onChange = {() => {handleComplete(item._id)}}/></td> */}
-                                        <Link to={`/todo/${item._id}`}><td className={classArr.join(" ")}>{item.message}</td></Link>
+                                        <td className={classArr.join(" ")}><Link to={`/todo/${item._id}`}>{item.message}</Link></td>
                                     </tr>
                             )
                         })

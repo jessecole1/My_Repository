@@ -65,7 +65,7 @@
 
 .oneEntry {
   border: 1px solid 63768F;
-  padding-right: 200px;
+  /* padding-right: 200px; */
 }
 
 .contentTable tr:nth-child(even) {
@@ -89,4 +89,30 @@
 
 .deleteButton {
   box-shadow: 0px 0px 40px black;
+}
+
+.tdClassButton {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  height: inherit;
+  /* align-items: center; */
+}
+
+.checkButton {
+  justify-self: center;
+  height: 50px;
+}
+
+.subItemsTable {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.subItemsHead {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  width: 100%;
 }
