@@ -13,5 +13,6 @@
 	<h1>
 		Hello testing main page
 	</h1>
+	<a href="/page/register"><button>Register</button></a>
 </body>
 </html>

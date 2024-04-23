@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 
+import com.example.books.models.LoginUser;
 import com.example.books.models.User;
 import com.example.books.services.UserService;
 
@@ -25,5 +26,29 @@ public class MainController {
 		return "index.jsp";
 	}
 	
+	@GetMapping("/page/register")
+	public String goToRegisterPage(@Valid @ModelAttribute("newUser") User newUser, BindingResult result) {
+		return "loginRegister.jsp";
+	}
+	
+	@PostMapping("/register")
+	public String register(@Valid @ModelAttribute("newUser") User newUser, BindingResult result, Model model, HttpSession session) {
+		if (result.hasErrors()) {
+			model.addAttribute("newLogin", new LoginUser());
+			return "loginRegister.jsp";
+		}
+		
+		userService.register(newUser, result);
+		
+		session.setAttribute("userId", newUser.getId());
+		
+		return "redirect:/";
+	}
+	
 
 }
+
+
+
+
+
