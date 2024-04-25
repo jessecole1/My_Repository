@@ -53,6 +53,9 @@ public class MainController {
 			return "loginOrReg.jsp";
 		}
 		session.setAttribute("userId", user.getId());
+		
+		
+		
 		return "redirect:/";
 	}
 	

@@ -8,7 +8,6 @@
     <fullyQualifiedTypeName name="com.example.exercise.models.Category"/>
     <fullyQualifiedTypeName name="com.example.exercise.models.User"/>
     <fullyQualifiedTypeName name="com.example.exercise.models.Admin"/>
-    <fullyQualifiedTypeName name="java.util.List"/>
     <fullyQualifiedTypeName name="java.lang.System"/>
     <fullyQualifiedTypeName name="main.KeyHandler"/>
     <fullyQualifiedTypeName name="java.io.InputStreamReader"/>
@@ -23,14 +22,16 @@
     <fullyQualifiedTypeName name="java.net.http.HttpRequest.BodyPublisher"/>
     <fullyQualifiedTypeName name="org.springframework.stereotype.Controller"/>
     <fullyQualifiedTypeName name="org.apache.catalina.User"/>
+    <fullyQualifiedTypeName name="javax.persistence.Transient"/>
+    <fullyQualifiedTypeName name="java.util.Date"/>
+    <fullyQualifiedTypeName name="com.example.books.models.User"/>
+    <fullyQualifiedTypeName name="javax.validation.constraints.Email"/>
+    <fullyQualifiedTypeName name="org.springframework.validation.BindingResult"/>
     <fullyQualifiedTypeName name="javax.persistence.Entity"/>
     <fullyQualifiedTypeName name="javax.persistence.Table"/>
     <fullyQualifiedTypeName name="javax.persistence.Id"/>
-    <fullyQualifiedTypeName name="javax.persistence.Transient"/>
-    <fullyQualifiedTypeName name="java.util.Date"/>
-    <fullyQualifiedTypeName name="java.util.Optional"/>
-    <fullyQualifiedTypeName name="com.example.books.models.User"/>
-    <fullyQualifiedTypeName name="javax.validation.constraints.Email"/>
     <fullyQualifiedTypeName name="javax.validation.constraints.NotEmpty"/>
-    <fullyQualifiedTypeName name="org.springframework.validation.BindingResult"/>
+    <fullyQualifiedTypeName name="java.util.Optional"/>
+    <fullyQualifiedTypeName name="com.example.books.models.Book"/>
+    <fullyQualifiedTypeName name="java.util.List"/>
 </qualifiedTypeNameHistroy>
