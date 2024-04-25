@@ -45,6 +45,17 @@ public class MainController {
 		return "redirect:/";
 	}
 	
+	@GetMapping("/login")
+	public String login(@Valid @ModelAttribute("newLogin") LoginUser newLogin, BindingResult result, Model model, HttpSession session) {
+		User user = userService.login(newLogin, result);
+		if(result.hasErrors()) {
+			model.addAttribute("newUser", new User());
+			return "loginOrReg.jsp";
+		}
+		session.setAttribute("userId", user.getId());
+		return "redirect:/";
+	}
+	
 
 }
 

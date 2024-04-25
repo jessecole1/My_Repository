@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.validation.BindingResult;
 
+import com.example.books.models.LoginUser;
 import com.example.books.models.User;
 import com.example.books.repositories.UserRepository;
 
@@ -37,6 +38,21 @@ public class UserService {
 		newUser.setPassword(hashed);
 		return userRepo.save(newUser);
 		
+	}
+	
+	public User login(LoginUser loginUser, BindingResult result) {
+		Optional<User> potentialUser = userRepo.findByEmail(loginUser.getEmail());
+		if(!potentialUser.isPresent()) {
+			result.rejectValue("email", "Matches", "Either email or password is incorrect");
+		}
+		User user = potentialUser.get();
+		if(!BCrypt.checkpw(loginUser.getPassword(), user.getPassword())) {
+			result.rejectValue("password", "Matches", "Either email or password is incorrect.");
+		}
+		if(result.hasErrors()) {
+			return null;
+		}
+		return user;
 	}
 	
 	public User getById(Long id) {

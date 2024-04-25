@@ -32,10 +32,30 @@
 					<td><form:input path="confirm" type="password"></form:input></td>
 				</tr>
 				<tr>
-					<td><button>Register Account</button>
+					<td><button>Register Account</button></td>
 				</tr>
 			</tbody>
 		</table>
+		</form:form>
+	</div>
+	<div>
+		<h3>Login</h3>
+		<form:form action="/login" method="post" modelAttribute="newLogin">
+			<table>
+				<tbody>
+					<tr>
+						<td><form:label path="email">Email:</form:label></td>
+						<td><form:input type="text" path="email"/></td>
+					</tr>
+					<tr>
+						<td><form:label path="password">Password:</form:label></td>
+						<td><form:input path="password" type="password"/></td>
+					</tr>
+					<tr>
+						<td><button>Login</button></td>
+					</tr>
+				</tbody>
+			</table>
 		</form:form>
 	</div>
 </body>
