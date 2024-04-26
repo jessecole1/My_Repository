@@ -27,7 +27,7 @@ public class MainController {
 	}
 	
 	@GetMapping("/page/register")
-	public String goToRegisterPage(@Valid @ModelAttribute("newUser") User newUser, BindingResult result) {
+	public String goToRegisterPage(@Valid @ModelAttribute("newUser") User newUser, BindingResult result, @Valid @ModelAttribute("newLogin") LoginUser newLogin, BindingResult res) {
 		return "loginRegister.jsp";
 	}
 	
@@ -45,19 +45,31 @@ public class MainController {
 		return "redirect:/";
 	}
 	
-	@GetMapping("/login")
+	@PostMapping("/login")
 	public String login(@Valid @ModelAttribute("newLogin") LoginUser newLogin, BindingResult result, Model model, HttpSession session) {
-		User user = userService.login(newLogin, result);
 		if(result.hasErrors()) {
-			model.addAttribute("newUser", new User());
-			return "loginOrReg.jsp";
+			model.addAttribute("newLogin", new LoginUser());
+			return "loginRegister.jsp";
 		}
+		User user = userService.login(newLogin, result);
+		System.out.println(user.getEmail());
 		session.setAttribute("userId", user.getId());
-		
-		
-		
 		return "redirect:/";
 	}
+	
+//	@GetMapping("/login")
+//	public String login(@Valid @ModelAttribute("newLogin") LoginUser newLogin, BindingResult result, Model model, HttpSession session) {
+//		User user = userService.login(newLogin, result);
+//		if(result.hasErrors()) {
+//			model.addAttribute("newUser", new User());
+//			return "loginOrReg.jsp";
+//		}
+//		session.setAttribute("userId", user.getId());
+//		
+//		
+//		
+//		return "redirect:/";
+//	}
 	
 
 }
