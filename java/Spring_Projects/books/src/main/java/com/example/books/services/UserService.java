@@ -67,6 +67,7 @@ public class UserService {
 	}
 	
 	public User updateUser(User user) {
+		System.out.println("got to the user service..");
 		return userRepo.save(user);
 	}
 	

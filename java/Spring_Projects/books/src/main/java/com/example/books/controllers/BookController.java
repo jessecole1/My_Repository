@@ -1,5 +1,6 @@
 package com.example.books.controllers;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.http.HttpSession;
@@ -63,6 +64,12 @@ public class BookController {
 		User user = userServ.getById(userId);
 		Book book = bookServ.getById(bookId);
 		model.addAttribute("book", book);
+		boolean addedOrNot = false;
+		List<Book> usersWantToReadBooks = user.getWantToReadBooks();
+		if(usersWantToReadBooks.contains(book)) {
+			addedOrNot = true;
+		}
+		model.addAttribute(addedOrNot);
 		return "oneBook.jsp";
 	}
 	
@@ -82,10 +89,43 @@ public class BookController {
 		userServ.updateUser(user);
 		System.out.println("list: " + usersWantToReadBooks);
 		for (int i = 0; i < usersWantToReadBooks.size(); i++) {
-			System.out.println("ID: " + usersWantToReadBooks.get(i).getId());
-			System.out.println("TITLE: " + usersWantToReadBooks.get(i).getTitle());
+//			System.out.println("ID: " + usersWantToReadBooks.get(i).getId());
+//			System.out.println("TITLE: " + usersWantToReadBooks.get(i).getTitle());
 		}
 		return "redirect:/";
+	}
+	
+	@GetMapping("/book/remove/want/{bookIdVariable}")
+	public String removeWantToRead(@PathVariable("bookIdVariable") Long bookId, HttpSession session) {
+		Long userId = (Long) session.getAttribute("userId");
+		User user = userServ.getById(userId);
+		Book book = bookServ.getById(userId);
+		List<Book> newWantToReadList = new ArrayList<Book>();
+		for (int i = 0; i < user.getWantToReadBooks().size(); i++) {
+			if (bookId == user.getWantToReadBooks().get(i).getId()) {
+				System.out.println("skipped over the book to be removed..");
+				continue;
+			} else {
+				newWantToReadList.add(bookServ.getById(userId));
+				System.out.println("added books to the list...");
+			}
+		}
+		user.setWantToReadBooks(newWantToReadList);
+		List<User> listOfUsersWhoWantToReadBook = book.getUsersWhoWantToRead();
+		List<User> newListOfUsersWhoWantToReadBook = new ArrayList<>();
+		
+		for (int i = 0; i < listOfUsersWhoWantToReadBook.size(); i++) {
+			if (listOfUsersWhoWantToReadBook.get(i).getId() == userId) {
+				continue;
+			} else {
+				newListOfUsersWhoWantToReadBook.add(listOfUsersWhoWantToReadBook.get(i));
+			}
+		}
+		book.setUsersWhoWantToRead(newListOfUsersWhoWantToReadBook);
+		bookServ.save(book);
+		userServ.updateUser(user);
+		return "redirect:/";
+		
 	}
 
 }
