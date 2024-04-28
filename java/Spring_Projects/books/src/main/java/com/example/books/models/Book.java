@@ -1,11 +1,16 @@
 package com.example.books.models;
 
 import java.util.Date;
+import java.util.List;
 
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.PrePersist;
 import javax.persistence.PreUpdate;
 import javax.persistence.Table;
@@ -43,6 +48,15 @@ public class Book {
 	@NotEmpty(message="Description is required")
 	@Size(min=20, max=300, message="Please write a detailed description")
 	private String description;
+	
+	@ManyToMany(fetch=FetchType.LAZY)
+	@JoinTable(
+			name="users_want_to_read_books",
+			joinColumns = @JoinColumn(name = "book_id"),
+			inverseJoinColumns = @JoinColumn(name = "user_id")
+			)
+	private List<User> usersWhoWantToRead;
+	
 	
 	@DateTimeFormat(pattern="yyyy-MM-dd")
 	private Date createdAt;
@@ -98,6 +112,14 @@ public class Book {
 
 	public void setDescription(String description) {
 		this.description = description;
+	}
+
+	public List<User> getUsersWhoWantToRead() {
+		return usersWhoWantToRead;
+	}
+
+	public void setUsersWhoWantToRead(List<User> usersWhoWantToRead) {
+		this.usersWhoWantToRead = usersWhoWantToRead;
 	}
 
 	public Date getCreatedAt() {

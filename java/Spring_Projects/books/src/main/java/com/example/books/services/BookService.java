@@ -1,6 +1,7 @@
 package com.example.books.services;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -21,6 +22,14 @@ public class BookService {
 	public Book addBook(Book book) {
 		System.out.println("book service working..");
 		return bookRepo.save(book);
+	}
+	
+	public Book getById(Long id) {
+		Optional<Book> book = bookRepo.findById(id);
+		if(!book.isPresent()) {
+			return null;
+		}
+		return book.get();
 	}
 
 }

@@ -9,6 +9,7 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import com.example.books.models.Book;
@@ -52,6 +53,15 @@ public class BookController {
 		}
 		bookServ.addBook(newBook);
 		return "redirect:/";
+	}
+	
+	@GetMapping("/book/{bookIdVariable}")
+	public String oneBook(@PathVariable("bookIdVariable") Long bookId, Model model, HttpSession session) {
+		Long userId = (Long) session.getAttribute("userId");
+		User user = userServ.getById(userId);
+		Book book = bookServ.getById(bookId);
+		model.addAttribute("book", book);
+		return "oneBook.jsp";
 	}
 
 }

@@ -1,11 +1,16 @@
 package com.example.books.models;
 
 import java.util.Date;
+import java.util.List;
 
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.PrePersist;
 import javax.persistence.PreUpdate;
 import javax.persistence.Table;
@@ -40,6 +45,14 @@ public class User {
 	@NotEmpty(message="Please confirm password")
 	@Size(min=3, max=128, message="Please confirm your password")
 	private String confirm;
+	
+	@ManyToMany(fetch=FetchType.LAZY)
+	@JoinTable(
+			name="users_want_to_read_books",
+			joinColumns = @JoinColumn(name = "user_id"),
+			inverseJoinColumns = @JoinColumn(name = "book_id")
+			)
+	private List<Book> wantToReadBooks;
 	
 	@DateTimeFormat(pattern="yyyy-MM-dd")
 	private Date createdAt;
@@ -87,6 +100,14 @@ public class User {
 
 	public void setConfirm(String confirm) {
 		this.confirm = confirm;
+	}
+
+	public List<Book> getWantToReadBooks() {
+		return wantToReadBooks;
+	}
+
+	public void setWantToReadBooks(List<Book> wantToReadBooks) {
+		this.wantToReadBooks = wantToReadBooks;
 	}
 
 	public Date getCreatedAt() {
