@@ -20,24 +20,35 @@
 						<td><form:input path="title" type="text"/></td>
 					</tr>
 					<tr>
+						<td><form:errors path="title" class="errors"/></td>
+					</tr>
+					<tr>
 						<td><form:label path="authorName">Author:</form:label></td>
 						<td><form:input path="authorName" type="text"/></td>
+					</tr>
+					<tr>
+						<td><form:errors path="authorName" class="errors"/></td>
 					</tr>
 					<tr>
 						<td><form:label path="genre">Genre:</form:label></td>
 						<td><form:input path="genre" type="text"/></td>
 					</tr>
 					<tr>
-						<td><form:label path="authorName">Author:</form:label></td>
-						<td><form:input path="authorName" type="text"/></td>
+						<td><form:errors path="genre" class="errors"/></td>
 					</tr>
 					<tr>
 						<td><form:label path="releaseDate">Release Date:</form:label></td>
 						<td><form:input path="releaseDate" type="number"/></td>
 					</tr>
 					<tr>
+						<td><form:errors path="releaseDate" class="errors"/></td>
+					</tr>
+					<tr>
 						<td><form:label path="description">Book Description:</form:label></td>
-						<td><form:input path="description" type="textarea"/></td>
+						<td><form:input path="description" type="text"/></td>
+					</tr>
+					<tr>
+						<td><form:errors path="description" class="errors"/></td>
 					</tr>
 					<tr>
 						<td><button>Create</button>

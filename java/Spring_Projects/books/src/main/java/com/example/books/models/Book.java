@@ -9,9 +9,9 @@ import javax.persistence.Id;
 import javax.persistence.PrePersist;
 import javax.persistence.PreUpdate;
 import javax.persistence.Table;
-import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
 import org.springframework.format.annotation.DateTimeFormat;
@@ -36,9 +36,8 @@ public class Book {
 	@Size(min=1, max=120, message="Please type in a genre")
 	private String genre;
 	
-	@NotEmpty(message="Release date is required")
-	@Min(1)
-	@Max(2024)
+	@NotNull(message="Release date is required")
+	@Min(value=1, message="Release date is required")
 	private Integer releaseDate;
 	
 	@NotEmpty(message="Description is required")

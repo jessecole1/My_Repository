@@ -17,5 +17,10 @@ public class BookService {
 	public List<Book> findAllBooks() {
 		return bookRepo.findAll();
 	}
+	
+	public Book addBook(Book book) {
+		System.out.println("book service working..");
+		return bookRepo.save(book);
+	}
 
 }

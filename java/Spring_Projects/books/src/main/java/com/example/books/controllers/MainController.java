@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 
 import com.example.books.models.LoginUser;
 import com.example.books.models.User;
+import com.example.books.services.BookService;
 import com.example.books.services.UserService;
 
 @Controller
@@ -21,8 +22,17 @@ public class MainController {
 	@Autowired
 	private UserService userService;
 	
+	@Autowired
+	private BookService bookService;
+	
 	@GetMapping("/")
-	public String index(Model model) {
+	public String index(Model model, HttpSession session) {
+		Long userId = (Long) session.getAttribute("userId");
+		User theUser = userService.getById(userId);
+		if(theUser != null) {	
+			System.out.println("Users email: " + theUser.getEmail());
+		}
+		model.addAttribute("books", bookService.findAllBooks());
 		return "index.jsp";
 	}
 	
