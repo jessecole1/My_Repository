@@ -1,5 +1,7 @@
 package com.example.books.controllers;
 
+import java.util.List;
+
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
@@ -62,6 +64,28 @@ public class BookController {
 		Book book = bookServ.getById(bookId);
 		model.addAttribute("book", book);
 		return "oneBook.jsp";
+	}
+	
+	@GetMapping("/book/add/want/{bookIdVariable}")
+	public String addToWantToRead(@PathVariable("bookIdVariable") Long bookId, HttpSession session) {
+		Long userId = (Long) session.getAttribute("userId");
+		User user = userServ.getById(userId);
+		Book book = bookServ.getById(bookId);
+		List<Book> usersWantToReadBooks = user.getWantToReadBooks();
+		for (int i = 0; i < usersWantToReadBooks.size(); i++) {
+			if (usersWantToReadBooks.get(i).getId() == bookId) {
+				return "redirect:/";
+			}
+		};
+		
+		usersWantToReadBooks.add(book);
+		userServ.updateUser(user);
+		System.out.println("list: " + usersWantToReadBooks);
+		for (int i = 0; i < usersWantToReadBooks.size(); i++) {
+			System.out.println("ID: " + usersWantToReadBooks.get(i).getId());
+			System.out.println("TITLE: " + usersWantToReadBooks.get(i).getTitle());
+		}
+		return "redirect:/";
 	}
 
 }

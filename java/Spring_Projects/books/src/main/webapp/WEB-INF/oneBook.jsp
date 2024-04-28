@@ -11,6 +11,7 @@
 </head>
 <body>
 	<h2><c:out value="${book.title}"/></h2>
+	<p><a href="/book/add/want/${book.id}">Want to Read</a>
 	<table>
 		<tbody>
 			<tr>
