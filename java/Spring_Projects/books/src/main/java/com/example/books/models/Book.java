@@ -57,6 +57,13 @@ public class Book {
 			)
 	private List<User> usersWhoWantToRead;
 	
+	@ManyToMany(fetch=FetchType.LAZY)
+	@JoinTable(
+			name="users_have_read_books",
+			joinColumns = @JoinColumn(name = "book_id"),
+			inverseJoinColumns = @JoinColumn(name = "user_id")
+			)
+	private List<User> usersReadBook;
 	
 	@DateTimeFormat(pattern="yyyy-MM-dd")
 	private Date createdAt;

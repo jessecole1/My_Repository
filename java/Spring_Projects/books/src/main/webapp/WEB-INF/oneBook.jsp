@@ -19,6 +19,7 @@
 			<p><a href="/book/remove/want/${book.id}">Remove Want to Read</a></p>
 		</c:otherwise>
 	</c:choose>
+	<p><a href="#">Finished</a></p>
 	<table>
 		<tbody>
 			<tr>

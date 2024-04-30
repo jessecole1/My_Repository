@@ -82,8 +82,8 @@ public class BookController {
 		for (int i = 0; i < usersWantToReadBooks.size(); i++) {
 			if (usersWantToReadBooks.get(i).getId() == bookId) {
 				return "redirect:/";
-			}
-		};
+		}
+	}
 		
 		usersWantToReadBooks.add(book);
 		userServ.updateUser(user);

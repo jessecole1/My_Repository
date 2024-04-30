@@ -54,6 +54,14 @@ public class User {
 			)
 	private List<Book> wantToReadBooks;
 	
+	@ManyToMany(fetch=FetchType.LAZY)
+	@JoinTable(
+			name="users_have_read_books",
+			joinColumns = @JoinColumn(name = "user_id"),
+			inverseJoinColumns = @JoinColumn(name = "book_id")
+			)
+	private List<Book> haveReadBooks;
+	
 	@DateTimeFormat(pattern="yyyy-MM-dd")
 	private Date createdAt;
 	
@@ -108,6 +116,14 @@ public class User {
 
 	public void setWantToReadBooks(List<Book> wantToReadBooks) {
 		this.wantToReadBooks = wantToReadBooks;
+	}
+
+	public List<Book> getHaveReadBooks() {
+		return haveReadBooks;
+	}
+
+	public void setHaveReadBooks(List<Book> haveReadBooks) {
+		this.haveReadBooks = haveReadBooks;
 	}
 
 	public Date getCreatedAt() {
