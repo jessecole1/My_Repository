@@ -12,7 +12,7 @@
 <body>
 	<h2><c:out value="${book.title}"/></h2>
 	<c:choose>
-		<c:when test="${addedOrNot == false}">
+		<c:when test="${addedOrNot != true}">
 			<p><a href="/book/add/want/${book.id}">Want to Read</a>
 		</c:when>
 		<c:otherwise>

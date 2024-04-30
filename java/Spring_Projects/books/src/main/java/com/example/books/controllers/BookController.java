@@ -69,7 +69,7 @@ public class BookController {
 		if(usersWantToReadBooks.contains(book)) {
 			addedOrNot = true;
 		}
-		model.addAttribute(addedOrNot);
+		model.addAttribute("addedOrNot", addedOrNot);
 		return "oneBook.jsp";
 	}
 	
@@ -101,16 +101,18 @@ public class BookController {
 		User user = userServ.getById(userId);
 		Book book = bookServ.getById(userId);
 		List<Book> newWantToReadList = new ArrayList<Book>();
-		for (int i = 0; i < user.getWantToReadBooks().size(); i++) {
-			if (bookId == user.getWantToReadBooks().get(i).getId()) {
-				System.out.println("skipped over the book to be removed..");
+		
+		
+		for (int i = 0; i < user.getWantToReadBooks().size(); i++) {			
+			if (book.getId() == user.getWantToReadBooks().get(i).getId()) {
 				continue;
-			} else {
+			} else if (book.getId() != user.getWantToReadBooks().get(i).getId()) {
 				newWantToReadList.add(bookServ.getById(userId));
-				System.out.println("added books to the list...");
 			}
 		}
-		user.setWantToReadBooks(newWantToReadList);
+		
+		System.out.println("newWantToReadList: " + newWantToReadList);
+
 		List<User> listOfUsersWhoWantToReadBook = book.getUsersWhoWantToRead();
 		List<User> newListOfUsersWhoWantToReadBook = new ArrayList<>();
 		
@@ -122,8 +124,8 @@ public class BookController {
 			}
 		}
 		book.setUsersWhoWantToRead(newListOfUsersWhoWantToReadBook);
-		bookServ.save(book);
 		userServ.updateUser(user);
+
 		return "redirect:/";
 		
 	}
