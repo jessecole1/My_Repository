@@ -67,6 +67,11 @@ public class MainController {
 		return "redirect:/";
 	}
 	
+//	@PostMapping("/fileuploadservlet")
+//	public String fileUploadServlet() {
+//		return "redirect:/";
+//	}
+	
 //	@GetMapping("/login")
 //	public String login(@Valid @ModelAttribute("newLogin") LoginUser newLogin, BindingResult result, Model model, HttpSession session) {
 //		User user = userService.login(newLogin, result);
