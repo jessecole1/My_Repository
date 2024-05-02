@@ -61,6 +61,11 @@
    			<artifactId>javax.servlet-api</artifactId>
    			<version>4.0.1</version>
   		</dependency>
+  		<dependency>
+			<groupId>org.projectlombok</groupId>
+			<artifactId>lombok</artifactId>
+			<optional>true</optional>
+		</dependency>
         
         <!-- ^ ADDED DEPENDENCIES ^ -->
         <dependency>

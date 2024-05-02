@@ -1,19 +1,26 @@
 package com.example.books.controllers;
 
+import java.io.IOException;
+
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.example.books.models.LoginUser;
 import com.example.books.models.User;
 import com.example.books.services.BookService;
+import com.example.books.services.StorageService;
 import com.example.books.services.UserService;
 
 @Controller
@@ -24,6 +31,9 @@ public class MainController {
 	
 	@Autowired
 	private BookService bookService;
+	
+	@Autowired
+	private StorageService storageService;
 	
 	@GetMapping("/")
 	public String index(Model model, HttpSession session) {
@@ -67,24 +77,13 @@ public class MainController {
 		return "redirect:/";
 	}
 	
-//	@PostMapping("/fileuploadservlet")
-//	public String fileUploadServlet() {
-//		return "redirect:/";
-//	}
 	
-//	@GetMapping("/login")
-//	public String login(@Valid @ModelAttribute("newLogin") LoginUser newLogin, BindingResult result, Model model, HttpSession session) {
-//		User user = userService.login(newLogin, result);
-//		if(result.hasErrors()) {
-//			model.addAttribute("newUser", new User());
-//			return "loginOrReg.jsp";
-//		}
-//		session.setAttribute("userId", user.getId());
-//		
-//		
-//		
-//		return "redirect:/";
-//	}
+	@PostMapping("/fileSystem")
+	public ResponseEntity<?> uploadImageToFIleSystem(@RequestParam("image")MultipartFile file) throws IOException {
+		String uploadImage = storageService.uploadImageToFileSystem(file);
+		return ResponseEntity.status(HttpStatus.OK)
+				.body(uploadImage);
+	}
 	
 
 }
