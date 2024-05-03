@@ -62,6 +62,8 @@ public class User {
 			)
 	private List<Book> haveReadBooks;
 	
+	public String image;
+	
 	@DateTimeFormat(pattern="yyyy-MM-dd")
 	private Date createdAt;
 	
@@ -124,6 +126,14 @@ public class User {
 
 	public void setHaveReadBooks(List<Book> haveReadBooks) {
 		this.haveReadBooks = haveReadBooks;
+	}
+
+	public String getImage() {
+		return image;
+	}
+
+	public void setImage(String image) {
+		this.image = image;
 	}
 
 	public Date getCreatedAt() {

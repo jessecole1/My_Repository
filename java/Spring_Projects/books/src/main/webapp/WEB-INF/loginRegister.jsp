@@ -32,6 +32,10 @@
 					<td><form:input path="confirm" type="password"></form:input></td>
 				</tr>
 				<tr>
+					<td><form:label path="image">Add image:</form:label></td>
+					<td><form:input path="image" type="file"/></td>
+				</tr>
+				<tr>
 					<td><button>Register Account</button></td>
 				</tr>
 			</tbody>

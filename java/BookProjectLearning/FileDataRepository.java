@@ -1,4 +1,4 @@
-package com.example.respository;
+// package com.example.respository;
 
 import com.javatechie.entity.FileData;
 import com.javatechie.entity.ImageData;
