@@ -2,17 +2,17 @@ package com.example.imageUploader.models;
 
 import java.util.Date;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
 import org.springframework.format.annotation.DateTimeFormat;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
-
 @Entity
-@Table(name="images")
-public class Image {
+@Table(name="image")
+public class ImageUploader {
 	
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
@@ -26,7 +26,7 @@ public class Image {
 	@DateTimeFormat(pattern="yyyy-MM-dd")
 	private Date updatedAt;
 	
-	public Image() {};
+	public ImageUploader() {};
 
 	public Long getId() {
 		return id;

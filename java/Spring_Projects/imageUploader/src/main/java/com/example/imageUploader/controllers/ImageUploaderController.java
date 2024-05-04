@@ -4,13 +4,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 
-import com.example.imageUploader.services.ImageService;
+import com.example.imageUploader.services.ImageUploaderService;
 
 @Controller
-public class MainController {
+public class ImageUploaderController {
 	
 	@Autowired
-	private ImageService imageService;
+	private ImageUploaderService imageUploaderService;
 	
 	@GetMapping("/")
 	public String index() {

@@ -7,15 +7,12 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>Image Uploader</title>
 </head>
 <body>
-	<p>testing new project</p>
-	
-	<form:form action="add" method="post">
-		<form:input path="imageName" type="file"/>
-		<button>Add image</button>
+	<h1>Image Uploader Project</h1>
+	<form:form>
+		
 	</form:form>
-	
 </body>
 </html>
