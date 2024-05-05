@@ -39,9 +39,15 @@ public class ImageUploaderController {
 			
 			byte[] data = file.getBytes();		
 			
-			is.read(data);
-			fos.write(data);
-			fos.close();
+//			is.read(data);
+//			fos.write(data);
+//			fos.close();
+			
+			System.out.println("FILE NAME: " + file.getOriginalFilename());
+			Image im = new Image();
+			im.setImageName(file.getOriginalFilename());
+			imageUploaderService.save(im);
+			
 			
 		} catch(IOException e) {
 			e.printStackTrace();

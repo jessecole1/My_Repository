@@ -21,5 +21,9 @@ public class ImageUploaderService {
 		}
 		return null;
 	}
+	
+	public Image save(Image image) {
+		return imageUploaderRepository.save(image);
+	}
 
 }
