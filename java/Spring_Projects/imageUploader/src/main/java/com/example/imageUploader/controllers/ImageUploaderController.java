@@ -1,5 +1,6 @@
 package com.example.imageUploader.controllers;
 
+import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
@@ -24,6 +25,18 @@ public class ImageUploaderController {
 	@GetMapping("/")
 	public String index(Model model) {
 		model.addAttribute("image", new Image());
+		
+		File directoryPath = new File("/Users/jessecole/desktop/my_repository/java/spring_projects/imageuploader/src/main/webapp/appimages/");
+		
+		String directoryImagesList[] = directoryPath.list();
+		for (String fileName : directoryImagesList) {
+			System.out.println("IMAGE :D: " + fileName);
+		}
+		
+		String filePath = "FileServlet?path=c:/" + directoryPath + "/inky.png";
+				
+		model.addAttribute("imageList", directoryImagesList);
+		
 		return "index.jsp";
 	}
 	
@@ -32,16 +45,16 @@ public class ImageUploaderController {
 
 		System.out.println(file);
 		String fileName = file.getOriginalFilename();
-		String uploadPath = "/Users/jessecole/desktop/appimages/" + fileName;
+		String uploadPath = "/Users/jessecole/desktop/my_repository/java/spring_projects/imageuploader/src/main/webapp/appimages/" + fileName;
 		try {
 			FileOutputStream fos = new FileOutputStream(uploadPath);
 			InputStream is = file.getInputStream();
 			
 			byte[] data = file.getBytes();		
 			
-//			is.read(data);
-//			fos.write(data);
-//			fos.close();
+			is.read(data);
+			fos.write(data);
+			fos.close();
 			
 			System.out.println("FILE NAME: " + file.getOriginalFilename());
 			Image im = new Image();

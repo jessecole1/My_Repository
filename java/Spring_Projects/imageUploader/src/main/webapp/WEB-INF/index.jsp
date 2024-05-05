@@ -21,5 +21,11 @@
 		<button>Add image</button>
 	</form> 
 	
+	<p>
+		<c:forEach var="image" items="${imageList}">
+			<img src="../appimages/${image}"/>
+		</c:forEach>
+	</p>
+	
 </body>
 </html>
