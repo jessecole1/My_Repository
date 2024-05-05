@@ -11,8 +11,15 @@
 </head>
 <body>
 	<h1>Image Uploader Project</h1>
-	<form:form>
-		
-	</form:form>
+<%--  	<form:form action="/upload" method="post" modelAttribute="image" enctype="multipart/form-data">
+ 		<form:input path="thisFile" type="file"/>
+		<button>Add Image</button>
+	</form:form> --%> 
+	
+ 		<form action="/upload" method="post" enctype="multipart/form-data">
+ 		<input name="thisFile" type="file"/>
+		<button>Add image</button>
+	</form> 
+	
 </body>
 </html>
