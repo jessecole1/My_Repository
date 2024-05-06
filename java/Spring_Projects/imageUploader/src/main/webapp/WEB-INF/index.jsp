@@ -16,14 +16,14 @@
 		<button>Add Image</button>
 	</form:form> --%> 
 	
- 		<form action="/upload" method="post" enctype="multipart/form-data">
+ 	<form action="/upload" method="post" enctype="multipart/form-data">
  		<input name="thisFile" type="file"/>
 		<button>Add image</button>
 	</form> 
 	
 	<p>
 		<c:forEach var="image" items="${imageList}">
-			<img src="../appimages/${image}"/>
+			<img style="border-radius: 10px" src="../appimages/${image}"/>
 		</c:forEach>
 	</p>
 	

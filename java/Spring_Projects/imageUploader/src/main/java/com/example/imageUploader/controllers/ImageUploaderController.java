@@ -29,11 +29,6 @@ public class ImageUploaderController {
 		File directoryPath = new File("/Users/jessecole/desktop/my_repository/java/spring_projects/imageuploader/src/main/webapp/appimages/");
 		
 		String directoryImagesList[] = directoryPath.list();
-		for (String fileName : directoryImagesList) {
-			System.out.println("IMAGE :D: " + fileName);
-		}
-		
-		String filePath = "FileServlet?path=c:/" + directoryPath + "/inky.png";
 				
 		model.addAttribute("imageList", directoryImagesList);
 		
