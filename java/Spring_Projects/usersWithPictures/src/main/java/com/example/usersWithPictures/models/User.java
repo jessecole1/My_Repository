@@ -2,10 +2,13 @@ package com.example.usersWithPictures.models;
 
 import java.util.Date;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToOne;
 import javax.persistence.PrePersist;
 import javax.persistence.PreUpdate;
 import javax.persistence.Table;
@@ -40,6 +43,9 @@ public class User {
 	@NotEmpty(message="Please confirm password")
 	@Size(min=3, max=128, message="Please confirm your password")
 	private String confirm;
+	
+	@OneToOne(mappedBy="user", cascade=CascadeType.ALL, fetch=FetchType.LAZY)
+	private MainPicture mainPicture;
 	
 	@DateTimeFormat(pattern="yyyy-MM-dd")
 	private Date createdAt;
@@ -89,6 +95,30 @@ public class User {
 		this.confirm = confirm;
 	};
 	
+	public MainPicture getProfilePicture() {
+		return mainPicture;
+	}
+
+	public void setProfilePicture(MainPicture mainPicture) {
+		this.mainPicture = mainPicture;
+	}
+
+	public Date getCreatedAt() {
+		return createdAt;
+	}
+
+	public void setCreatedAt(Date createdAt) {
+		this.createdAt = createdAt;
+	}
+
+	public Date getUpdatedAt() {
+		return updatedAt;
+	}
+
+	public void setUpdatedAt(Date updatedAt) {
+		this.updatedAt = updatedAt;
+	}
+
 	@PrePersist
 	protected void onCreate() {
 		this.createdAt = new Date();

@@ -10,6 +10,11 @@
 <title>Users With Pictures Home</title>
 </head>
 <body>
-	<h2>Welcome</h2>
+	<h2>Welcome <c:out value="${user.username}"/></h2>
+	<a href="/logout"><button>Logout</button></a>
+	<a href="/profile/edit"><button>Edit Profile</button></a>
+	<c:forEach var="singleUser" items="${allUsers}">
+		<p><a href="/profile/${singleUser.id}"><c:out value="${singleUser.username}"/></a></p>
+	</c:forEach>
 </body>
 </html>
