@@ -13,7 +13,7 @@
 	<a href="/home"><button>Home</button></a>
 	<h3><c:out value="${profileUser.username}"/>'s Profile</h3>
 	<p>
-		<img src="../profile-pictures/${image}"/>
+		<img style="width:100px; height:100px" src="${finalPath}"/>
 	</p>
 
 </body>

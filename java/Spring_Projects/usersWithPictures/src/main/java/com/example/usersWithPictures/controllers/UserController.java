@@ -64,21 +64,31 @@ public class UserController {
 		File directoryPath = new File("/Users/jessecole/desktop/my_repository/java/spring_projects/userswithpictures/src/main/webapp/profile-pictures/");
 		String directoryImage[] = directoryPath.list();
 		
-//		String theOnePicture;
-		for (String image : directoryImage) {
-//			System.out.println(image + " : " + profileUser.getProfilePicture().getImageName());
-			if(image.equals(profileUser.getProfilePicture().getImageName())) {
-				File onePictureFile = new File(image);
-				model.addAttribute("image", profileUser.getProfilePicture().getImageName());
-				System.out.println("onePicturFile: " + onePictureFile);
-				return "profile.jsp";
+		MainPicture profileUserPictureObject = profileUser.getProfilePicture();
+		if (profileUserPictureObject == null) {
+			File projectPicturesPath = new File("/Users/jessecole/desktop/my_repository/java/spring_projects/userswithpictures/src/main/webapp/project-pictures");
+			String projectImageArray[] = projectPicturesPath.list();
+			
+			for (String projPic : projectImageArray) {
+				if(projPic.equals("profile-icon.jpg")) {
+					File profileIconImage = new File(projPic);
+					String finalPath = "../project-pictures/" + profileIconImage;
+					model.addAttribute("finalPath", finalPath);
+					return "profile.jsp";
+				}
 			}
-		}
-		
-		
+		} else {
+			for (String image : directoryImage) {
+//				System.out.println(image + " : " + profileUser.getProfilePicture().getImageName());
+				if(image.equals(profileUserPictureObject.getImageName())) {
+					File onePictureFile = new File(image);
+					String finalPath = "../profile-pictures/" + onePictureFile; 
+					model.addAttribute("finalPath", finalPath);
+					return "profile.jsp";
+				} 
+			}
+		}	
 		return "profile.jsp";
-		
-		
 	}
 	
 	@GetMapping("/profile/edit")
@@ -127,7 +137,4 @@ public class UserController {
 
 		return "redirect:/";
 	}
-	
-	
-
 }
