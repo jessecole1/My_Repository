@@ -1,7 +1,6 @@
 package com.example.usersWithPictures.controllers;
 
 import java.io.File;
-import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.http.HttpSession;
@@ -17,6 +16,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import com.example.usersWithPictures.models.LoginUser;
+import com.example.usersWithPictures.models.MainPicture;
 import com.example.usersWithPictures.models.User;
 import com.example.usersWithPictures.services.UserService;
 
@@ -62,10 +62,19 @@ public class UserController {
 		model.addAttribute("user", loggedInUser);
 		
 		File directoryPath = new File("/Users/jessecole/desktop/my_repository/java/spring_projects/userswithpictures/src/main/webapp/profile-pictures/");
-		
 		String directoryImage[] = directoryPath.list();
 		
-		model.addAttribute("image", directoryImage);
+//		String theOnePicture;
+		for (String image : directoryImage) {
+//			System.out.println(image + " : " + profileUser.getProfilePicture().getImageName());
+			if(image.equals(profileUser.getProfilePicture().getImageName())) {
+				File onePictureFile = new File(image);
+				model.addAttribute("image", profileUser.getProfilePicture().getImageName());
+				System.out.println("onePicturFile: " + onePictureFile);
+				return "profile.jsp";
+			}
+		}
+		
 		
 		return "profile.jsp";
 		

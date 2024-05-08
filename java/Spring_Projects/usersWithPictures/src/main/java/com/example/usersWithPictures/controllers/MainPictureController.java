@@ -53,7 +53,7 @@ public class MainPictureController {
 		} catch(IOException e) {
 			e.printStackTrace();
 		}
-		return "redirect:/";
+		return "redirect:/home";
 	}
 
 }
