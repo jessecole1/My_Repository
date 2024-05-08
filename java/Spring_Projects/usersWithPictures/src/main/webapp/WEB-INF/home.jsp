@@ -8,8 +8,9 @@
 <head>
 <meta charset="UTF-8">
 <title>Users With Pictures Home</title>
+<link rel="stylesheet" type="text/css" href="/css/style.css">
 </head>
-<body>
+<body class="profilePageBody">
 	<h2>Welcome <c:out value="${user.username}"/></h2>
 	<a href="/logout"><button>Logout</button></a>
 	<a href="/profile/edit"><button>Edit Profile</button></a>

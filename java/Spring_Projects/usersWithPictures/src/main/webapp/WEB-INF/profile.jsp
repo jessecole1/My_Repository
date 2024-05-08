@@ -8,13 +8,14 @@
 <head>
 <meta charset="UTF-8">
 <title>Your Profile Page</title>
+<link rel="stylesheet" type="text/css" href="/css/style.css">
 </head>
-<body>
+<body class="profilePageBody">
 	<a href="/home"><button>Home</button></a>
-	<h3><c:out value="${profileUser.username}"/>'s Profile</h3>
-	<p>
-		<img style="width:100px; height:100px" src="${finalPath}"/>
-	</p>
+	<div class="profilePicNav">
+		<img class="profilePic" src="${finalPath}"/>
+		<h3 style="font-size: 30px; color: white;"><c:out value="${profileUser.username}"/>'s Profile</h3>
+	</div>
 
 </body>
 </html>
