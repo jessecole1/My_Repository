@@ -6,8 +6,12 @@
 }
 
 .profilePageBody {
-	background: rgb(255,0,215);
-background: linear-gradient(90deg, rgba(255,0,215,1) 0%, rgba(170,25,201,1) 38%, rgba(8,0,255,1) 100%);
+	background: rgb(195,55,100);
+	background: linear-gradient(79deg, rgba(195,55,100,1) 0%, rgba(29,38,113,1) 100%);
+	display: flex;
+	flex-direction: column;
+	justify-content: space-evenly;
+	height: 1000px;
 }
 
 .profilePic {
@@ -28,4 +32,46 @@ background: linear-gradient(90deg, rgba(255,0,215,1) 0%, rgba(170,25,201,1) 38%,
 	background: linear-gradient(34deg, rgba(0,18,255,1) 49%, rgba(11,10,30,1) 49%, rgba(84,133,255,1) 49%);
 	padding: 20px;
 	border-radius: 50px;
+}
+
+.formInputBox {
+	border: 1px solid #96aed0;
+	box-shadow: 1px 1px 5px black;
+	height: 25px;
+	border-radius: 10px;
+	padding: 2px;
+}
+
+.registerFormContainer {
+	display: flex;
+	flex-direction: column;
+	align-items: end;
+	justify-content: space-evenly;
+	height: 400px;
+	text-align: left;
+	height: 100%;
+	color: black;
+}
+
+.registrationBox {
+	padding: 5%;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	margin-right: 35%;
+	margin-left: 35%;
+	border-radius: 30px;
+	background: rgb(147,165,207);
+	background: linear-gradient(333deg, rgba(147,165,207,1) 0%, rgba(228,239,233,1) 100%);
+	box-shadow: 6px 10px 20px;
+}
+
+.registrationLoginButton {
+	height: 50px;
+	width: 100px;
+	border: none;
+	background: rgb(118,75,162);
+	background: linear-gradient(333deg, rgba(118,75,162,1) 0%, rgba(102,126,234,1) 100%);
+	color: white;
+	font-size: 20px;
 }

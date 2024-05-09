@@ -1,0 +1,43 @@
+@charset "UTF-8";
+* {
+	margin: 0px;
+	padding: 0px;	
+}
+
+.profilePageBody {
+	background: rgb(195,55,100);
+	background: linear-gradient(79deg, rgba(195,55,100,1) 0%, rgba(29,38,113,1) 100%);
+}
+
+.homePagePanel {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: space-evenly;
+	width: 25%;
+	height: 100px;
+	background: rgb(72,136,217);
+	background: linear-gradient(255deg, rgba(72,136,217,1) 0%, rgba(27,255,255,1) 100%);
+	border-radius: 20px;
+	border: 1px solid #96aed0;
+	box-shadow: 1px 1px 5px black;
+}
+
+.bottomHomePagePanel {
+	display: flex;
+	flex-direction: row;
+	justify-content: space-evenly;
+	width: 100%;
+}
+
+.homePageButton {
+	background: rgb(118,75,162);
+	background: linear-gradient(333deg, rgba(118,75,162,1) 0%, rgba(102,126,234,1) 100%);
+	height: 30px;
+	width: 80px;
+	border: none;
+	color: white;
+	font-size: 20px;
+	box-shadow: 1px 1px 5px black;
+	border-radius: 5px;
+}

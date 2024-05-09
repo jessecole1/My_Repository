@@ -10,54 +10,58 @@
 <title>Welcome</title>
 <link rel="stylesheet" type="text/css" href="/css/style.css">
 </head>
-<body class="profilePageBody">
-
-	<h3>Register</h3>
-	<table>
-		<tbody>
-			<form:form action="/register" method="post" modelAttribute="newUser">
-				<tr>
-					<td><form:label path="username">Username:</form:label></td>
-					<td><form:input path="username" type="text"></form:input></td>
-				</tr>
-				<tr>
-					<td><form:label path="email">Email:</form:label></td>
-					<td><form:input path="email" type="text"></form:input></td>
-				</tr>
-				<tr>
-					<td><form:label path="password">Password:</form:label></td>
-					<td><form:input path="password" type="password"></form:input></td>
-				</tr>
-				<tr>
-					<td><form:label path="confirm">Confirm Password:</form:label></td>
-					<td><form:input path="confirm" type="password"></form:input></td>
-				</tr>
-				<tr>
-					<td><button>Register</button>
-				</tr>
+<body style="font-family: Arial, sans-serif;" class="profilePageBody">
+	<div class="registrationBox">
+	<h3 style="color: black">Login</h3>
+			<form:form action="/login" method="post" modelAttribute="newLogin">
+				<table style="height:200px">
+					<tbody class="registerFormContainer">
+						<tr>
+							<td><form:label path="email">Email:</form:label></td>
+							<td><form:input class="formInputBox" type="text" path="email"/></td>
+						</tr>
+						<tr>
+							<td><form:label path="password">Password:</form:label></td>
+							<td><form:input class="formInputBox" path="password" type="password"/></td>
+						</tr>
+						<tr>
+							<td><button class="registrationLoginButton">Login</button></td>
+						</tr>
+					</tbody>
+				</table>
 			</form:form>
-		</tbody>
-	</table>
-	
-	<h3>Login</h3>
-		<form:form action="/login" method="post" modelAttribute="newLogin">
-			<table>
-				<tbody>
-					<tr>
-						<td><form:label path="email">Email:</form:label></td>
-						<td><form:input type="text" path="email"/></td>
-					</tr>
-					<tr>
-						<td><form:label path="password">Password:</form:label></td>
-						<td><form:input path="password" type="password"/></td>
-					</tr>
-					<tr>
-						<td><button>Login</button></td>
-					</tr>
-				</tbody>
-			</table>
-		</form:form>
 	</div>
-
+	<div class="registrationBox">
+		<h3 style="color: black">Register</h3>
+		<table style="height:400px">
+			<tbody class="registerFormContainer">
+				<form:form style="height:100%" action="/register" method="post" modelAttribute="newUser">
+						<tr>
+							<td><form:label path="username">Username:</form:label></td>
+							<td><form:input class="formInputBox" path="username" type="text"></form:input></td>
+						</tr>
+						<tr>
+							<td><form:label path="email">Email:</form:label></td>
+							<td><form:input class="formInputBox" path="email" type="text"></form:input></td>
+						</tr>
+						<tr>
+							<td><form:label path="password">Password:</form:label></td>
+							<td><form:input class="formInputBox" path="password" type="password"></form:input></td>
+						</tr>
+						<tr>
+							<td><form:label path="confirm">Confirm Password:</form:label></td>
+							<td><form:input class="formInputBox" path="confirm" type="password"></form:input></td>
+						</tr>
+						<tr>
+							<td><form:label path="bio">Bio:</form:label></td>
+							<td><form:textarea style="height:150px; width:300px; resize:none; border:1px solid #96aed0; border-radius:10px;box-shadow: 1px 1px 5px black;" path="bio"/></td>
+						</tr>
+						<tr>
+							<td><button class="registrationLoginButton">Register</button>
+						</tr>
+				</form:form>
+			</tbody>
+		</table>
+	</div>
 </body>
 </html>

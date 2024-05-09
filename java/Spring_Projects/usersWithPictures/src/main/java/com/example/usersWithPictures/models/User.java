@@ -14,6 +14,7 @@ import javax.persistence.PreUpdate;
 import javax.persistence.Table;
 import javax.persistence.Transient;
 import javax.validation.constraints.Email;
+import javax.validation.constraints.Max;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.Size;
 
@@ -47,6 +48,17 @@ public class User {
 	@OneToOne(mappedBy="user", cascade=CascadeType.ALL, fetch=FetchType.LAZY)
 	private MainPicture mainPicture;
 	
+	@Max(value=500)
+	private String bio;
+	
+	public String getBio() {
+		return bio;
+	}
+
+	public void setBio(String bio) {
+		this.bio = bio;
+	}
+
 	@DateTimeFormat(pattern="yyyy-MM-dd")
 	private Date createdAt;
 	

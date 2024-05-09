@@ -8,12 +8,16 @@
 <head>
 <meta charset="UTF-8">
 <title>Users With Pictures Home</title>
-<link rel="stylesheet" type="text/css" href="/css/style.css">
+<link rel="stylesheet" type="text/css" href="/css/homeStyle.css">
 </head>
 <body class="profilePageBody">
-	<h2>Welcome <c:out value="${user.username}"/></h2>
-	<a href="/logout"><button>Logout</button></a>
-	<a href="/profile/edit"><button>Edit Profile</button></a>
+	<div class="homePagePanel">
+		<h2>Welcome <c:out value="${user.username}"/></h2>
+		<span class="bottomHomePagePanel">
+			<a href="/logout"><button class="homePageButton">Logout</button></a>
+			<a href="/profile/${user.id}"><button class="homePageButton">Profile</button></a>			
+		</span>		
+	</div>
 	<c:forEach var="singleUser" items="${allUsers}">
 		<p><a href="/profile/${singleUser.id}"><c:out value="${singleUser.username}"/></a></p>
 	</c:forEach>
