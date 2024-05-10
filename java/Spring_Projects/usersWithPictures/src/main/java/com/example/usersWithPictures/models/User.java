@@ -48,16 +48,7 @@ public class User {
 	@OneToOne(mappedBy="user", cascade=CascadeType.ALL, fetch=FetchType.LAZY)
 	private MainPicture mainPicture;
 	
-	@Max(value=500)
 	private String bio;
-	
-	public String getBio() {
-		return bio;
-	}
-
-	public void setBio(String bio) {
-		this.bio = bio;
-	}
 
 	@DateTimeFormat(pattern="yyyy-MM-dd")
 	private Date createdAt;
@@ -125,6 +116,14 @@ public class User {
 
 	public Date getUpdatedAt() {
 		return updatedAt;
+	}
+	
+	public String getBio() {
+		return bio;
+	}
+
+	public void setBio(String bio) {
+		this.bio = bio;
 	}
 
 	public void setUpdatedAt(Date updatedAt) {

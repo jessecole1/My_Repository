@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -92,10 +93,26 @@ public class UserController {
 	}
 	
 	@GetMapping("/profile/edit")
-	public String editProfile(@Valid @ModelAttribute("user") User user, BindingResult result, Model model, HttpSession session) {
+	public String editProfile(Model model, HttpSession session) {
 		Long userId = (Long) session.getAttribute("userId");
+//		System.out.println(user.getUsername());
 		model.addAttribute("user", userServ.getById(userId));
 		return "editProfile.jsp";
+	}
+	
+	@Validated
+	@PostMapping("/update")
+	public String updateUser(@Validated @ModelAttribute("user") User user, BindingResult result, Model model, HttpSession session) {
+		Long userId = (Long) session.getAttribute("userId");
+		if (userServ.getById(userId) == null) {
+			return "redirect:/";
+		}
+		
+		User aUser = userServ.getById(user.getId());
+		aUser.setBio(user.getBio());
+		userServ.update(user);
+		
+		return "redirect:/profile";
 	}
 	
 	@PostMapping("/register")

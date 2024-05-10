@@ -69,5 +69,10 @@ public class UserService {
 		}
 		return user;
 	}
+	
+	public User update(User user) {
+		System.out.println("getting here maybe..");
+		return userRepo.save(user);
+	}
 
 }
