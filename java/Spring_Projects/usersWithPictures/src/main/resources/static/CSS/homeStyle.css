@@ -64,3 +64,10 @@
 	padding: 2%;
 	margin-bottom: 10px;
 }
+
+.profilePic {
+	width: 100px;
+	height: 100px;
+	border-radius: 100px;
+	box-shadow: 1px 1px 5px;
+}

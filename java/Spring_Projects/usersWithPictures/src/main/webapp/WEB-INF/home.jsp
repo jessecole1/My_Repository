@@ -31,7 +31,8 @@
 		<c:forEach var="pic" items="${postedPics}">
 			<div class="postBackground">
 				<div class="post">
-					<c:out value="${pic.getId()}"/>
+					<a href="/profile/${pic.getUser().getId()}"><c:out value="${pic.getUser().getUsername()}"/></a>
+					<img class="profilePic" src="../profile-pictures/${pic.getUser().getMainPicture().getImageName()}"/>
 					<img style="width: 75%; height: 400px;border: 2px solid black;" src="../post-pictures/${pic.getImageName()}"/>
 				</div>			
 			</div>
