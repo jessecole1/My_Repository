@@ -44,9 +44,11 @@ public class UserController {
 		model.addAttribute("user", user);
 		List<User> allUsers = userServ.findAllUsers();
 		model.addAttribute("allUsers", allUsers);
-		for (User u : allUsers) {
-			System.out.println(u.getUsername());
-		}
+		
+		File postedPhotosByUsersPath = new File("/Users/jessecole/desktop/my_repository/java/spring_projects/userswithpictures/src/main/webapp/post-pictures");
+		String postedPhotosByUsersArray[] = postedPhotosByUsersPath.list();
+		System.out.println("PHOTOS: " + postedPhotosByUsersArray);
+		model.addAttribute("postedPics", postedPhotosByUsersArray);
 		return "home.jsp";
 	}
 	
@@ -66,6 +68,9 @@ public class UserController {
 		String directoryImage[] = directoryPath.list();
 		
 		MainPicture profileUserPictureObject = profileUser.getProfilePicture();
+		
+		// CHECKING TO SEE IF USER HAS ADDED A PROFILE PICTURE
+		// IF USER HASN'T UPLOADED A PICTURE, THEN DEFAULT PICTURE WILL DISPLAY
 		if (profileUserPictureObject == null) {
 			File projectPicturesPath = new File("/Users/jessecole/desktop/my_repository/java/spring_projects/userswithpictures/src/main/webapp/project-pictures");
 			String projectImageArray[] = projectPicturesPath.list();
@@ -75,20 +80,18 @@ public class UserController {
 					File profileIconImage = new File(projPic);
 					String finalPath = "../project-pictures/" + profileIconImage;
 					model.addAttribute("finalPath", finalPath);
-					return "profile.jsp";
 				}
 			}
+		// IF USER HAS UPLOADED A PROFILE PICTURE, THEN THEIR UPLOADED PICTURE WILL DISPLAY 
 		} else {
 			for (String image : directoryImage) {
-//				System.out.println(image + " : " + profileUser.getProfilePicture().getImageName());
 				if(image.equals(profileUserPictureObject.getImageName())) {
 					File onePictureFile = new File(image);
 					String finalPath = "../profile-pictures/" + onePictureFile; 
 					model.addAttribute("finalPath", finalPath);
-					return "profile.jsp";
 				} 
 			}
-		}	
+		}
 		return "profile.jsp";
 	}
 	

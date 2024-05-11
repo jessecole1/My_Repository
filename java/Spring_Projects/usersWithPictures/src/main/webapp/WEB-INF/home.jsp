@@ -21,5 +21,16 @@
 	<c:forEach var="singleUser" items="${allUsers}">
 		<p><a href="/profile/${singleUser.id}"><c:out value="${singleUser.username}"/></a></p>
 	</c:forEach>
+	<div>
+		<form action="/upload/photo" method="post" enctype="multipart/form-data">
+			<input name="thisFile" type="file"/>
+			<button>Upload Picture</button>
+		</form>
+	</div>
+	<div>
+		<c:forEach var="pic" items="${postedPics}">
+			<p>hey</p>
+		</c:forEach>
+	</div>
 </body>
 </html>
