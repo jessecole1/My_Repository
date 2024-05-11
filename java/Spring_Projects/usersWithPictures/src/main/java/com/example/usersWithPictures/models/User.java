@@ -1,6 +1,7 @@
 package com.example.usersWithPictures.models;
 
 import java.util.Date;
+import java.util.List;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
@@ -8,13 +9,13 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.PrePersist;
 import javax.persistence.PreUpdate;
 import javax.persistence.Table;
 import javax.persistence.Transient;
 import javax.validation.constraints.Email;
-import javax.validation.constraints.Max;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.Size;
 
@@ -47,6 +48,9 @@ public class User {
 	
 	@OneToOne(mappedBy="user", cascade=CascadeType.ALL, fetch=FetchType.LAZY)
 	private MainPicture mainPicture;
+	
+	@OneToMany(mappedBy="user", fetch=FetchType.LAZY)
+	private List<Photos> photos;
 	
 	private String bio;
 
@@ -104,6 +108,22 @@ public class User {
 
 	public void setProfilePicture(MainPicture mainPicture) {
 		this.mainPicture = mainPicture;
+	}
+
+	public MainPicture getMainPicture() {
+		return mainPicture;
+	}
+
+	public void setMainPicture(MainPicture mainPicture) {
+		this.mainPicture = mainPicture;
+	}
+
+	public List<Photos> getPhotos() {
+		return photos;
+	}
+
+	public void setPhotos(List<Photos> photos) {
+		this.photos = photos;
 	}
 
 	public Date getCreatedAt() {

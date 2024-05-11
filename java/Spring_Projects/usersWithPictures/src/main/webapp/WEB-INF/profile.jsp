@@ -22,11 +22,11 @@
 		<div class="profilePicNav">
 			<div class="profilePicNavTop">
 				<img class="profilePic" src="${finalPath}"/>
-				<h3 style="font-size: 30px; color: black;"><c:out value="${profileUser.username}"/></h3>
+				<div>
+					<h3 style="font-size: 30px; color: black;"><c:out value="${profileUser.username}"/></h3>
+					<p>Bio: <c:out value="${profileUser.bio}"/>
+				</div>
 				<a href="/profile/edit"><button class="homePageButton">Edit Profile</button></a>
-			</div>
-			<div>
-				<p><c:out value="${profileUser.bio}"/>
 			</div>
 			<div class="profilePicNavBottom">
 			
