@@ -11,5 +11,7 @@ import com.example.usersWithPictures.models.Photos;
 public interface PhotosRepository extends CrudRepository<Photos, Long>{
 	
 	Optional<Photos> findById(Integer id);
+	
+	Optional<Photos> findByImageName(String imageName);
 
 }

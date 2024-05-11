@@ -3,6 +3,7 @@ package com.example.usersWithPictures.controllers;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.Date;
 import java.util.List;
 
 import javax.servlet.http.HttpSession;
@@ -58,6 +59,8 @@ public class PhotosController {
 			System.out.println("AFTER: " + usersPhotoListBeforeUpload);
 			photo.setUser(user);
 			photo.setImageName(fileName);
+			Date date = new Date();
+			photo.setCreatedAt(date);
 			photoServ.save(photo);
 			
 		} catch(IOException e) {

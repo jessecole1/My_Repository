@@ -30,5 +30,13 @@ public class PhotosService {
 	public Photos save(Photos photo) {
 		return photosRepo.save(photo);
 	}
+	
+	public Photos findByName(String name) {
+		Optional<Photos> optionalPhoto = photosRepo.findByImageName(name);
+		if (optionalPhoto.isPresent()) {
+			return optionalPhoto.get();
+		}
+		return null;
+	}
 
 }

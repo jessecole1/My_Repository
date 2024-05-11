@@ -1,6 +1,8 @@
 package com.example.usersWithPictures.controllers;
 
 import java.io.File;
+import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import javax.servlet.http.HttpSession;
@@ -10,7 +12,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -18,7 +19,9 @@ import org.springframework.web.bind.annotation.PostMapping;
 
 import com.example.usersWithPictures.models.LoginUser;
 import com.example.usersWithPictures.models.MainPicture;
+import com.example.usersWithPictures.models.Photos;
 import com.example.usersWithPictures.models.User;
+import com.example.usersWithPictures.services.PhotosService;
 import com.example.usersWithPictures.services.UserService;
 
 @Controller
@@ -26,6 +29,9 @@ public class UserController {
 	
 	@Autowired 
 	private UserService userServ;
+	
+	@Autowired
+	private PhotosService photosServ;
 	
 	@GetMapping("/")
 	public String index(Model model) {
@@ -47,10 +53,58 @@ public class UserController {
 		
 		File postedPhotosByUsersPath = new File("/Users/jessecole/desktop/my_repository/java/spring_projects/userswithpictures/src/main/webapp/post-pictures");
 		String postedPhotosByUsersArray[] = postedPhotosByUsersPath.list();
-		System.out.println("PHOTOS: " + postedPhotosByUsersArray);
-		model.addAttribute("postedPics", postedPhotosByUsersArray);
-		return "home.jsp";
-	}
+		
+		// CREATE A NEW LIST WHERE THE PICTURES ARE SORTED BY CREATED-AT DATE
+		List <Photos> sortedArrayList = new ArrayList<>();
+		
+		// SORT THROUGH THE ARRAY OF PICTURES RETURNED IN POSTEDPHOTOSBYUSERSARRAY 
+		for (int i = 0; i < postedPhotosByUsersArray.length; i++) {
+			
+			// WE HAVE THE NAMES OF THE PICTURES
+			// THESE PICTURES ARE STORED IN THE DATABASE WITH THESE NAMES
+			// WE NEED TO GET THE OBJECTS OF THESE PICTURES THROUGH THE NAME 
+			
+			// CAPTURE CURRENT ITERATED PHOTO AND RETURN ITS OBJECT
+			Photos iteratedPhoto = photosServ.findByName(postedPhotosByUsersArray[i].toString());
+			sortedArrayList.add(iteratedPhoto);
+			
+		}
+		System.out.println("ARRAY BEFORE SORTING: " + sortedArrayList);
+		
+		for (Photos p : sortedArrayList) {
+			System.out.println(p.getId() + " : " + p.getCreatedAt());
+		}
+			
+			// THERE NEEDS TO BE MORE THAN ONE PHOTO IN POSTEDPHOTOSBYUSERSARRAY
+			// CHECK TO SEE IF THERE IS AT LEAST 2 PHOTOS 
+		for (int i = 0; i < sortedArrayList.size(); i++) {
+			if (i <= sortedArrayList.size() - 1 && i > 0) {
+				Photos currentPhoto = sortedArrayList.get(i);
+				Photos previousPhotoToBeCompared = sortedArrayList.get(i-1);
+				if (previousPhotoToBeCompared.getCreatedAt().compareTo(currentPhoto.getCreatedAt()) < 0) {
+					System.out.println("discepency");
+					Photos temp = currentPhoto;
+					currentPhoto = previousPhotoToBeCompared;
+					previousPhotoToBeCompared = temp;
+					
+					sortedArrayList.set(i, currentPhoto);
+					sortedArrayList.set(i-1, previousPhotoToBeCompared);
+					i = -1;
+				}
+			}
+		}
+		System.out.println("ARRAY AFTER SORTING: " + sortedArrayList);
+		for (Photos p : sortedArrayList) {
+			System.out.println(p.getId() + " : " + p.getCreatedAt());
+		}
+			
+//			sortedArrayList.add(iteratedPhoto);
+//			System.out.println(sortedArrayList);
+//		System.out.println("PHOTOS: " + postedPhotosByUsersArray);
+			model.addAttribute("postedPics", sortedArrayList);
+			return "home.jsp";
+		}
+		
 	
 	@GetMapping("/profile/{userId}")
 	public String profilePage(@PathVariable("userId") Long userId, @ModelAttribute("aUser") User aUser, Model model, HttpSession session) {
