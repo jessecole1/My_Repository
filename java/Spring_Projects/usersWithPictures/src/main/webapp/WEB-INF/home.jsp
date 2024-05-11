@@ -27,9 +27,13 @@
 			<button>Upload Picture</button>
 		</form>
 	</div>
-	<div>
+	<div class="postsContainer">
 		<c:forEach var="pic" items="${postedPics}">
-			<p>hey</p>
+			<div class="postBackground">
+				<div class="post">
+					<img style="width: 75%; height: 400px;border: 2px solid black;" src="../post-pictures/${pic}"/>
+				</div>			
+			</div>
 		</c:forEach>
 	</div>
 </body>

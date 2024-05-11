@@ -42,3 +42,25 @@
 	border-radius: 5px;
 }
 
+.postsContainer {
+	display: flex;
+	flex-direction: column;
+	align-items: center; 
+	background-color: rgb(148 163 184);
+	width: 45%;
+	margin: 0 auto;
+}
+
+.postBackground {
+
+}
+
+.post {
+	/* width: 50%; */
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	padding: 2%;
+	margin-bottom: 10px;
+}
