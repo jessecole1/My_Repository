@@ -36,10 +36,6 @@
 					<td><form:textarea style="height:150px; width:300px; resize:none; border:1px solid #96aed0; border-radius:10px;box-shadow: 1px 1px 5px black;" path="bio"/></td>
 				</tr>
 				<tr>
-					<td></td>
-					<td><form:input type="text" path="confirm" placeholder="password"/></td>
-				</tr>
-				<tr>
 					<td><button>Update</button></td>
 				</tr>
 			</tbody>

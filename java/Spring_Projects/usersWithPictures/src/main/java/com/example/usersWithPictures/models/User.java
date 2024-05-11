@@ -41,7 +41,7 @@ public class User {
 	private String password;
 	
 	@Transient
-	@NotEmpty(message="Please confirm password")
+//	@NotEmpty(message="Please confirm password")
 	@Size(min=3, max=128, message="Please confirm your password")
 	private String confirm;
 	

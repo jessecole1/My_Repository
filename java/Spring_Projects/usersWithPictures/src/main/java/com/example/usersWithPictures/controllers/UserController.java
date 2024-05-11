@@ -100,9 +100,8 @@ public class UserController {
 		return "editProfile.jsp";
 	}
 	
-	@Validated
 	@PostMapping("/update")
-	public String updateUser(@Validated @ModelAttribute("user") User user, BindingResult result, Model model, HttpSession session) {
+	public String updateUser(@Valid @ModelAttribute("user") User user, BindingResult result, Model model, HttpSession session) {
 		Long userId = (Long) session.getAttribute("userId");
 		if (userServ.getById(userId) == null) {
 			return "redirect:/";
@@ -110,9 +109,10 @@ public class UserController {
 		
 		User aUser = userServ.getById(user.getId());
 		aUser.setBio(user.getBio());
+		System.out.println("nice");
 		userServ.update(user);
 		
-		return "redirect:/profile";
+		return "redirect:/home";
 	}
 	
 	@PostMapping("/register")

@@ -72,6 +72,14 @@ public class UserService {
 	
 	public User update(User user) {
 		System.out.println("getting here maybe..");
+		System.out.println(user.getEmail());
+		System.out.println(user.getPassword());
+		
+		user.setUsername(user.getUsername());
+		user.setEmail(user.getEmail());
+		user.setPassword(user.getPassword());
+		user.setConfirm(user.getConfirm());
+		
 		return userRepo.save(user);
 	}
 
