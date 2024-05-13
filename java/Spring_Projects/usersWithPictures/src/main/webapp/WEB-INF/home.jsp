@@ -22,20 +22,24 @@
 		<p><a href="/profile/${singleUser.id}"><c:out value="${singleUser.username}"/></a></p>
 	</c:forEach>
 	<div>
-		<form action="/upload/photo" method="post" enctype="multipart/form-data">
-			<input name="thisFile" type="file"/>
-			<button>Upload Picture</button>
-		</form>
+		<a href="/upload/photo/one"><button>Upload Photo</button></a>
 	</div>
 	<div class="postsContainer">
 		<c:forEach var="pic" items="${postedPics}">
 			<div class="postBackground">
 				<div class="post">
-					<a href="/profile/${pic.getUser().getId()}"><c:out value="${pic.getUser().getUsername()}"/></a>
-					<img class="profilePic" src="../profile-pictures/${pic.getUser().getMainPicture().getImageName()}"/>
-					<img style="width: 75%; height: 400px;border: 2px solid black;" src="../post-pictures/${pic.getImageName()}"/>
+					<div class="postTopNav">
+						<img class="profilePic" src="../profile-pictures/${pic.getUser().getMainPicture().getImageName()}"/>
+						<a style="margin: 2%;" href="/profile/${pic.getUser().getId()}"><c:out value="${pic.getUser().getUsername()}"/></a>
+					</div>
+					<div class="postBottomNav">
+						<img style="width: 75%; height: 400px;border: 2px solid black;" src="../post-pictures/${pic.getImageName()}"/>
+					</div>
+					<div>
+					</div>
 				</div>			
 			</div>
+						<p><c:out value="${pic.caption}"/></p>
 		</c:forEach>
 	</div>
 </body>

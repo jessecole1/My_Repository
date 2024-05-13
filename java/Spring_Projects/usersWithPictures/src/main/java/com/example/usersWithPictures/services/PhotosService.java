@@ -38,5 +38,9 @@ public class PhotosService {
 		}
 		return null;
 	}
+	
+	public Photos update(Photos aPhoto) {
+		return photosRepo.save(aPhoto);
+	}
 
 }

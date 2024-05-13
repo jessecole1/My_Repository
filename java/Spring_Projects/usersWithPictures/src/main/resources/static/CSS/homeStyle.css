@@ -52,7 +52,7 @@
 }
 
 .postBackground {
-
+	width: 75%;
 }
 
 .post {
@@ -63,6 +63,7 @@
 	align-items: center;
 	padding: 2%;
 	margin-bottom: 10px;
+	
 }
 
 .profilePic {
@@ -70,4 +71,26 @@
 	height: 100px;
 	border-radius: 100px;
 	box-shadow: 1px 1px 5px;
+	margin: 2%;
+}
+
+.postTopNav {
+	width: 100%;
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
+	background: linear-gradient(109.6deg, rgb(36, 45, 57) 11.2%, rgb(16, 37, 60) 51.2%, rgb(0, 0, 0) 98.6%);
+	align-items: center;
+	border-top-left-radius: 15px;
+	border-top-right-radius: 15px;
+}
+
+.postBottomNav {
+	width: 100%;
+	margin: 0 auto;
+	display: flex;
+	justify-content: center;
+	background-color: black;
+	border-bottom-left-radius: 15px;
+	border-bottom-right-radius: 15px;
 }

@@ -24,10 +24,11 @@ public class Photos {
 	
 	private String imageName;
 	
-	@NotNull
 	@ManyToOne(fetch=FetchType.LAZY)
 	@JoinColumn(name="user_id")
 	private User user;
+	
+	private String caption;
 	
 	@DateTimeFormat(pattern="yyyy-MM-dd")
 	private Date createdAt;
@@ -59,6 +60,14 @@ public class Photos {
 
 	public void setUser(User user) {
 		this.user = user;
+	}
+
+	public String getCaption() {
+		return caption;
+	}
+
+	public void setCaption(String caption) {
+		this.caption = caption;
 	}
 
 	public Date getCreatedAt() {

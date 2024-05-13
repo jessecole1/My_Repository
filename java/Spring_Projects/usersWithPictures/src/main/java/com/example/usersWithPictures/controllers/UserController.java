@@ -69,7 +69,7 @@ public class UserController {
 			sortedArrayList.add(iteratedPhoto);
 			
 		}
-		System.out.println("ARRAY BEFORE SORTING: " + sortedArrayList);
+//		System.out.println("ARRAY BEFORE SORTING: " + sortedArrayList);
 		
 		for (Photos p : sortedArrayList) {
 			System.out.println(p.getId() + " : " + p.getCreatedAt());
@@ -93,9 +93,9 @@ public class UserController {
 				}
 			}
 		}
-		System.out.println("ARRAY AFTER SORTING: " + sortedArrayList);
+//		System.out.println("ARRAY AFTER SORTING: " + sortedArrayList);
 		for (Photos p : sortedArrayList) {
-			System.out.println(p.getId() + " : " + p.getCreatedAt());
+			System.out.println("here we go again: " + p.getUser().getUsername());
 		}
 			
 //			sortedArrayList.add(iteratedPhoto);
@@ -152,6 +152,9 @@ public class UserController {
 	@GetMapping("/profile/edit")
 	public String editProfile(Model model, HttpSession session) {
 		Long userId = (Long) session.getAttribute("userId");
+		if (userId == null) {
+			return "redirect:/";
+		}
 //		System.out.println(user.getUsername());
 		model.addAttribute("user", userServ.getById(userId));
 		return "editProfile.jsp";
