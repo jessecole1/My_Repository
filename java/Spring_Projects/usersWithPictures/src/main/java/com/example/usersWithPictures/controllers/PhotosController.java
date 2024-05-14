@@ -52,15 +52,10 @@ public class PhotosController {
 		if (userId == null) {
 			return "redirect:/";
 		}
+		System.out.println("aPhoto: " + aPhoto.getImageName());
 		User user = userServ.getById(userId);
-		Long photoId = (Long) session.getAttribute("picId");
-		Photos thePhoto = photosServ.getById(photoId);
-//		System.out.println(thePhoto.toString());
-//		System.out.println("photo name: " + thePhoto.getImageName());
+
 		model.addAttribute("user", user);
-		System.out.println("photo user???: " + thePhoto.getUser());
-//		Photos photo = photosServ.getById(pictureId);
-//		model.addAttribute("photo", photo);
 
 		return "addCaption.jsp";
 	}
@@ -73,9 +68,12 @@ public class PhotosController {
 			return "redirect:/";
 		}
 		User user = userServ.getById(userId);
-		System.out.println("onePhoto: " + onePhoto);
-		System.out.println(onePhoto.getCaption());
-		System.out.println("photo user: " + onePhoto.getUser());
+		
+		Long photoId = (Long) session.getAttribute("picId");
+		Photos thePhoto = photosServ.getById(photoId);
+		
+		thePhoto.setCaption(onePhoto.getCaption());
+		photosServ.save(thePhoto);
 		
 		return "redirect:/home";
 	}

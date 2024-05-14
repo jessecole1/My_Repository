@@ -22,7 +22,8 @@
 		<p><a href="/profile/${singleUser.id}"><c:out value="${singleUser.username}"/></a></p>
 	</c:forEach>
 	<div>
-		<a href="/upload/photo/one"><button>Upload Photo</button></a>
+		<a href="/upload/photo/one"><button>Upload</button></a>
+		<img style="width:100px;" src="${uploadIconImagePath}"/>
 	</div>
 	<div class="postsContainer">
 		<c:forEach var="pic" items="${postedPics}">
@@ -35,11 +36,11 @@
 					<div class="postBottomNav">
 						<img style="width: 75%; height: 400px;border: 2px solid black;" src="../post-pictures/${pic.getImageName()}"/>
 					</div>
+						<p><c:out value="${pic.getCaption()}"/></p>
 					<div>
 					</div>
 				</div>			
 			</div>
-						<p><c:out value="${pic.caption}"/></p>
 		</c:forEach>
 	</div>
 </body>

@@ -68,13 +68,7 @@ public class UserController {
 			Photos iteratedPhoto = photosServ.findByName(postedPhotosByUsersArray[i].toString());
 			sortedArrayList.add(iteratedPhoto);
 			
-		}
-//		System.out.println("ARRAY BEFORE SORTING: " + sortedArrayList);
-		
-		for (Photos p : sortedArrayList) {
-			System.out.println(p.getId() + " : " + p.getCreatedAt());
-		}
-			
+		}	
 			// THERE NEEDS TO BE MORE THAN ONE PHOTO IN POSTEDPHOTOSBYUSERSARRAY
 			// CHECK TO SEE IF THERE IS AT LEAST 2 PHOTOS 
 		for (int i = 0; i < sortedArrayList.size(); i++) {
@@ -93,10 +87,8 @@ public class UserController {
 				}
 			}
 		}
-//		System.out.println("ARRAY AFTER SORTING: " + sortedArrayList);
-		for (Photos p : sortedArrayList) {
-			System.out.println("here we go again: " + p.getUser().getUsername());
-		}
+
+
 			
 //			sortedArrayList.add(iteratedPhoto);
 //			System.out.println(sortedArrayList);
@@ -134,6 +126,11 @@ public class UserController {
 					File profileIconImage = new File(projPic);
 					String finalPath = "../project-pictures/" + profileIconImage;
 					model.addAttribute("finalPath", finalPath);
+				} else if (projPic.equals("upload-icon-20631.png")) {
+					System.out.println("YES");
+					File uploadIconImage = new File(projPic);
+					String uploadIconImagePath = "../project-pictures/" + uploadIconImage;
+					model.addAttribute("uploadIconImagePath", uploadIconImagePath);
 				}
 			}
 		// IF USER HAS UPLOADED A PROFILE PICTURE, THEN THEIR UPLOADED PICTURE WILL DISPLAY 

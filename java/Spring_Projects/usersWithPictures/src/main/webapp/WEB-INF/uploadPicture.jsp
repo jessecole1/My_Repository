@@ -13,7 +13,8 @@
 	<div>
 		<form action="/upload/photo/" method="post" enctype="multipart/form-data">
 			<input name="thisFile" type="file"/>
-			<input type="hidden" value="${user}"/>
+			<%-- <input type="hidden" value="${user}"/> --%>
+			<input name="caption" type="text"/>
 			<button>Upload Picture</button>
 		</form>
 	</div>
