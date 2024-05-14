@@ -43,6 +43,8 @@ public class MainPictureController {
 			is.read(data);
 			fos.write(data);
 			fos.close();
+		
+			
 			
 			MainPicture mainPicture = new MainPicture();
 			mainPicture.setImageName(file.getOriginalFilename());

@@ -2,7 +2,6 @@ package com.example.usersWithPictures.controllers;
 
 import java.io.File;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 import javax.servlet.http.HttpSession;
@@ -21,6 +20,7 @@ import com.example.usersWithPictures.models.LoginUser;
 import com.example.usersWithPictures.models.MainPicture;
 import com.example.usersWithPictures.models.Photos;
 import com.example.usersWithPictures.models.User;
+import com.example.usersWithPictures.services.MainPictureService;
 import com.example.usersWithPictures.services.PhotosService;
 import com.example.usersWithPictures.services.UserService;
 
@@ -32,6 +32,9 @@ public class UserController {
 	
 	@Autowired
 	private PhotosService photosServ;
+	
+	@Autowired
+	private MainPictureService mainPicServ;
 	
 	@GetMapping("/")
 	public String index(Model model) {
@@ -51,6 +54,8 @@ public class UserController {
 		List<User> allUsers = userServ.findAllUsers();
 		model.addAttribute("allUsers", allUsers);
 		
+//		System.out.println(user.getMainPicture().getImageName());
+		
 		File postedPhotosByUsersPath = new File("/Users/jessecole/desktop/my_repository/java/spring_projects/userswithpictures/src/main/webapp/post-pictures");
 		String postedPhotosByUsersArray[] = postedPhotosByUsersPath.list();
 		
@@ -69,27 +74,26 @@ public class UserController {
 			sortedArrayList.add(iteratedPhoto);
 			
 		}	
+		System.out.println("size?: " + sortedArrayList.size());
 			// THERE NEEDS TO BE MORE THAN ONE PHOTO IN POSTEDPHOTOSBYUSERSARRAY
 			// CHECK TO SEE IF THERE IS AT LEAST 2 PHOTOS 
-		for (int i = 0; i < sortedArrayList.size(); i++) {
-			if (i <= sortedArrayList.size() - 1 && i > 0) {
-				Photos currentPhoto = sortedArrayList.get(i);
-				Photos previousPhotoToBeCompared = sortedArrayList.get(i-1);
-				if (previousPhotoToBeCompared.getCreatedAt().compareTo(currentPhoto.getCreatedAt()) < 0) {
-					System.out.println("discepency");
-					Photos temp = currentPhoto;
-					currentPhoto = previousPhotoToBeCompared;
-					previousPhotoToBeCompared = temp;
-					
-					sortedArrayList.set(i, currentPhoto);
-					sortedArrayList.set(i-1, previousPhotoToBeCompared);
-					i = -1;
+			for (int i = 0; i < sortedArrayList.size(); i++) {
+				if (i <= sortedArrayList.size() - 1 && i > 0) {
+					Photos currentPhoto = sortedArrayList.get(i);
+					Photos previousPhotoToBeCompared = sortedArrayList.get(i-1);
+					if (previousPhotoToBeCompared.getCreatedAt().compareTo(currentPhoto.getCreatedAt()) < 0) {
+						System.out.println("discepency");
+						Photos temp = currentPhoto;
+						currentPhoto = previousPhotoToBeCompared;
+						previousPhotoToBeCompared = temp;
+						
+						sortedArrayList.set(i, currentPhoto);
+						sortedArrayList.set(i-1, previousPhotoToBeCompared);
+						i = -1;
+					}
 				}
 			}
-		}
 
-
-			
 //			sortedArrayList.add(iteratedPhoto);
 //			System.out.println(sortedArrayList);
 //		System.out.println("PHOTOS: " + postedPhotosByUsersArray);
@@ -97,7 +101,6 @@ public class UserController {
 			return "home.jsp";
 		}
 		
-	
 	@GetMapping("/profile/{userId}")
 	public String profilePage(@PathVariable("userId") Long userId, @ModelAttribute("aUser") User aUser, Model model, HttpSession session) {
 		Long loggedInUserId = (Long) session.getAttribute("userId");
@@ -117,7 +120,7 @@ public class UserController {
 		
 		// CHECKING TO SEE IF USER HAS ADDED A PROFILE PICTURE
 		// IF USER HASN'T UPLOADED A PICTURE, THEN DEFAULT PICTURE WILL DISPLAY
-		if (profileUserPictureObject == null) {
+		if (profileUserPictureObject.getImageName().equals("profile-icon.jpg")) {
 			File projectPicturesPath = new File("/Users/jessecole/desktop/my_repository/java/spring_projects/userswithpictures/src/main/webapp/project-pictures");
 			String projectImageArray[] = projectPicturesPath.list();
 			
@@ -126,12 +129,7 @@ public class UserController {
 					File profileIconImage = new File(projPic);
 					String finalPath = "../project-pictures/" + profileIconImage;
 					model.addAttribute("finalPath", finalPath);
-				} else if (projPic.equals("upload-icon-20631.png")) {
-					System.out.println("YES");
-					File uploadIconImage = new File(projPic);
-					String uploadIconImagePath = "../project-pictures/" + uploadIconImage;
-					model.addAttribute("uploadIconImagePath", uploadIconImagePath);
-				}
+				} 
 			}
 		// IF USER HAS UPLOADED A PROFILE PICTURE, THEN THEIR UPLOADED PICTURE WILL DISPLAY 
 		} else {
@@ -166,7 +164,6 @@ public class UserController {
 		
 		User aUser = userServ.getById(user.getId());
 		aUser.setBio(user.getBio());
-		System.out.println("nice");
 		userServ.update(user);
 		
 		return "redirect:/home";
@@ -182,9 +179,26 @@ public class UserController {
 		userServ.register(newUser, result);
 		Long userId = (Long) newUser.getId();
 		User user = userServ.getById(userId);
+		
+		File projectPicturesPath = new File("/Users/jessecole/desktop/my_repository/java/spring_projects/userswithpictures/src/main/webapp/project-pictures");
+		String projectImageArray[] = projectPicturesPath.list();
+		
+		for (String profileIconPic : projectImageArray) {
+			if(profileIconPic.equals("profile-icon.jpg")) {
+//				File profileIconImage = new File(profileIconPic);
+				MainPicture mainPicture = new MainPicture();
+				
+				mainPicture.setImageName(profileIconPic);
+				mainPicture.setUser(user);
+				user.setProfilePicture(mainPicture);
+				mainPicServ.save(mainPicture);
+//				System.out.println("success?: " + user.getProfilePicture().getId());
+			} 
+		}
+		
+		
 		session.setAttribute("userId", userId);
 		model.addAttribute("user", user);
-		System.out.println("USER: " + user.getUsername());
 		
 		return "redirect:/home";
 	}
@@ -198,9 +212,7 @@ public class UserController {
 			model.addAttribute("newUser", new User());
 			return "index.jsp";
 		}
-		
 		session.setAttribute("userId", user.getId());
-		System.out.println("USER: " + user.getUsername());
 		
 		return "redirect:/home";
 	}
@@ -208,7 +220,6 @@ public class UserController {
 	@GetMapping("/logout")
 	public String logout(HttpSession session) {
 		session.setAttribute("userId", null);
-
 		return "redirect:/";
 	}
 }

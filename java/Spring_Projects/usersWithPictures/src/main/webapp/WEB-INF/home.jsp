@@ -30,14 +30,21 @@
 			<div class="postBackground">
 				<div class="post">
 					<div class="postTopNav">
-						<img class="profilePic" src="../profile-pictures/${pic.getUser().getMainPicture().getImageName()}"/>
+						<c:choose>
+							<c:when test="${pic.getUser().getMainPicture().getImageName() == 'profile-icon.jpg'}">
+								<img class="profilePic" src="../project-pictures/profile-icon.jpg"/>
+							</c:when>
+							<c:otherwise>
+								<img class="profilePic" src="../profile-pictures/${pic.getUser().getMainPicture().getImageName()}"/>							
+							</c:otherwise>
+						</c:choose>
 						<a style="margin: 2%;" href="/profile/${pic.getUser().getId()}"><c:out value="${pic.getUser().getUsername()}"/></a>
 					</div>
-					<div class="postBottomNav">
+					<div class="postMiddleNav">
 						<img style="width: 75%; height: 400px;border: 2px solid black;" src="../post-pictures/${pic.getImageName()}"/>
 					</div>
-						<p><c:out value="${pic.getCaption()}"/></p>
-					<div>
+					<div class="postBottomNav">
+						<p><c:out value="${pic.getUser().getUsername()}: "/><c:out value="${pic.getCaption()}"/></p>
 					</div>
 				</div>			
 			</div>
