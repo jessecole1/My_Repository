@@ -25,5 +25,9 @@ public class MainPictureService {
 	public MainPicture save(MainPicture image) {
 		return mainPicRepo.save(image);
 	}
+	
+	public void destroy(Long mainPicId) {
+		mainPicRepo.deleteById(mainPicId);
+	}
 
 }

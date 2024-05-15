@@ -26,10 +26,19 @@
 					<h3 style="font-size: 30px; color: black;"><c:out value="${profileUser.username}"/></h3>
 					<p>Bio: <c:out value="${profileUser.bio}"/>
 				</div>
-				<a href="/profile/edit"><button class="homePageButton">Edit Profile</button></a>
+				<c:choose>
+					<c:when test="${profileUser.id == user.id}">
+						<a href="/profile/edit"><button class="homePageButton">Edit Profile</button></a>					
+					</c:when>
+				</c:choose>
 			</div>
-			<div class="profilePicNavBottom">
-			
+			<div class="photosContainer">
+				<c:forEach var="pic" items="${usersPhotos}" varStatus="loop">
+					<c:if test="${loop.index % 3 == 0}">
+						<br>
+					</c:if>
+					<img style="width:200px; height:200px" src="../post-pictures/${pic.getImageName()}"/>
+				</c:forEach>
 			</div>
 		</div>	
 	</div>

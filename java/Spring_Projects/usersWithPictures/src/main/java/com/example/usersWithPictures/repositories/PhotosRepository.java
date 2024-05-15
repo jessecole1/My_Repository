@@ -1,5 +1,6 @@
 package com.example.usersWithPictures.repositories;
 
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.data.repository.CrudRepository;
@@ -13,5 +14,7 @@ public interface PhotosRepository extends CrudRepository<Photos, Long>{
 	Optional<Photos> findById(Integer id);
 	
 	Optional<Photos> findByImageName(String imageName);
+	
+	List<Photos> findAll();
 
 }

@@ -33,6 +33,12 @@ public class MainPictureController {
 		Long userId = (Long)session.getAttribute("userId");
 		User user = userServ.getById(userId);
 		
+		System.out.println("user get main picture: " + user.getMainPicture());
+		Long mainPicId = (Long) user.getMainPicture().getId();
+		user.setMainPicture(null);
+		
+		mainPicServ.destroy(mainPicId);
+		
 		String fileName = file.getOriginalFilename();
 		String uploadPath = "/Users/jessecole/desktop/my_repository/java/spring_projects/userswithpictures/src/main/webapp/profile-pictures/" + fileName;
 		try {

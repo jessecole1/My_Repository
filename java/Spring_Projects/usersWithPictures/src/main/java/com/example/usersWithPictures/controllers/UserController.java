@@ -54,8 +54,6 @@ public class UserController {
 		List<User> allUsers = userServ.findAllUsers();
 		model.addAttribute("allUsers", allUsers);
 		
-//		System.out.println(user.getMainPicture().getImageName());
-		
 		File postedPhotosByUsersPath = new File("/Users/jessecole/desktop/my_repository/java/spring_projects/userswithpictures/src/main/webapp/post-pictures");
 		String postedPhotosByUsersArray[] = postedPhotosByUsersPath.list();
 		
@@ -93,11 +91,14 @@ public class UserController {
 					}
 				}
 			}
-
-//			sortedArrayList.add(iteratedPhoto);
-//			System.out.println(sortedArrayList);
-//		System.out.println("PHOTOS: " + postedPhotosByUsersArray);
 			model.addAttribute("postedPics", sortedArrayList);
+			
+			Long mainPicId = (Long) user.getMainPicture().getId();
+			
+			System.out.println("mainPicId: " + mainPicId);
+			
+//			System.out.println();
+			
 			return "home.jsp";
 		}
 		
@@ -141,6 +142,8 @@ public class UserController {
 				} 
 			}
 		}
+//		System.out.println("users PHOTOS: " + photosServ.findAllUsersPhotos(profileUser));
+		model.addAttribute("usersPhotos", photosServ.findAllUsersPhotos(profileUser));
 		return "profile.jsp";
 	}
 	
@@ -150,7 +153,6 @@ public class UserController {
 		if (userId == null) {
 			return "redirect:/";
 		}
-//		System.out.println(user.getUsername());
 		model.addAttribute("user", userServ.getById(userId));
 		return "editProfile.jsp";
 	}
