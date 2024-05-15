@@ -37,6 +37,22 @@ public class PhotosService {
 				usersPhotos.add(photo);
 			}
 		}
+		for (int i = 0; i < usersPhotos.size(); i++) {
+			if (i <= usersPhotos.size() - 1 && i > 0) {
+				Photos currentPhoto = usersPhotos.get(i);
+				Photos previousPhotoToBeCompared = usersPhotos.get(i-1);
+				if (previousPhotoToBeCompared.getCreatedAt().compareTo(currentPhoto.getCreatedAt()) < 0) {
+					System.out.println("discepency");
+					Photos temp = currentPhoto;
+					currentPhoto = previousPhotoToBeCompared;
+					previousPhotoToBeCompared = temp;
+					
+					usersPhotos.set(i, currentPhoto);
+					usersPhotos.set(i-1, previousPhotoToBeCompared);
+					i = -1;
+				}
+			}
+		}
 		return usersPhotos;
 		
 	}
