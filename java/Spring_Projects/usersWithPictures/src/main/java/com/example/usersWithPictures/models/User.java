@@ -53,6 +53,9 @@ public class User {
 	private List<Photos> photos;
 	
 	private String bio;
+	
+	@OneToMany(mappedBy="user", cascade=CascadeType.ALL, fetch=FetchType.LAZY)
+	private List<Comment> comments;
 
 	@DateTimeFormat(pattern="yyyy-MM-dd")
 	private Date createdAt;
@@ -144,6 +147,14 @@ public class User {
 
 	public void setBio(String bio) {
 		this.bio = bio;
+	}
+
+	public List<Comment> getComments() {
+		return comments;
+	}
+
+	public void setComments(List<Comment> comments) {
+		this.comments = comments;
 	}
 
 	public void setUpdatedAt(Date updatedAt) {

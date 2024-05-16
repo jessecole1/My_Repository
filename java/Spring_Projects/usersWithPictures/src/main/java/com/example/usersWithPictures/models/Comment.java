@@ -1,9 +1,7 @@
 package com.example.usersWithPictures.models;
 
 import java.util.Date;
-import java.util.List;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
@@ -11,26 +9,29 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.validation.constraints.NotEmpty;
 
 import org.springframework.format.annotation.DateTimeFormat;
 
 @Entity
-@Table(name="photos")
-public class Photos {
+@Table(name="comments")
+public class Comment {
 	
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Long id;
 	
-	private String imageName;
+	@NotEmpty
+	private String content;
 	
 	@ManyToOne(fetch=FetchType.LAZY)
 	@JoinColumn(name="user_id")
 	private User user;
 	
-	private String caption;
+	@ManyToOne(fetch=FetchType.LAZY)
+	@JoinColumn(name="photos_id")
+	private Photos photo;
 	
 	@DateTimeFormat(pattern="yyyy-MM-dd")
 	private Date createdAt;
@@ -38,10 +39,7 @@ public class Photos {
 	@DateTimeFormat(pattern="yyyy-MM-dd")
 	private Date updatedAt;
 	
-	@OneToMany(mappedBy="photo", cascade=CascadeType.ALL, fetch=FetchType.LAZY)
-	private List<Comment> comments;
-	
-	public Photos() {}
+	public Comment() {}
 
 	public Long getId() {
 		return id;
@@ -51,12 +49,12 @@ public class Photos {
 		this.id = id;
 	}
 
-	public String getImageName() {
-		return imageName;
+	public String getContent() {
+		return content;
 	}
 
-	public void setImageName(String imageName) {
-		this.imageName = imageName;
+	public void setContent(String content) {
+		this.content = content;
 	}
 
 	public User getUser() {
@@ -67,12 +65,12 @@ public class Photos {
 		this.user = user;
 	}
 
-	public String getCaption() {
-		return caption;
+	public Photos getPhoto() {
+		return photo;
 	}
 
-	public void setCaption(String caption) {
-		this.caption = caption;
+	public void setPhoto(Photos photo) {
+		this.photo = photo;
 	}
 
 	public Date getCreatedAt() {
@@ -89,14 +87,6 @@ public class Photos {
 
 	public void setUpdatedAt(Date updatedAt) {
 		this.updatedAt = updatedAt;
-	}
-
-	public List<Comment> getComments() {
-		return comments;
-	}
-
-	public void setComments(List<Comment> comments) {
-		this.comments = comments;
 	};
 
 }

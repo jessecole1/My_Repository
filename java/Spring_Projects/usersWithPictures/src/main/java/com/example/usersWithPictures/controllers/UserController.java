@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.http.HttpSession;
+import javax.swing.JFrame;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,6 +17,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
+import com.example.usersWithPictures.models.Comment;
 import com.example.usersWithPictures.models.LoginUser;
 import com.example.usersWithPictures.models.MainPicture;
 import com.example.usersWithPictures.models.Photos;
@@ -44,7 +46,7 @@ public class UserController {
 	}
 	
 	@GetMapping("/home")
-	public String homePage(Model model, HttpSession session) {
+	public String homePage(@Valid @ModelAttribute("newComment") Comment comment, BindingResult result, Model model, HttpSession session) {
 		Long userId = (Long) session.getAttribute("userId");
 		if(userId == null) {
 			return "redirect:/";
@@ -72,7 +74,6 @@ public class UserController {
 			sortedArrayList.add(iteratedPhoto);
 			
 		}	
-		System.out.println("size?: " + sortedArrayList.size());
 			// THERE NEEDS TO BE MORE THAN ONE PHOTO IN POSTEDPHOTOSBYUSERSARRAY
 			// CHECK TO SEE IF THERE IS AT LEAST 2 PHOTOS 
 			for (int i = 0; i < sortedArrayList.size(); i++) {
@@ -80,7 +81,6 @@ public class UserController {
 					Photos currentPhoto = sortedArrayList.get(i);
 					Photos previousPhotoToBeCompared = sortedArrayList.get(i-1);
 					if (previousPhotoToBeCompared.getCreatedAt().compareTo(currentPhoto.getCreatedAt()) < 0) {
-						System.out.println("discepency");
 						Photos temp = currentPhoto;
 						currentPhoto = previousPhotoToBeCompared;
 						previousPhotoToBeCompared = temp;
@@ -95,9 +95,6 @@ public class UserController {
 			
 			Long mainPicId = (Long) user.getMainPicture().getId();
 			
-			System.out.println("mainPicId: " + mainPicId);
-			
-//			System.out.println();
 			
 			return "home.jsp";
 		}

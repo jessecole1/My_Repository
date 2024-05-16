@@ -45,6 +45,15 @@
 					</div>
 					<div class="postBottomNav">
 						<p><c:out value="${pic.getUser().getUsername()}: "/><c:out value="${pic.getCaption()}"/></p>
+						<c:forEach var="comm" items="${pic.getComments()}" varStatus="loop">
+							<p><c:out value="${comm.getUser().getUsername()}"/>: <c:out value="${comm.getContent()}"/></p>
+						</c:forEach>
+						<form:form action="/comment/add/${pic.getId()}" method="post" modelAttribute="newComment">
+							<form:input path="content" type="text" placeholder="Leave a comment"/>
+							<form:input type="hidden" path="photo" value="${pic}"/>
+							<form:input type="hidden" path="user" value="${user}"/>
+							<button>Send</button>
+						</form:form>
 					</div>
 				</div>			
 			</div>
