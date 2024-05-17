@@ -10,6 +10,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
@@ -40,6 +42,14 @@ public class Photos {
 	
 	@OneToMany(mappedBy="photo", cascade=CascadeType.ALL, fetch=FetchType.LAZY)
 	private List<Comment> comments;
+	
+	@ManyToMany(fetch=FetchType.LAZY)
+	@JoinTable(
+			name="likes",
+			joinColumns = @JoinColumn(name="photo_id"),
+			inverseJoinColumns = @JoinColumn(name="user_id")
+			)
+	private List<User> usersWhoLiked;
 	
 	public Photos() {}
 
@@ -97,6 +107,14 @@ public class Photos {
 
 	public void setComments(List<Comment> comments) {
 		this.comments = comments;
+	}
+
+	public List<User> getUsersWhoLiked() {
+		return usersWhoLiked;
+	}
+
+	public void setUsersWhoLiked(List<User> usersWhoLiked) {
+		this.usersWhoLiked = usersWhoLiked;
 	};
 
 }

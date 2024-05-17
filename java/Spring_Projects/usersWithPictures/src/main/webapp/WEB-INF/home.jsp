@@ -44,7 +44,15 @@
 						<img style="width: 75%; height: 400px;border: 2px solid black;" src="../post-pictures/${pic.getImageName()}"/>
 					</div>
 					<div class="postBottomNav">
-						<p><c:out value="${pic.getUser().getUsername()}: "/><c:out value="${pic.getCaption()}"/></p>
+						<div class="captionAndLikes">
+							<c:out value="${pic.getUser().getUsername()}: "/><c:out value="${pic.getCaption()}"/>
+							<span>
+								<form:form action="/like/photo/${pic.getId()}" method="post" modelAttribute="likedPhoto">
+									<button>Like</button>
+								</form:form>
+								<c:out value="${pic.getUsersWhoLiked().size()}"/>
+							</span>
+						</div>
 						<c:forEach var="comm" items="${pic.getComments()}" varStatus="loop">
 							<p><c:out value="${comm.getUser().getUsername()}"/>: <c:out value="${comm.getContent()}"/></p>
 						</c:forEach>

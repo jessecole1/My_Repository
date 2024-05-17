@@ -9,6 +9,9 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.PrePersist;
@@ -56,6 +59,14 @@ public class User {
 	
 	@OneToMany(mappedBy="user", cascade=CascadeType.ALL, fetch=FetchType.LAZY)
 	private List<Comment> comments;
+	
+	@ManyToMany(fetch=FetchType.LAZY)
+	@JoinTable(
+			name="likes",
+			joinColumns = @JoinColumn(name="user_id"),
+			inverseJoinColumns = @JoinColumn(name="photo_id")
+			)
+	private List<Photos> likedPhotos;
 
 	@DateTimeFormat(pattern="yyyy-MM-dd")
 	private Date createdAt;
@@ -155,6 +166,14 @@ public class User {
 
 	public void setComments(List<Comment> comments) {
 		this.comments = comments;
+	}
+
+	public List<Photos> getLikedPhotos() {
+		return likedPhotos;
+	}
+
+	public void setLikedPhotos(List<Photos> likedPhotos) {
+		this.likedPhotos = likedPhotos;
 	}
 
 	public void setUpdatedAt(Date updatedAt) {

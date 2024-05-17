@@ -34,10 +34,10 @@
 			</div>
 			<div class="photosContainer">
 				<c:forEach var="pic" items="${usersPhotos}" varStatus="loop">
-					<c:if test="${loop.index % 3 == 0}">
-						<br>
-					</c:if>
-					<img style="width:200px; height:200px" src="../post-pictures/${pic.getImageName()}"/>
+						<c:if test="${loop.index % 3 == 0}">
+							<br>
+						</c:if>
+							<img style="width:200px; height:200px" src="../post-pictures/${pic.getImageName()}"/>			
 				</c:forEach>
 			</div>
 		</div>	
