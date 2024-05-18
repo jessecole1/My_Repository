@@ -5,15 +5,24 @@ class Stack:
     def valid_anagram(self, s, t) :
         if len(s) != len(t):
             return False
-        stack = []
-        for i in range(0,len(t)):
-            if s.__contains__(t[i]):
-                continue
-            else:
+        dict = {}
+        for i in range(0,len(s)):
+            if dict.get(s[i]) != None:
+                dict.update({s[i]: dict.get(s[i]) + 1 })
+            elif dict.get(s[i]) == None:
+                dict.update({s[i]:1})
+        for i in t:
+            if dict.get(i) != None:
+                dict.update({i: dict.get(i) - 1})
+            elif dict.get(i) == None:
+                dict.update({i:1})
+        print(dict)
+        for i in dict.values():
+            if i != 0:
                 return False
         return True
 
 words = Stack()
-words.valid_anagram("word", "drow")
+print(words.valid_anagram("wordd", "dword"))
 
 # Notes: chekc calendar for notes of what to try next
