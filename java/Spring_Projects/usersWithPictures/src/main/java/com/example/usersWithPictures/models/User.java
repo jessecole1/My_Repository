@@ -67,6 +67,22 @@ public class User {
 			inverseJoinColumns = @JoinColumn(name="photo_id")
 			)
 	private List<Photos> likedPhotos;
+	
+	@ManyToMany(fetch=FetchType.LAZY)
+	@JoinTable(
+			name="follows",
+			joinColumns = @JoinColumn(name="user_id"),
+			inverseJoinColumns=@JoinColumn(name="followed_user_id")
+			)
+	private List<User> followedUsers;
+	
+	@ManyToMany(fetch=FetchType.LAZY)
+	@JoinTable(
+			name="follows",
+			joinColumns = @JoinColumn(name="followed_user_id"),
+			inverseJoinColumns=@JoinColumn(name="user_id")
+			)
+	private List<User> followers;
 
 	@DateTimeFormat(pattern="yyyy-MM-dd")
 	private Date createdAt;
@@ -174,6 +190,22 @@ public class User {
 
 	public void setLikedPhotos(List<Photos> likedPhotos) {
 		this.likedPhotos = likedPhotos;
+	}
+
+	public List<User> getFollowedUsers() {
+		return followedUsers;
+	}
+
+	public void setFollowedUsers(List<User> followedUsers) {
+		this.followedUsers = followedUsers;
+	}
+
+	public List<User> getFollowers() {
+		return followers;
+	}
+
+	public void setFollowers(List<User> followers) {
+		this.followers = followers;
 	}
 
 	public void setUpdatedAt(Date updatedAt) {

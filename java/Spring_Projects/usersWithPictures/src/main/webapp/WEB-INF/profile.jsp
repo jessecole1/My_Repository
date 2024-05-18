@@ -25,11 +25,18 @@
 				<div>
 					<h3 style="font-size: 30px; color: black;"><c:out value="${profileUser.username}"/></h3>
 					<p>Bio: <c:out value="${profileUser.bio}"/>
+					<p>Followers: <c:out value="${profileUser.followers.size()}"/></p>
+					<p>Following: <c:out value="${profileUser.followedUsers.size()}"/></p>
 				</div>
 				<c:choose>
 					<c:when test="${profileUser.id == user.id}">
 						<a href="/profile/edit"><button class="homePageButton">Edit Profile</button></a>					
 					</c:when>
+					<c:otherwise>
+						<form:form action="/follow/${profileUser.id}" method="post" modelAttribute="userFollow">
+							<button>Follow</button>
+						</form:form>
+					</c:otherwise>
 				</c:choose>
 			</div>
 			<div class="photosContainer">

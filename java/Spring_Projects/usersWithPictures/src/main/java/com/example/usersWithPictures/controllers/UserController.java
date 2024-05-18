@@ -45,6 +45,32 @@ public class UserController {
 		return "index.jsp";
 	}
 	
+	@PostMapping("/follow/{user_id_follow}")
+	public String follow(@PathVariable("user_id_follow") Long userFollowId, @Valid @ModelAttribute("userFollow") User userFollower, BindingResult result, Model model, HttpSession session) {
+		Long userId = (Long) session.getAttribute("userId");
+		if (userId == null) {
+			return "redirect:/";
+		}
+		User user = userServ.getById(userId);
+		User followedUser = userServ.getById(userFollowId);
+		
+		List<User> listOfFollowedUsersByUser = user.getFollowedUsers();
+		for (int i = 0; i < listOfFollowedUsersByUser.size(); i++) {
+			if (listOfFollowedUsersByUser.get(i) == followedUser) {
+				listOfFollowedUsersByUser.remove(i);
+				user.setFollowedUsers(listOfFollowedUsersByUser);
+				userServ.update(user);
+				return "redirect:/home";
+			}
+		}
+		listOfFollowedUsersByUser.add(followedUser);
+		user.setFollowedUsers(listOfFollowedUsersByUser);
+		userServ.update(user);
+		
+		
+		return "redirect:/home";
+	}
+	
 	@GetMapping("/home")
 	public String homePage(@Valid @ModelAttribute("newComment") Comment comment, BindingResult result, Model model, HttpSession session) {
 		Long userId = (Long) session.getAttribute("userId");
@@ -93,7 +119,8 @@ public class UserController {
 			}
 			model.addAttribute("postedPics", sortedArrayList);
 			
-			Long mainPicId = (Long) user.getMainPicture().getId();
+//			Long mainPicId = (Long) user.getMainPicture().getId();
+			System.out.println("followed users: " + user.getFollowedUsers());
 			
 			return "home.jsp";
 		}
