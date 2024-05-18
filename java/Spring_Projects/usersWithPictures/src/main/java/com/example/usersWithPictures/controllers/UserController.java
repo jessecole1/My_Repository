@@ -53,6 +53,7 @@ public class UserController {
 		}
 		User user = userServ.getById(userId);
 		User followedUser = userServ.getById(userFollowId);
+		Long id = userFollowId;
 		
 		List<User> listOfFollowedUsersByUser = user.getFollowedUsers();
 		for (int i = 0; i < listOfFollowedUsersByUser.size(); i++) {
@@ -60,15 +61,14 @@ public class UserController {
 				listOfFollowedUsersByUser.remove(i);
 				user.setFollowedUsers(listOfFollowedUsersByUser);
 				userServ.update(user);
-				return "redirect:/home";
+				return "redirect:/profile/" + userFollowId;
 			}
 		}
 		listOfFollowedUsersByUser.add(followedUser);
 		user.setFollowedUsers(listOfFollowedUsersByUser);
 		userServ.update(user);
 		
-		
-		return "redirect:/home";
+		return "redirect:/profile/" + userFollowId;
 	}
 	
 	@GetMapping("/home")
