@@ -9,10 +9,7 @@ class Test:
             if check == None:
                 nums_dict.update({nums[i]: 1})
             else:
-                print("Double: TRUE")
                 return True
-        print(nums_dict)
-        print("No Double: FALSE")
         return False
 
 t = Test()
