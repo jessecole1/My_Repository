@@ -16,7 +16,6 @@ class Stack:
                 dict.update({i: dict.get(i) - 1})
             elif dict.get(i) == None:
                 dict.update({i:1})
-        print(dict)
         for i in dict.values():
             if i != 0:
                 return False
