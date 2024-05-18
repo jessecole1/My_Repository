@@ -69,7 +69,6 @@ public class PhotosController {
 		photoLikes.add(user);
 		likedPhoto.setUsersWhoLiked(photoLikes);
 		photoServ.save(likedPhoto);
-		System.out.println(likedPhoto.getUsersWhoLiked());
 		
 		return "redirect:/home";
 	}
@@ -80,7 +79,6 @@ public class PhotosController {
 		if (userId == null) {
 			return "redirect:/";
 		}
-		System.out.println("aPhoto: " + aPhoto.getImageName());
 		User user = userServ.getById(userId);
 
 		model.addAttribute("user", user);
@@ -132,9 +130,7 @@ public class PhotosController {
 			
 		// SAVE FILE NAME TO DATABASE 
 			List<Photos> usersPhotoListBeforeUpload = user.getPhotos();
-			System.out.println("BEFORE: " + usersPhotoListBeforeUpload);
 			usersPhotoListBeforeUpload.add(photo);
-			System.out.println("AFTER: " + usersPhotoListBeforeUpload);
 			photo.setUser(user);
 			photo.setImageName(fileName);
 			Date date = new Date();
@@ -148,8 +144,6 @@ public class PhotosController {
 		} catch(IOException e) {
 			e.printStackTrace();
 		}
-		System.out.println("getting to the last..");
-		System.out.println("ID?: " + session.getAttribute("picId"));
 		return "redirect:/caption/page";
 	}
 

@@ -4,17 +4,17 @@
 class Test:
     def checkArray(self, nums):
         nums_dict = {}
-        for x in range(0, len(nums)):
-            check = nums_dict.get(x)
-            print("getting x: ")
-            print(nums_dict.get(nums[x]))
-            if check:
-                print("returning false")
-                return False
+        for i in range(0, len(nums)):
+            check = nums_dict.get(nums[i])
+            if check == None:
+                nums_dict.update({nums[i]: 1})
             else:
-                nums_dict[nums[x]] = x
+                print("Double: TRUE")
+                return True
         print(nums_dict)
+        print("No Double: FALSE")
+        return False
 
 t = Test()
 
-t.checkArray([10,9,10,8,7,6])
+t.checkArray([1,1,1,3,3,4,3,2,4,2])

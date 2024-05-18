@@ -58,21 +58,21 @@ public class UserController {
 		
 		File postedPhotosByUsersPath = new File("/Users/jessecole/desktop/my_repository/java/spring_projects/userswithpictures/src/main/webapp/post-pictures");
 		String postedPhotosByUsersArray[] = postedPhotosByUsersPath.list();
-		
+
 		// CREATE A NEW LIST WHERE THE PICTURES ARE SORTED BY CREATED-AT DATE
 		List <Photos> sortedArrayList = new ArrayList<>();
-		
+
 		// SORT THROUGH THE ARRAY OF PICTURES RETURNED IN POSTEDPHOTOSBYUSERSARRAY 
 		for (int i = 0; i < postedPhotosByUsersArray.length; i++) {
-			
+
 			// WE HAVE THE NAMES OF THE PICTURES
 			// THESE PICTURES ARE STORED IN THE DATABASE WITH THESE NAMES
 			// WE NEED TO GET THE OBJECTS OF THESE PICTURES THROUGH THE NAME 
-			
+
 			// CAPTURE CURRENT ITERATED PHOTO AND RETURN ITS OBJECT
 			Photos iteratedPhoto = photosServ.findByName(postedPhotosByUsersArray[i].toString());
 			sortedArrayList.add(iteratedPhoto);
-			
+
 		}	
 			// THERE NEEDS TO BE MORE THAN ONE PHOTO IN POSTEDPHOTOSBYUSERSARRAY
 			// CHECK TO SEE IF THERE IS AT LEAST 2 PHOTOS 
@@ -94,7 +94,6 @@ public class UserController {
 			model.addAttribute("postedPics", sortedArrayList);
 			
 			Long mainPicId = (Long) user.getMainPicture().getId();
-			
 			
 			return "home.jsp";
 		}
@@ -139,7 +138,6 @@ public class UserController {
 				} 
 			}
 		}
-//		System.out.println("users PHOTOS: " + photosServ.findAllUsersPhotos(profileUser));
 		model.addAttribute("usersPhotos", photosServ.findAllUsersPhotos(profileUser));
 		return "profile.jsp";
 	}
@@ -195,10 +193,8 @@ public class UserController {
 			} 
 		}
 		
-		
 		session.setAttribute("userId", userId);
 		model.addAttribute("user", user);
-		
 		return "redirect:/home";
 	}
 	
@@ -207,12 +203,10 @@ public class UserController {
 		User user = userServ.login(loginUser, result);
 		
 		if(result.hasErrors()) {
-			
 			model.addAttribute("newUser", new User());
 			return "index.jsp";
 		}
 		session.setAttribute("userId", user.getId());
-		
 		return "redirect:/home";
 	}
 	
