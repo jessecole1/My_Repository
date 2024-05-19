@@ -5,10 +5,10 @@
 	font-family: Arial, sans-serif;
 }
 
-.profilePageBody {
+/* .profilePageBody {
 	background: rgb(195,55,100);
 	background: linear-gradient(79deg, rgba(195,55,100,1) 0%, rgba(29,38,113,1) 100%);
-}
+} */
 
 .profilePic {
 	width: 100px;
@@ -44,7 +44,7 @@
 }
 
 .profilePicNav {
-	width: 50%;
+	width: 75%;
 	height: 1000px;
 	display: flex;
 	flex-direction: column;
@@ -56,11 +56,6 @@
 	align-items: center;
 	justify-content: space-evenly;
 	padding: 2%;
-	background-image: linear-gradient(120deg, #a1c4fd 0%, #c2e9fb 100%);
-	border-bottom: 1px solid white;
-	border-top-left-radius: 15px;
-	border-top-right-radius: 15px;
-	box-shadow: 1px 1px 5px black;
 }
 
 .photosContainer {
@@ -74,9 +69,31 @@
 	flex-direction: row;
 	justify-content: center;
 	align-items: center;
+	width: 100%;
 }
 
 .onePicFromList {
 	display: flex;
 	flex-direction: column;
+}
+
+.topNavInfo {
+	display: flex;
+	flex-direction: column;
+	justify-content: space-evenly;
+	width: 120%;
+	height: 100%;
+	padding-left: 5%;
+}
+
+.topNavInfoTable {
+	display: flex;
+	flex-direction: column;
+	justify-content: space-evenly;
+}
+
+.topNavInfoBottomHalf {
+	display: flex;
+	flex-direction: row;
+	justify-content: space-evenly;
 }
