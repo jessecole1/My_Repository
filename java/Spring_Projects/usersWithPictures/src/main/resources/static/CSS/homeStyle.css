@@ -54,6 +54,8 @@
 
 .postBackground {
 	width: 75%;
+	border-bottom: 1px solid black;
+	margin-bottom: 5%;
 }
 
 .post {
@@ -68,19 +70,18 @@
 }
 
 .profilePic {
-	width: 100px;
-	height: 100px;
+	width: 70px;
+	height: 70px;
 	border-radius: 100px;
 	box-shadow: 1px 1px 5px;
-	margin: 2%;
+	margin-bottom: 2%;
 }
 
 .postTopNav {
-	width: 100%;
+	width: 75%;
 	display: flex;
 	flex-direction: row;
-	justify-content: space-between;
-	background: linear-gradient(109.6deg, rgb(36, 45, 57) 11.2%, rgb(16, 37, 60) 51.2%, rgb(0, 0, 0) 98.6%);
+	justify-content: left;
 	align-items: center;
 	border-top-left-radius: 15px;
 	border-top-right-radius: 15px;
@@ -91,20 +92,29 @@
 	margin: 0 auto;
 	display: flex;
 	justify-content: center;
-	background-color: black;
 }
 
 .postBottomNav {
 	border-bottom-left-radius: 15px;
 	border-bottom-right-radius: 15px;
-	background: linear-gradient(109.6deg, rgb(36, 45, 57) 11.2%, rgb(16, 37, 60) 51.2%, rgb(0, 0, 0) 98.6%);
-	color: white;
-	width: 100%;
+	color: black;
+	width: 75%;
 	height: 50%;
+	padding-left: 4%;
 }
 
 .captionAndLikes {
 	display: flex;
 	flex-direction: row;
 	justify-content: space-between;
+}
+
+.postPicture {
+	border-radius: 20px;
+}
+
+.postLikeAndCommentButtons {
+	display: flex;
+	flex-direction: row;
+	align-items: center;
 }

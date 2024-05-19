@@ -39,23 +39,33 @@
 								<a style="margin: 2%;" href="/profile/${pic.getUser().getId()}"><c:out value="${pic.getUser().getUsername()}"/></a>
 							</div>
 							<div class="postMiddleNav">
-								<img style="width: 75%; height: 400px;border: 2px solid black;" src="../post-pictures/${pic.getImageName()}"/>
+								<img class="postPicture" style="width: 75%; height: 400px;border: 2px solid black;" src="../post-pictures/${pic.getImageName()}"/>
 							</div>
 							<div class="postBottomNav">
+								<div class="postLikeAndCommentButtons">
+									<form:form action="/like/photo/${pic.getId()}" method="post" modelAttribute="likedPhoto">
+										<c:choose>
+											<c:when test="${!user.likedPhotos.contains(pic)}">
+												<button style="background-color: transparent; border: none;"><img src="../project-pictures/unliked.svg"/></button>			
+											</c:when>
+											<c:otherwise>
+												<button style="background-color: transparent; border: none;"><img src="../project-pictures/liked.svg"/></button>			
+											</c:otherwise>
+										</c:choose>
+									</form:form>
+									<c:out value="${pic.getUsersWhoLiked().size()}"/>
+									<img src="../project-pictures/comment.svg"/>
+								</div>
 								<div class="captionAndLikes">
-									<c:out value="${pic.getUser().getUsername()}: "/><c:out value="${pic.getCaption()}"/>
-									<span>
-										<form:form action="/like/photo/${pic.getId()}" method="post" modelAttribute="likedPhoto">
-											<button>Like</button>
-										</form:form>
-										<c:out value="${pic.getUsersWhoLiked().size()}"/>
-									</span>
+									<div>
+										<span style="font-weight: bold; font-size: 110%;"><c:out value="${pic.getUser().getUsername()}: "/></span><c:out value="${pic.getCaption()}"/>
+									</div>
 								</div>
 								<c:forEach var="comm" items="${pic.getComments()}" varStatus="loop">
-									<p><c:out value="${comm.getUser().getUsername()}"/>: <c:out value="${comm.getContent()}"/></p>
+									<p><span style="font-weight: bold;"><c:out value="${comm.getUser().getUsername()}"/>:</span> <c:out value="${comm.getContent()}"/></p>
 								</c:forEach>
 								<form:form action="/comment/add/${pic.getId()}" method="post" modelAttribute="newComment">
-									<form:input path="content" type="text" placeholder="Leave a comment"/>
+									<form:input style="border: none; height: 30px;" path="content" type="text" placeholder="Leave a comment"/>
 									<form:input type="hidden" path="photo" value="${pic}"/>
 									<form:input type="hidden" path="user" value="${user}"/>
 									<button>Send</button>
@@ -66,11 +76,27 @@
 				</c:forEach>
 			</div>
 		<div class="rightContainer">
-			<div>
-				
+			<div class="rightContainerTop">
+				<div>
+					<c:choose>
+						<c:when test="${user.getMainPicture().getImageName() == 'profile-icon.jpg'}">
+							<img style="border: 2px solid black;" class="headerPicture" src="../project-pictures/profile-icon.jpg"/>
+						</c:when>
+						<c:otherwise>
+							<img style="border: 2px solid black;" class="headerPicture" src="../profile-pictures/${user.getMainPicture().getImageName()}"/>						
+						</c:otherwise>
+					</c:choose>
+					<%-- <img class="headerPicture" src="../profile-pictures/${user.mainPicture.getImageName()}"/> --%>
+				</div>
+				<div class="rightContainerTopRight">
+					<a href="#"><c:out value="${user.username}"/></a>
+					<c:out value="${user.email}"/>
+				</div>
 			</div>
-			<div>
-			
+			<div class="rightContainerMid">
+				<a href="/profile/${user.id}">Profile</a>
+				<a href="#">Settings</a>
+				<a href="/logout">Logout</a>
 			</div>
 		</div>
 	</div>

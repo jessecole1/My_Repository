@@ -5,6 +5,10 @@
 	padding: 0;
 }
 
+body {
+	height: 100%;
+}
+
 .title {
 	display: flex;
 	align-items: center;
@@ -23,6 +27,7 @@
 	width: 20%;
 	height: 100%;
 	padding-top: 5%;
+	position: fixed;
 }
 
 .leftNavLinks {
@@ -55,4 +60,37 @@
 
 .rightContainer {
 	width: 20;
+	padding-top: 5%;
+	height: 100%;
+	position: fixed;
+	width: 100%;
+    height: 100%;
+    margin-right: 80%;
+}
+
+.headerPicture {
+	border-radius: 200px;
+	width: 70px;
+	height: 70px;
+}
+
+.rightContainerTop {
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+	justify-content: center;
+}
+
+.rightContainerTopRight {
+	width: 50%;
+	margin-left: 2%;
+}
+
+.rightContainerMid {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: space-evenly;
+	font-size: 120%;
+	height: 15%;
 }
