@@ -64,11 +64,11 @@
 								<c:forEach var="comm" items="${pic.getComments()}" varStatus="loop">
 									<p><span style="font-weight: bold;"><c:out value="${comm.getUser().getUsername()}"/>:</span> <c:out value="${comm.getContent()}"/></p>
 								</c:forEach>
-								<form:form action="/comment/add/${pic.getId()}" method="post" modelAttribute="newComment">
-									<form:input style="border: none; height: 30px;" path="content" type="text" placeholder="Leave a comment"/>
+								<form:form style="margin-top: 3%; display: flex; flex-direction: row" action="/comment/add/${pic.getId()}" method="post" modelAttribute="newComment">
+									<form:input style="width: 50%; border: none;border-bottom: 1px solid gray; height: 30px;" path="content" type="text" placeholder="Leave a comment"/>
 									<form:input type="hidden" path="photo" value="${pic}"/>
 									<form:input type="hidden" path="user" value="${user}"/>
-									<button>Send</button>
+									<button style="background-color: transparent; border: none;"><img src="../project-pictures/send.svg"/></button>
 								</form:form>
 							</div>
 						</div>			
