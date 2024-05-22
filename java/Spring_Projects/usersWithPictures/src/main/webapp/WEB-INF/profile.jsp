@@ -49,11 +49,11 @@
 						</div>
 						<c:choose>
 							<c:when test="${profileUser.id == user.id}">
-								<a href="/profile/edit"><button class="homePageButton">Edit Profile</button></a>					
+								<a href="/profile/edit"><button class="buttonGeneral">Edit Profile</button></a>					
 							</c:when>
 							<c:otherwise>
 								<form:form action="/follow/${profileUser.id}" method="post" modelAttribute="userFollow">
-									<button>Follow</button>
+									<button class="buttonGeneral">Follow</button>
 								</form:form>
 							</c:otherwise>
 						</c:choose>
