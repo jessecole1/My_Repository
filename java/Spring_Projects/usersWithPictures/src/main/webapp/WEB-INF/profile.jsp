@@ -80,7 +80,6 @@
 							<img style="border: 2px solid black;" class="headerPicture" src="../profile-pictures/${user.getMainPicture().getImageName()}"/>						
 						</c:otherwise>
 					</c:choose>
-					<%-- <img class="headerPicture" src="../profile-pictures/${user.mainPicture.getImageName()}"/> --%>
 				</div>
 				<div class="rightContainerTopRight">
 					<a href="#"><c:out value="${user.username}"/></a>

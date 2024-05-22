@@ -117,11 +117,7 @@ public class UserController {
 					}
 				}
 			}
-			model.addAttribute("postedPics", sortedArrayList);
-			
-//			Long mainPicId = (Long) user.getMainPicture().getId();
-			System.out.println("followed users: " + user.getFollowedUsers());
-			
+			model.addAttribute("postedPics", sortedArrayList);			
 			return "home.jsp";
 		}
 		
@@ -190,7 +186,7 @@ public class UserController {
 		aUser.setBio(user.getBio());
 		userServ.update(user);
 		
-		return "redirect:/home";
+		return "redirect:/profile/" + user.getId();
 	}
 	
 	@PostMapping("/register")

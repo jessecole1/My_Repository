@@ -93,3 +93,59 @@ body {
 	font-size: 120%;
 	height: 15%;
 }
+
+.uploadForm {
+	background-color: red;
+	padding: 6px 12px;
+}
+
+.inputFile {
+	background-color: blue;
+	width: 0.1px;
+	height: 0.1px;
+	opacity: 0;
+	overflow: hidden;
+	position: absolute;
+	z-index: -1;
+}
+
+.custom-file-upload {
+    display: inline-block;
+    padding: 10px 20px;
+    cursor: pointer;
+    background-color: #3498db;
+    color: #fff;
+    border-radius: 5px;
+}
+
+.custom-file-upload:hover {
+    background-color: #2980b9;
+}
+
+/* Hide the default file input */
+input[type="file"] {
+    display: none;
+}
+
+.uploadFormMiddle {
+	height: 300px;
+}
+
+.uploadButtonBottom {
+    display: inline-block;
+    padding: 10px 20px;
+    cursor: pointer;
+    background-color: #3498db;
+    color: #fff;
+    border-radius: 5px;
+    border: none;
+}
+
+.uploadButtonBottom:hover {
+	background-color: #2980b9;
+}
+
+.editAccountTable {
+	display: flex;
+	flex-direction: column;
+}

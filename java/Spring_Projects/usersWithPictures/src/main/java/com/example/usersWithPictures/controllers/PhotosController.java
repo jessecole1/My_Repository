@@ -44,6 +44,7 @@ public class PhotosController {
 		User user = userServ.getById(userId);
 		model.addAttribute("user", user);
 		
+		System.out.println("main picture: " + user.getMainPicture().getImageName());	
 		return "uploadPicture.jsp";
 	}
 	

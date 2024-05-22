@@ -61,7 +61,7 @@ public class MainPictureController {
 		} catch(IOException e) {
 			e.printStackTrace();
 		}
-		return "redirect:/home";
+		return "redirect:/profile/edit";
 	}
 
 }
