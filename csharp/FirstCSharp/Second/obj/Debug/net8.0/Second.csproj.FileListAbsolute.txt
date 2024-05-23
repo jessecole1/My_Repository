@@ -1,0 +1,15 @@
+/Users/jessecole/Desktop/My_Repository/csharp/FirstCSharp/Second/obj/Debug/net8.0/Second.GeneratedMSBuildEditorConfig.editorconfig
+/Users/jessecole/Desktop/My_Repository/csharp/FirstCSharp/Second/obj/Debug/net8.0/Second.AssemblyInfoInputs.cache
+/Users/jessecole/Desktop/My_Repository/csharp/FirstCSharp/Second/obj/Debug/net8.0/Second.AssemblyInfo.cs
+/Users/jessecole/Desktop/My_Repository/csharp/FirstCSharp/Second/obj/Debug/net8.0/Second.csproj.CoreCompileInputs.cache
+/Users/jessecole/Desktop/My_Repository/csharp/FirstCSharp/Second/obj/Debug/net8.0/Second.sourcelink.json
+/Users/jessecole/Desktop/My_Repository/csharp/FirstCSharp/Second/bin/Debug/net8.0/Second
+/Users/jessecole/Desktop/My_Repository/csharp/FirstCSharp/Second/bin/Debug/net8.0/Second.deps.json
+/Users/jessecole/Desktop/My_Repository/csharp/FirstCSharp/Second/bin/Debug/net8.0/Second.runtimeconfig.json
+/Users/jessecole/Desktop/My_Repository/csharp/FirstCSharp/Second/bin/Debug/net8.0/Second.dll
+/Users/jessecole/Desktop/My_Repository/csharp/FirstCSharp/Second/bin/Debug/net8.0/Second.pdb
+/Users/jessecole/Desktop/My_Repository/csharp/FirstCSharp/Second/obj/Debug/net8.0/Second.dll
+/Users/jessecole/Desktop/My_Repository/csharp/FirstCSharp/Second/obj/Debug/net8.0/refint/Second.dll
+/Users/jessecole/Desktop/My_Repository/csharp/FirstCSharp/Second/obj/Debug/net8.0/Second.pdb
+/Users/jessecole/Desktop/My_Repository/csharp/FirstCSharp/Second/obj/Debug/net8.0/Second.genruntimeconfig.cache
+/Users/jessecole/Desktop/My_Repository/csharp/FirstCSharp/Second/obj/Debug/net8.0/ref/Second.dll

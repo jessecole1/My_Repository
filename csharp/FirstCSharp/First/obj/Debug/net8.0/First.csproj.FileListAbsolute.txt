@@ -1,0 +1,15 @@
+/Users/jessecole/Desktop/My_Repository/csharp/FirstCSharp/First/bin/Debug/net8.0/First
+/Users/jessecole/Desktop/My_Repository/csharp/FirstCSharp/First/bin/Debug/net8.0/First.deps.json
+/Users/jessecole/Desktop/My_Repository/csharp/FirstCSharp/First/bin/Debug/net8.0/First.runtimeconfig.json
+/Users/jessecole/Desktop/My_Repository/csharp/FirstCSharp/First/bin/Debug/net8.0/First.dll
+/Users/jessecole/Desktop/My_Repository/csharp/FirstCSharp/First/bin/Debug/net8.0/First.pdb
+/Users/jessecole/Desktop/My_Repository/csharp/FirstCSharp/First/obj/Debug/net8.0/First.GeneratedMSBuildEditorConfig.editorconfig
+/Users/jessecole/Desktop/My_Repository/csharp/FirstCSharp/First/obj/Debug/net8.0/First.AssemblyInfoInputs.cache
+/Users/jessecole/Desktop/My_Repository/csharp/FirstCSharp/First/obj/Debug/net8.0/First.AssemblyInfo.cs
+/Users/jessecole/Desktop/My_Repository/csharp/FirstCSharp/First/obj/Debug/net8.0/First.csproj.CoreCompileInputs.cache
+/Users/jessecole/Desktop/My_Repository/csharp/FirstCSharp/First/obj/Debug/net8.0/First.sourcelink.json
+/Users/jessecole/Desktop/My_Repository/csharp/FirstCSharp/First/obj/Debug/net8.0/First.dll
+/Users/jessecole/Desktop/My_Repository/csharp/FirstCSharp/First/obj/Debug/net8.0/refint/First.dll
+/Users/jessecole/Desktop/My_Repository/csharp/FirstCSharp/First/obj/Debug/net8.0/First.pdb
+/Users/jessecole/Desktop/My_Repository/csharp/FirstCSharp/First/obj/Debug/net8.0/First.genruntimeconfig.cache
+/Users/jessecole/Desktop/My_Repository/csharp/FirstCSharp/First/obj/Debug/net8.0/ref/First.dll
