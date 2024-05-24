@@ -6,6 +6,31 @@
 <!DOCTYPE html>
 <html>
 <head>
+<script>
+
+function togglePopup() { 
+    const overlay = document.getElementById('popupOverlay'); 
+    overlay.classList.toggle('show'); 
+} 
+</script>
+<style>
+.overlayContainer {
+	display: none;
+	top: 0; 
+    left: 0; 
+    width: 100%; 
+    height: 100%; 
+    background: rgba(0, 0, 0, 0.6); 
+    justify-content: center; 
+    align-items: center; 
+    opacity: 0; 
+    transition: opacity 0.3s ease; 
+}
+.overlayContainer.show {
+	display: flex;
+}
+
+</style>
 <meta charset="UTF-8">
 <title>Your Profile Page</title>
 <link rel="stylesheet" type="text/css" href="/css/profilePage.css">
@@ -91,6 +116,12 @@
 				<a href="#">Settings</a>
 				<a href="/logout">Logout</a>
 			</div>
+			<div id="popupOverlay" class="overlayContainer">
+				<p>HEEEEEEY</p>
+			</div>
+		    <button class="btn-open-popup" onclick="togglePopup()"> 
+   				Open Popup Form 
+   			</button> 
 		</div>
 	</div>
 </body>

@@ -18,6 +18,18 @@
     border: none;
     margin-top: 2%;
 }
+
+#waitForFile2 {
+	display: none;
+    padding: 10px 20px;
+    cursor: pointer;
+    background-color: #3498db;
+    color: #fff;
+    border-radius: 5px;
+    border: none;
+    margin-top: 2%;
+    height: 50%;
+}
 </style>
 <title>Edit Profile</title>
 <link rel="stylesheet" type="text/css" href="/css/profilePage.css">
@@ -83,7 +95,16 @@ document.addEventListener('DOMContentLoaded', function() {
 		
 		<div class="profilePicNav">
 			<div class="profilePicNavTop">
-				<img class="profilePic" src="../profile-pictures/${user.getMainPicture().getImageName()}"/>
+				<div style="display: flex; flex-direction: column; align-items: center;">
+					<img class="profilePic" src="../profile-pictures/${user.getMainPicture().getImageName()}"/>
+					<div class="uploadImageFormDiv">
+						<form action="/upload" method="post" enctype="multipart/form-data">
+							<input id="thisFile" name="thisFile" type="file"/>
+							<label for="thisFile" class="custom-file-upload" style="height: 30px;">New Profile Pic</label>
+							<button id="waitForFile">Upload Profile Picture</button>
+						</form>
+					</div>
+				</div>
 				<div class="topNavInfo">
 					<form:form action="/update" method="post" modelAttribute="user">
 					<table>
@@ -105,14 +126,10 @@ document.addEventListener('DOMContentLoaded', function() {
 						</tbody>
 					</table>
 					<p>Bio: <form:textarea style="height:50px; width:300px; resize:none; border:1px solid #96aed0; border-radius:10px;box-shadow: 1px 1px 5px black;" path="bio"/></p>
-					<button>Update</button>
+					<button class="buttonGeneral">Update</button>
 					</form:form>
 					
-					<form action="/upload" method="post" enctype="multipart/form-data">
-						<input id="thisFile" name="thisFile" type="file"/>
-						<label for="thisFile" class="custom-file-upload">New Profile Pic</label>
-						<button id="waitForFile">Upload Profile Picture</button>
-					</form>
+					
 						<%-- <h3 style="font-size: 30px; color: black;"><c:out value="${profileUser.username}"/></h3>
 						<div class="topNavInfoBottomHalf">
 							<p>Followers: <c:out value="${profileUser.followers.size()}"/></p>
