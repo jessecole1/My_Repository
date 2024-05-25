@@ -72,10 +72,6 @@ public class UserService {
 	
 	public void update(User user) {	
 		Optional<User> theUser = userRepo.findById(user.getId());
-		System.out.println("user from repo to service: " + theUser.get().getUsername());
-		System.out.println(user.getBio());
-		System.out.println(theUser.get().getFollowers());
-		
 		if (theUser.isPresent()) {
 			userRepo.save(theUser.get());
 		}

@@ -173,9 +173,7 @@ public class UserController {
 		if (userId == null) {
 			return "redirect:/";
 		}
-		System.out.println("ddd: " + theUser.getUsername());
 		model.addAttribute("aUser", userServ.getById(id));
-		System.out.println("followers: " + userServ.getById(userId).getFollowers() + " | followed users: " + userServ.getById(userId).getFollowedUsers());
 		return "editProfile.jsp";
 	}
 	
@@ -185,13 +183,6 @@ public class UserController {
 		if (userServ.getById(userId) == null) {
 			return "redirect:/";
 		}
-		
-//		System.out.println("ID: " + theUser.getId());
-//		System.out.println("PW: " + theUser.getPassword());
-//		System.out.println("EMAIL: " + theUser.getEmail());
-//		System.out.println("USERNAME: " + theUser.getUsername());
-//		System.out.println("BIO: " + theUser.getBio());
-//		System.out.println("MainPicture: " + theUser.getMainPicture());
 		
 		User profileUserGet = userServ.getById(id);
 		profileUserGet.setBio(theUser.getBio());
