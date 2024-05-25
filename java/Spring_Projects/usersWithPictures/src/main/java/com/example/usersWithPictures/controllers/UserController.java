@@ -186,12 +186,16 @@ public class UserController {
 			return "redirect:/";
 		}
 		
-		System.out.println("ID: " + theUser.getId());
-		System.out.println("PW: " + theUser.getPassword());
-		System.out.println("EMAIL: " + theUser.getEmail());
-		System.out.println("USERNAME: " + theUser.getUsername());
-		System.out.println("BIO: " + theUser.getBio());
-		System.out.println("MainPicture: " + theUser.getMainPicture());
+//		System.out.println("ID: " + theUser.getId());
+//		System.out.println("PW: " + theUser.getPassword());
+//		System.out.println("EMAIL: " + theUser.getEmail());
+//		System.out.println("USERNAME: " + theUser.getUsername());
+//		System.out.println("BIO: " + theUser.getBio());
+//		System.out.println("MainPicture: " + theUser.getMainPicture());
+		
+		User profileUserGet = userServ.getById(id);
+		profileUserGet.setBio(theUser.getBio());
+		profileUserGet.setUsername(theUser.getUsername());
 		
 		
 		System.out.println("POST followers: " + theUser.getFollowers() + " | POST followed users: " + theUser.getFollowedUsers());
