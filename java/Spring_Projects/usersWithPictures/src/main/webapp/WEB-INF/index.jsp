@@ -12,12 +12,14 @@
 function toggleRegistration() {
 	const box = document.getElementById("RegistrationOverlayId");
 	box.classList.toggle("show");
-	
+	const loginBox = document.getElementById("loginBodyId");
+	loginBox.classList.toggle("show");
+	console.log(loginBox);
 }
 </script>
 <link rel="stylesheet" type="text/css" href="/css/style.css">
 </head>
-<body style="font-family: Arial, sans-serif;" class="profilePageBody">
+<body style="font-family: Arial, sans-serif;">
 	<div id="loginBodyId" class="profilePageBody">
 		<div class="registrationBox">
 		<h3 style="color: black">Login</h3>
@@ -33,14 +35,14 @@ function toggleRegistration() {
 								<td><form:input class="formInputBox" path="password" type="password"/></td>
 							</tr>
 							<tr>
-								<td><button class="registrationLoginButton">Login</button></td>
+								<td><button class="buttonGeneral">Login</button></td>
 							</tr>
 						</tbody>
 					</table>
 				</form:form>
 		</div>
 		<div>
-			<button onclick="toggleRegistration()">Create New Account</button>
+			<button onclick="toggleRegistration()" class="buttonGeneral buttonReg">Create New Account</button>
 		</div>
 	</div>
 	<div id="RegistrationOverlayId" class="registrationOverlay">
@@ -70,11 +72,14 @@ function toggleRegistration() {
 								<td><form:textarea style="height:150px; width:300px; resize:none; border:1px solid #96aed0; border-radius:10px;box-shadow: 1px 1px 5px black;" path="bio"/></td>
 							</tr>
 							<tr>
-								<td><button class="registrationLoginButton">Register</button>
+								<td><button style="font-size: 110%;" class="buttonGeneral">Register</button>
 							</tr>
 					</form:form>
 				</tbody>
 			</table>
+		<div>
+			<button onclick="toggleRegistration()" class="buttonGeneral buttonReg">Back to Login</button>
+		</div>
 		</div>
 	</div>
 </body>
