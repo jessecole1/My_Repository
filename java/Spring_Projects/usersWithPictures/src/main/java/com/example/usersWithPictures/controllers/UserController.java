@@ -5,7 +5,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.http.HttpSession;
-import javax.swing.JFrame;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,6 +15,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 
 import com.example.usersWithPictures.models.Comment;
 import com.example.usersWithPictures.models.LoginUser;
@@ -161,42 +161,57 @@ public class UserController {
 				} 
 			}
 		}
+		
+		System.out.println("profileUser: " + profileUser.getMainPicture().getImageName());
 		model.addAttribute("usersPhotos", photosServ.findAllUsersPhotos(profileUser));
 		return "profile.jsp";
 	}
 	
-	@GetMapping("/profile/edit")
-	public String editProfile(Model model, HttpSession session) {
+	@GetMapping("/profile/edit/{pathId}")
+	public String editProfile(@ModelAttribute("aUser") User theUser, @PathVariable("pathId") Long id, Model model, HttpSession session) {
 		Long userId = (Long) session.getAttribute("userId");
 		if (userId == null) {
 			return "redirect:/";
 		}
-		model.addAttribute("user", userServ.getById(userId));
+		System.out.println("ddd: " + theUser.getUsername());
+		model.addAttribute("aUser", userServ.getById(id));
+		System.out.println("followers: " + userServ.getById(userId).getFollowers() + " | followed users: " + userServ.getById(userId).getFollowedUsers());
 		return "editProfile.jsp";
 	}
 	
-	@PostMapping("/update")
-	public String updateUser(@Valid @ModelAttribute("user") User user, BindingResult result, Model model, HttpSession session) {
+	@PostMapping("/update/{pathId}")
+	public String updateUser(@PathVariable("pathId") Long id, @Valid @ModelAttribute("aUser") User theUser, BindingResult result, Model model, HttpSession session) {
 		Long userId = (Long) session.getAttribute("userId");
 		if (userServ.getById(userId) == null) {
 			return "redirect:/";
 		}
 		
-		User aUser = userServ.getById(user.getId());
-		aUser.setBio(user.getBio());
-		userServ.update(user);
+		System.out.println("ID: " + theUser.getId());
+		System.out.println("PW: " + theUser.getPassword());
+		System.out.println("EMAIL: " + theUser.getEmail());
+		System.out.println("USERNAME: " + theUser.getUsername());
+		System.out.println("BIO: " + theUser.getBio());
+		System.out.println("MainPicture: " + theUser.getMainPicture());
 		
-		return "redirect:/profile/" + user.getId();
+		
+		System.out.println("POST followers: " + theUser.getFollowers() + " | POST followed users: " + theUser.getFollowedUsers());
+		userServ.update(theUser);
+		return "redirect:/profile/" + theUser.getId();		
 	}
 	
 	@PostMapping("/register")
 	public String register(@Valid @ModelAttribute("newUser") User newUser, BindingResult result, Model model, HttpSession session) {
 		if(result.hasErrors()) {
 			model.addAttribute("newLogin", new LoginUser());
+			System.out.println("result rejected in controller..");
 			return "index.jsp";
 		}
 		
 		userServ.register(newUser, result);
+		if (result.hasErrors()) {
+			model.addAttribute("newLogin", new LoginUser());
+			return "index.jsp";
+		}
 		Long userId = (Long) newUser.getId();
 		User user = userServ.getById(userId);
 		

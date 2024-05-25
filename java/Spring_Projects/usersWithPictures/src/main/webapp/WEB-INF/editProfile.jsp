@@ -96,7 +96,7 @@ document.addEventListener('DOMContentLoaded', function() {
 		<div class="profilePicNav">
 			<div class="profilePicNavTop">
 				<div style="display: flex; flex-direction: column; align-items: center;">
-					<img class="profilePic" src="../profile-pictures/${user.getMainPicture().getImageName()}"/>
+					<img class="profilePic" src="../../profile-pictures/${aUser.getMainPicture().getImageName()}"/>
 					<div class="uploadImageFormDiv">
 						<form action="/upload" method="post" enctype="multipart/form-data">
 							<input id="thisFile" name="thisFile" type="file"/>
@@ -106,20 +106,20 @@ document.addEventListener('DOMContentLoaded', function() {
 					</div>
 				</div>
 				<div class="topNavInfo">
-					<form:form action="/update" method="post" modelAttribute="user">
+					<form:form action="/update/${aUser.id}" mode="put" modelAttribute="aUser">
 					<table>
 						<tbody>
-							<form:input type="hidden" path="id" value="${user.id}"/>
+							<form:input type="hidden" path="id" value="${aUser.id}"/>
 							<form:input type="hidden" path="password"/>
-							<form:input type="hidden" path="email" value="${user.email}"/>
+							<form:input type="hidden" path="email" value="${aUser.email}"/>
 							<tr>
 								<td><form:label path="username">Username:</form:label></td>
 								<td><form:input class="formInputBox" type="text" path="username"/></td>
 							</tr>
 							<tr>
-								<td><c:out value="${user.photos.size()}"/> posts</td>
-								<td><c:out value="${user.followers.size()}"/> followers</td>
-								<td><c:out value="${user.followedUsers.size()}"/> following</td>
+								<td><c:out value="${aUser.photos.size()}"/> posts</td>
+								<td><c:out value="${aUser.followers.size()}"/> followers</td>
+								<td><c:out value="${aUser.followedUsers.size()}"/> following</td>
 							</tr>
 							<tr>
 								</tr>
@@ -146,7 +146,7 @@ document.addEventListener('DOMContentLoaded', function() {
 								<c:if test="${loop.index % 3 == 0}">
 									<br>
 								</c:if>
-									<img style="width:200px; height:200px" src="../post-pictures/${pic.getImageName()}"/>			
+									<img style="width:200px; height:200px" src="../../post-pictures/${pic.getImageName()}"/>			
 						</c:forEach>
 					</div>
 				</div>	
@@ -156,21 +156,21 @@ document.addEventListener('DOMContentLoaded', function() {
 			<div class="rightContainerTop">
 				<div>
 					<c:choose>
-						<c:when test="${user.getMainPicture().getImageName() == 'profile-icon.jpg'}">
-							<img style="border: 2px solid black;" class="headerPicture" src="../project-pictures/profile-icon.jpg"/>
+						<c:when test="${aUser.getMainPicture().getImageName() == 'profile-icon.jpg'}">
+							<img style="border: 2px solid black;" class="headerPicture" src="../../project-pictures/profile-icon.jpg"/>
 						</c:when>
 						<c:otherwise>
-							<img style="border: 2px solid black;" class="headerPicture" src="../profile-pictures/${user.getMainPicture().getImageName()}"/>						
+							<img style="border: 2px solid black;" class="headerPicture" src="../../profile-pictures/${aUser.getMainPicture().getImageName()}"/>						
 						</c:otherwise>
 					</c:choose>
 				</div>
 				<div class="rightContainerTopRight">
-					<a href="#"><c:out value="${user.username}"/></a>
-					<c:out value="${user.email}"/>
+					<a href="#"><c:out value="${aUser.username}"/></a>
+					<c:out value="${aUser.email}"/>
 				</div>
 			</div>
 			<div class="rightContainerMid">
-				<a href="/profile/${user.id}">Profile</a>
+				<a href="/profile/${aUser.id}">Profile</a>
 				<a href="#">Settings</a>
 				<a href="/logout">Logout</a>
 			</div>

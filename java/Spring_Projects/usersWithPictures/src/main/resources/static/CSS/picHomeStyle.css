@@ -164,6 +164,34 @@ input[type="file"] {
 	background-color: #2980b9;
 }
 
-.uploadImageFormDiv {
+/* .uploadImageFormDiv {
+} */
+
+.popUpFollowersPics {
+	width: 70px;
+	height: 70px;
+	border-radius: 100px;
 }
 
+.followersPopup {
+	height: 100%;
+}
+
+/* .followersPopup, tr {
+} */
+.onePopupRowFollowers {
+	border-bottom: 1px solid black;
+	margin-bottom: 10px;
+}
+
+.popUpTable {
+	border-collapse: collapse;
+}
+
+.pointer {
+	cursor: pointer;
+}
+
+.popUpBox {
+	animation: fadeInUp 0.5s ease-out forwards; 
+}

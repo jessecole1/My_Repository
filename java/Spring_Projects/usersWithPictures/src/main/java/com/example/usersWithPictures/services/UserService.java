@@ -70,17 +70,15 @@ public class UserService {
 		return user;
 	}
 	
-	public User update(User user) {
-		System.out.println("getting here maybe..");
-		System.out.println(user.getEmail());
-		System.out.println(user.getPassword());
+	public void update(User user) {	
+		Optional<User> theUser = userRepo.findById(user.getId());
+		System.out.println("user from repo to service: " + theUser.get().getUsername());
+		System.out.println(user.getBio());
+		System.out.println(theUser.get().getFollowers());
 		
-		user.setUsername(user.getUsername());
-		user.setEmail(user.getEmail());
-		user.setPassword(user.getPassword());
-		user.setConfirm(user.getConfirm());
-		
-		return userRepo.save(user);
+		if (theUser.isPresent()) {
+			userRepo.save(theUser.get());
+		}
 	}
 
 }

@@ -12,6 +12,11 @@ function togglePopup() {
     const overlay = document.getElementById('popupOverlay'); 
     overlay.classList.toggle('show'); 
 } 
+
+function togglePopupTwo() { 
+    const overlay = document.getElementById('popupOverlayTwo'); 
+    overlay.classList.toggle('show'); 
+}
 </script>
 <style>
 .overlayContainer {
@@ -24,10 +29,42 @@ function togglePopup() {
     justify-content: center; 
     align-items: center; 
     opacity: 0; 
-    transition: opacity 0.3s ease; 
+	position: absolute;
+	margin: auto;
+	left: 0;
+	right: 0;
+	top: 0;
+	bottom: 0;
+	width: 35%;
+	height: 300px;
+	background-color: rgb(157,176,236);
+	transition: opacity 0.3s ease; 
+	border-radius: 20px;
+	border: 3px solid white;
+	box-shadow: 2px 2px 20px;
+	position: fixed;
 }
+
+@keyframes fadeInUp { 
+            from { 
+                opacity: 0; 
+                /* transform: translateY(20px);  */
+            } 
+  
+            to { 
+                opacity: 1; 
+                /* transform: translateY(0);  */
+            } 
+        } 
+
+td.tdSection {
+	border-bottom: 2px solid black;
+}
+
 .overlayContainer.show {
 	display: flex;
+	justify-content: center;
+	opacity: 1;
 }
 
 </style>
@@ -48,6 +85,33 @@ function togglePopup() {
 			</div>
 		</div>
 		<div class="middleContainer">
+		
+			<div id="popupOverlay" class="overlayContainer">
+				<div class="popUpBox">
+					<table class="popUpTable">
+						<c:forEach var="person" items="${profileUser.followers}">
+							<tr>
+								<td class="tdSection"><img class="popUpFollowersPics" src="../../profile-pictures/${person.mainPicture.imageName}"/></td>
+								<td class="tdSection"><a href="/profile/${person.id}"><c:out value="${person.username}"/></a></td>
+							</tr>
+						</c:forEach>
+					</table>
+				</div>
+			</div>
+			
+			<div id="popupOverlayTwo" class="overlayContainer">
+				<div class="popUpBox">
+					<table class="popUpTable">
+						<c:forEach var="person" items="${profileUser.followedUsers}">
+							<tr>
+								<td class="tdSection"><img class="popUpFollowersPics" src="../../profile-pictures/${person.mainPicture.imageName}"/></td>
+								<td class="tdSection"><a href="/profile/${person.id}"><c:out value="${person.username}"/></a></td>
+							</tr>
+						</c:forEach>
+					</table>
+				</div>
+			</div>
+		
 			<div class="profileMainContent">
 				<div class="profilePicNav">
 					<div class="profilePicNavTop">
@@ -60,8 +124,8 @@ function togglePopup() {
 									</tr>
 									<tr>
 										<td><c:out value="${profileUser.photos.size()}"/> posts</td>
-										<td><c:out value="${profileUser.followers.size()}"/> followers</td>
-										<td><c:out value="${profileUser.followedUsers.size()}"/> following</td>
+										<td class="pointer" onclick="togglePopup()"><c:out value="${profileUser.followers.size()}"/> followers</td>
+										<td class="pointer" onclick="togglePopupTwo()"><c:out value="${profileUser.followedUsers.size()}"/> following</td>
 									</tr>
 								</tbody>
 							</table>
@@ -74,7 +138,7 @@ function togglePopup() {
 						</div>
 						<c:choose>
 							<c:when test="${profileUser.id == user.id}">
-								<a href="/profile/edit"><button class="buttonGeneral">Edit Profile</button></a>					
+								<a href="/profile/edit/${user.id}"><button class="buttonGeneral">Edit Profile</button></a>					
 							</c:when>
 							<c:otherwise>
 								<form:form action="/follow/${profileUser.id}" method="post" modelAttribute="userFollow">
@@ -116,12 +180,6 @@ function togglePopup() {
 				<a href="#">Settings</a>
 				<a href="/logout">Logout</a>
 			</div>
-			<div id="popupOverlay" class="overlayContainer">
-				<p>HEEEEEEY</p>
-			</div>
-		    <button class="btn-open-popup" onclick="togglePopup()"> 
-   				Open Popup Form 
-   			</button> 
 		</div>
 	</div>
 </body>
