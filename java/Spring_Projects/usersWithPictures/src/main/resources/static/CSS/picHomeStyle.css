@@ -16,6 +16,14 @@ body {
 	padding: 0px;
 }
 
+.homeTitlePic {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	width: 100%;
+}
+
 .contentContainer {
 	display: flex;
 	flex-direction: row;
@@ -25,9 +33,10 @@ body {
 
 .leftContainer {
 	width: 20%;
-	height: 100%;
+	height: 100vh;
 	padding-top: 5%;
-/* 	position: fixed; */
+	position: fixed;
+	border-right: 2px solid black;
 }
 
 .leftNavLinks {
@@ -47,24 +56,27 @@ body {
 	font-weight: bold;
 }
 
+.leftNavLinkSpan:active {
+	transform: scale(0.99); 
+}
+
 .middleContainer {
 	width: 60%;
-	border-left: 2px solid black;
-	border-right: 2px solid black;
 	display: flex;
 	flex-direction: column;
 	align-items: center;
-	height: 100%;
 	padding-top: 5%;
+	height: auto;
+	margin-left: 20%;
 }
 
 .rightContainer {
 	width: 20;
 	padding-top: 5%;
 	height: 100%;
-	/* position: fixed;
-	width: 100%;
-    height: 100%; */
+	position: fixed;
+	margin-left: 80%;
+	border-left: 2px solid black;
 }
 
 .headerPicture {
@@ -118,9 +130,9 @@ body {
     border-radius: 5px;
 }
 
-.custom-file-upload:hover {
+/* .custom-file-upload:hover {
     background-color: #2980b9;
-}
+} */
 
 /* Hide the default file input */
 input[type="file"] {
@@ -160,8 +172,9 @@ input[type="file"] {
     border: none;
 }
 
-.buttonGeneral:hover {
+.buttonGeneral:active {
 	background-color: #2980b9;
+	transform: scale(0.99); 	
 }
 
 /* .uploadImageFormDiv {

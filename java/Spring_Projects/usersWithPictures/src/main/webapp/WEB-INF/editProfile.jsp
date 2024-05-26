@@ -52,7 +52,9 @@ document.addEventListener('DOMContentLoaded', function() {
 <body>
 	<div class="contentContainer">
 		<div class="leftContainer">
-			<h1 class="title" style="width: 100%; text-align: center;">Pictogram</h1>
+			<div class="homeTitlePic">
+				<img style="width: 75%;" src="../../project-pictures/appTitle.png"/>
+			</div>
 			<div class="leftNavLinks">
 				<span class="leftNavLinkSpan"><a style="text-align: left;" href="/home">Home</a></span>
 				<span class="leftNavLinkSpan"><a href="/upload/photo/one">Upload</a></span>
@@ -100,7 +102,7 @@ document.addEventListener('DOMContentLoaded', function() {
 					<div class="uploadImageFormDiv">
 						<form action="/upload" method="post" enctype="multipart/form-data">
 							<input id="thisFile" name="thisFile" type="file"/>
-							<label for="thisFile" class="custom-file-upload" style="height: 30px;">New Profile Pic</label>
+							<label for="thisFile" class="custom-file-upload buttonGeneral" style="height: 30px;">New Profile Pic</label>
 							<button id="waitForFile">Upload Profile Picture</button>
 						</form>
 					</div>

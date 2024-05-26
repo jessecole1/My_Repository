@@ -10,18 +10,23 @@
 <title>Welcome</title>
 <script>
 function toggleRegistration() {
+	
 	const box = document.getElementById("RegistrationOverlayId");
 	box.classList.toggle("show");
+	
 	const loginBox = document.getElementById("loginBodyId");
 	loginBox.classList.toggle("show");
-	console.log(loginBox);
+	
+	const loginInnerBox = document.getElementById("logginInnerId");
+	loginInnerBox.classList.toggle("show");
 }
 </script>
 <link rel="stylesheet" type="text/css" href="/css/style.css">
 </head>
 <body style="font-family: Arial, sans-serif;">
 	<div id="loginBodyId" class="profilePageBody">
-		<div class="registrationBox">
+		<img class="titleImg" src="../project-pictures/appTitle.png"/>
+		<div id="loginInnerId" class="registrationBoxLogin">
 		<h3 style="color: black">Login</h3>
 				<form:form action="/login" method="post" modelAttribute="newLogin">
 					<table style="height:200px">
@@ -47,7 +52,7 @@ function toggleRegistration() {
 	</div>
 	<div id="RegistrationOverlayId" class="registrationOverlay">
 		<div class="registrationBox">
-			<h3 style="color: black">Register</h3>
+			<h3 class="registrationTitleStyle" style="color: black">Register</h3>
 			<table style="height:400px">
 				<tbody class="registerFormContainer">
 					<form:form style="height:100%" action="/register" method="post" modelAttribute="newUser">
@@ -69,7 +74,7 @@ function toggleRegistration() {
 							</tr>
 							<tr>
 								<td><form:label path="bio">Bio:</form:label></td>
-								<td><form:textarea style="height:150px; width:300px; resize:none; border:1px solid #96aed0; border-radius:10px;box-shadow: 1px 1px 5px black;" path="bio"/></td>
+								<td><form:textarea class="formBioRegBox" style="height:150px; width:300px; resize:none; border:1px solid #96aed0; border-radius:10px;box-shadow: 1px 1px 5px black;" path="bio"/></td>
 							</tr>
 							<tr>
 								<td><button style="font-size: 110%;" class="buttonGeneral">Register</button>

@@ -76,7 +76,9 @@ td.tdSection {
 <body class="profilePageBody">
 	<div class="contentContainer">
 		<div class="leftContainer">
-			<h1 class="title" style="width: 100%; text-align: center;">Pictogram</h1>
+			<div class="homeTitlePic">
+				<img style="width: 75%;" src="../project-pictures/appTitle.png"/>
+			</div>
 			<div class="leftNavLinks">
 				<span class="leftNavLinkSpan"><a style="text-align: left;" href="/home">Home</a></span>
 				<span class="leftNavLinkSpan"><a href="/upload/photo/one">Upload</a></span>
