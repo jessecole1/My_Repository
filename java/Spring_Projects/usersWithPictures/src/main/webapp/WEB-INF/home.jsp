@@ -48,15 +48,25 @@
 									<form:form action="/like/photo/${pic.getId()}" method="post" modelAttribute="likedPhoto">
 										<c:choose>
 											<c:when test="${!user.likedPhotos.contains(pic)}">
-												<button style="background-color: transparent; border: none;"><img src="../project-pictures/unliked.svg"/></button>			
+												<button class="simpleButton" style="background-color: transparent; border: none;"><img src="../project-pictures/unliked.svg"/></button>			
 											</c:when>
 											<c:otherwise>
-												<button style="background-color: transparent; border: none;"><img src="../project-pictures/liked.svg"/></button>			
+												<button class="simpleButton" style="background-color: transparent; border: none;"><img src="../project-pictures/liked.svg"/></button>			
 											</c:otherwise>
 										</c:choose>
 									</form:form>
-									<c:out value="${pic.getUsersWhoLiked().size()}"/>
-									<img src="../project-pictures/comment.svg"/>
+									<p>
+										<c:out value="${pic.getUsersWhoLiked().size()}"/>
+										<c:choose>
+											<c:when test="${pic.getUsersWhoLiked().size() == 1}">
+											like
+											</c:when>
+											<c:otherwise>
+											likes
+											</c:otherwise>
+										</c:choose>
+									</p>
+									<!-- <img src="../project-pictures/comment.svg"/> -->
 								</div>
 								<div class="captionAndLikes">
 									<div>
@@ -64,13 +74,13 @@
 									</div>
 								</div>
 								<c:forEach var="comm" items="${pic.getComments()}" varStatus="loop">
-									<p><span style="font-weight: bold;"><c:out value="${comm.getUser().getUsername()}"/>:</span> <c:out value="${comm.getContent()}"/></p>
+									<p><span style="font-weight: bold;"><a href="/profile/${comm.getUser().getId()}"><c:out value="${comm.getUser().getUsername()}"/></a>:</span> <c:out value="${comm.getContent()}"/></p>
 								</c:forEach>
 								<form:form style="margin-top: 3%; display: flex; flex-direction: row" action="/comment/add/${pic.getId()}" method="post" modelAttribute="newComment">
-									<form:input style="width: 50%; border: none;border-bottom: 1px solid gray; height: 30px;" path="content" type="text" placeholder="Leave a comment"/>
+									<form:input style="padding-left: 2%; width: 50%; border: none;border-bottom: 1px solid gray; height: 30px;" path="content" type="text" placeholder="Leave a comment"/>
 									<form:input type="hidden" path="photo" value="${pic}"/>
 									<form:input type="hidden" path="user" value="${user}"/>
-									<button style="background-color: transparent; border: none;"><img src="../project-pictures/send.svg"/></button>
+									<button class="simpleButton" style="background-color: transparent; border: none;"><img src="../project-pictures/send.svg"/></button>
 								</form:form>
 							</div>
 						</div>			

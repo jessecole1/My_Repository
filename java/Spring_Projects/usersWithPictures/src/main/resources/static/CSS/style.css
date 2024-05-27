@@ -99,6 +99,7 @@
 .registrationOverlay.show {
 	display: flex;
 	opacity: 1;
+	/* animation: fadeInDown 0.5s ease-out forwards; */
 }
 
 .registrationBox {
@@ -186,3 +187,5 @@
         /* transform: translateY(0);  */
     } 
 } 
+
+

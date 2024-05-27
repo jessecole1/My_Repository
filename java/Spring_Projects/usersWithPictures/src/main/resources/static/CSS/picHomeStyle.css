@@ -208,3 +208,7 @@ input[type="file"] {
 .popUpBox {
 	animation: fadeInUp 0.5s ease-out forwards; 
 }
+
+.simpleButton {
+	cursor: pointer;
+}

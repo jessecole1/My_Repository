@@ -10,6 +10,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import javax.validation.constraints.Min;
 import javax.validation.constraints.NotEmpty;
 
 import org.springframework.format.annotation.DateTimeFormat;
@@ -23,6 +24,7 @@ public class Comment {
 	private Long id;
 	
 	@NotEmpty
+	@Min(value=1, message="Please contain a message")
 	private String content;
 	
 	@ManyToOne(fetch=FetchType.LAZY)

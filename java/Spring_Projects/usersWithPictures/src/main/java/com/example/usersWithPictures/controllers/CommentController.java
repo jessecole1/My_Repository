@@ -38,6 +38,11 @@ public class CommentController {
 			if (userId == null) {
 				return "redirect:/";
 			}
+			
+			if (result.hasErrors()) {
+				return "redirect:/home";
+			}
+			
 			System.out.println("comment: " + comment.getContent());
 			
 			User user = userServ.getById(userId);
