@@ -212,3 +212,24 @@ input[type="file"] {
 .simpleButton {
 	cursor: pointer;
 }
+
+.oneImageClass {
+	display:none;
+	top:0;
+	right:0;
+	bottom:0;
+	left:0;
+	position:fixed;
+	z-index: 1;
+	align-self: center;
+	margin:0 auto;
+	background: rgb(147,165,207);
+	background: linear-gradient(333deg, rgba(147,165,207,1) 0%, rgba(228,239,233,1) 100%);
+	opacity:1;
+	width:75%;
+	height:75%;
+}
+
+.oneImageClass.show {
+	display: flex;
+}
