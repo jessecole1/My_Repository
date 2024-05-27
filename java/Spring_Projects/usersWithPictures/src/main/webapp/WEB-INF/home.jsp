@@ -30,7 +30,16 @@
 			<div class="middleContainer">
 					<c:forEach var="pic" items="${postedPics}">
 						<div id="oneImage${pic.getId()}" class="oneImageClass">
-							<img class="postPicture" style="width: 75%; height: 400px;" src="../post-pictures/${pic.getImageName()}"/>
+							<div class="singlePictureLeftContainer">
+								<img class="postPictureSingle" src="../post-pictures/${pic.getImageName()}"/>
+							</div>
+							<div class="singlePictureRightContainer">
+								<div class="singlePictureRightContent">
+									<c:forEach var="c" items="${pic}">
+										
+									</c:forEach>
+								</div>
+							</div>
 						</div>
 						<button onclick="viewOnePicture(${pic.getId()})">click</button>
 						<div class="postBackground">
