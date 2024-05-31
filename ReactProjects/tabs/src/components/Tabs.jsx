@@ -8,6 +8,7 @@ const Tabs = ({tabs}) => {
 
     const handleTabClick = (index) => {
         setActiveTab(index + 1);
+        console.log("activeTab: " + activeTab);
     }
 
     console.log(activeTab);
