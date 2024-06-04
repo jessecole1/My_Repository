@@ -3,9 +3,9 @@ import {useState} from 'react';
 import Paper from '@material-ui/core/Paper';
 import Tabs from '@material-ui/core/Tabs';
 import Tab from '@material-ui/core/Tab';
-import Project from './Project';
 import Home from './Home';
 import Skills from './Skills';
+import Projects from './Projects';
 import '../App.css';
 import image from '../img/me.png';
 
@@ -35,9 +35,9 @@ const Main = () => {
                         />
                     ))}
             </Paper>
-            <div class="bg-slate-900 text-white ml-56 w-full h-screen">
+            <div class="overflow-auto bg-slate-950 text-white ml-56 w-full h-screen">
                 {value === 1 && <Home />}
-                {value === 2 && <Project />}
+                {value === 2 && <Projects />}
                 {value === 3 && <Skills />}
             </div>
         </div>
