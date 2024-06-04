@@ -6,6 +6,8 @@ import Tab from '@material-ui/core/Tab';
 import Project from './Project';
 import Home from './Home';
 import Skills from './Skills';
+import '../App.css';
+import image from '../img/me.png';
 
 const Main = () => {
 
@@ -21,24 +23,24 @@ const Main = () => {
 
 
     return (
-        <>
-            <Paper square>
-                
-                {tabsArray.map((obj, key) => (
-                    <Tab label={obj.title} 
-                    onChange={() => {
-                        setValue(key + 1);
-                        setTabTitle(obj.title);
-                    }}
-                    />
-                ))}
+        <div class="flex flex-row">
+            <Paper square class="bg-[#3479BF] text-white text-xl fixed border-r-2 border-slate-500 flex flex-col h-screen w-56">
+                <img class="rounded-full w-40 h-40 ml-auto mr-auto mt-10 mb-10" src={image}></img>
+                    {tabsArray.map((obj, key) => (
+                        <Tab label={obj.title} 
+                        onChange={() => {
+                            setValue(key + 1);
+                            setTabTitle(obj.title);
+                        }}
+                        />
+                    ))}
             </Paper>
-            <div>
+            <div class="bg-slate-900 text-white ml-56 w-full h-screen">
                 {value === 1 && <Home />}
                 {value === 2 && <Project />}
                 {value === 3 && <Skills />}
             </div>
-        </>
+        </div>
     );
 };
 
