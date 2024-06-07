@@ -52,3 +52,5 @@ function calculateTax(income: number, taxYear = 2022): number {
 }
 
 console.log(calculateTax(50000, 2021));
+
+// Objects 
