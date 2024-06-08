@@ -6,7 +6,7 @@ const Skills = (props) => {
     const {skillRef} = props;
 
     return (
-        <div ref={skillRef} id="skills" class="scroll-smooth">
+        <div ref={skillRef} id="skills" class="scroll-smooth pb-24">
             <h2 class="font-black text-left text-4xl w-full ml-16 mb-8 pt-32">Skills</h2>
             <div class="flex flex-row flex-wrap justify-evenly w-full">
                 <div class="border-2 border-slate-700 w-64 rounded-2xl bg-gray-800 p-4">

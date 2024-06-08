@@ -32,7 +32,12 @@ const Main = () => {
     return (
         <div class="flex flex-row">
             <Paper square class="bg-slate-950 text-white text-xl fixed border-r-2 border-slate-500 flex flex-col h-screen w-56">
-                <img class="rounded-full w-40 h-40 ml-auto mr-auto mt-10 mb-10" src={image}></img>
+                <img class="cursor-pointer rounded-full w-40 h-40 ml-auto mr-auto mt-10 mb-10" src={image} 
+                onClick={() => {
+                    homeRef.current?.scrollIntoView({
+                        behavior: "smooth"
+                    })
+                }}></img>
                     {/* {tabsArray.map((obj, key) => (
                         // <Tab label={obj.title} 
                         // // onClick={handleClick(key)}
