@@ -29,43 +29,51 @@ const Main = () => {
         console.log(key);
     }
 
+    const handleContactClick = () => {
+        setClicked(!clicked);
+    }
+
+    const [clicked, setClicked] = useState(false);
+
     return (
         <div class="flex flex-row">
             <Paper square class="bg-slate-950 text-white text-xl fixed border-r-2 border-slate-500 flex flex-col h-screen w-56">
-                <img class="cursor-pointer rounded-full w-40 h-40 ml-auto mr-auto mt-10 mb-10" src={image} 
-                onClick={() => {
-                    homeRef.current?.scrollIntoView({
-                        behavior: "smooth"
-                    })
-                }}></img>
-                    {/* {tabsArray.map((obj, key) => (
-                        // <Tab label={obj.title} 
-                        // // onClick={handleClick(key)}
-                        // // onChange={() => {
-                        // //     setValue(key + 1);
-                        // //     setTabTitle(obj.title);
-                        // // }}
-                        // />
-
-                    ))} */}
-                    <Tab label="Home" onClick={() => {
+                <div className={`${clicked? "opacity-50" : "opacity-100"}`}>
+                    <img class="cursor-pointer rounded-full w-40 h-40 ml-auto mr-auto mt-10 mb-10" src={image} 
+                    onClick={() => {
                         homeRef.current?.scrollIntoView({
-                            behavior: 'smooth'
+                            behavior: "smooth"
                         })
-                    }}/>
-                    <Tab label="Projects" onClick={() => {
-                        projRef.current?.scrollIntoView({
-                            behavior: 'smooth'
-                        })
-                    }} />
-                    <Tab label="Skills" onClick={() => {
-                        skillRef.current?.scrollIntoView({
-                            behavior: 'smooth'
-                        })
-                    }}/>
+                    }}></img>
+                        {/* {tabsArray.map((obj, key) => (
+                            // <Tab label={obj.title} 
+                            // // onClick={handleClick(key)}
+                            // // onChange={() => {
+                            // //     setValue(key + 1);
+                            // //     setTabTitle(obj.title);
+                            // // }}
+                            // />
+
+                        ))} */}
+                        <Tab label="Home" onClick={() => {
+                            homeRef.current?.scrollIntoView({
+                                behavior: 'smooth'
+                            })
+                        }}/>
+                        <Tab label="Projects" onClick={() => {
+                            projRef.current?.scrollIntoView({
+                                behavior: 'smooth'
+                            })
+                        }} />
+                        <Tab label="Skills" onClick={() => {
+                            skillRef.current?.scrollIntoView({
+                                behavior: 'smooth'
+                            })
+                        }}/>
+                    </div>
             </Paper>
             <div class="overflow-x-hidden bg-slate-950 text-white ml-56 w-full h-screen">
-                <Home homeRef={homeRef}/>
+                <Home homeRef={homeRef} projRef={projRef} handleContactClick={handleContactClick} clicked={clicked} setClicked={setClicked}/>
                 <Projects projRef={projRef}/>
                 <Skills skillRef={skillRef}/>
                 {/* {value === 1 && <Home />}
