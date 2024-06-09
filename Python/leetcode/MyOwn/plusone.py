@@ -1,14 +1,21 @@
 class Solution: 
     def plusOne(self, digits):
-        arr = []
-        for i in range(0, len(digits)):
-            if i == len(digits) - 1:
-                x = digits[i] + 1
-                if x > 9:
-                    
+        arr = digits
+        i = len(arr) - 1
+        while i >= 0:
+            arr[i] = arr[i] + 1
+            if arr[i] > 9:
+                arr[i] = 0
+                if i == 0 and arr[i] == 0:
+                    arr.insert(0, 1)
+                    return arr
+                i = i - 1
             else:
-                arr.append(digits[i])
+                return arr
+        return arr
+
+
 
     
 s = Solution()
-s.plusOne([9,9])
+print(s.plusOne([9]))
