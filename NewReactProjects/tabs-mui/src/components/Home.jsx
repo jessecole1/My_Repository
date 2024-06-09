@@ -11,7 +11,7 @@ const Home = (props) => {
 
 
     return (
-        <div ref={homeRef} class="h-full">
+        <div id="homeId" ref={homeRef} class="h-full">
             <div className={`border-r-8 flex flex-row justify-between content-center h-full ${clicked === true? "opacity-50" : ""}`}>
                 <div>
                     <h2 class="font-black text-left text-2xl mt-56 -ml-84 ml-32">Hi, I'm Jesse</h2>

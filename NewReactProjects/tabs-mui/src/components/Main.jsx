@@ -31,6 +31,8 @@ const Main = () => {
 
     const handleContactClick = () => {
         setClicked(!clicked);
+        let homeEle = document.getElementById("homeId");
+
     }
 
     const [clicked, setClicked] = useState(false);
@@ -38,7 +40,7 @@ const Main = () => {
     return (
         <div class="flex flex-row">
             <Paper square class="bg-slate-950 text-white text-xl fixed border-r-2 border-slate-500 flex flex-col h-screen w-56">
-                <div className={`${clicked? "opacity-50" : "opacity-100"}`}>
+                <div className={`${clicked? "opacity-30" : "opacity-100"}`}>
                     <img class="cursor-pointer rounded-full w-40 h-40 ml-auto mr-auto mt-10 mb-10" src={image} 
                     onClick={() => {
                         homeRef.current?.scrollIntoView({
@@ -72,7 +74,7 @@ const Main = () => {
                         }}/>
                     </div>
             </Paper>
-            <div class="overflow-x-hidden bg-slate-950 text-white ml-56 w-full h-screen">
+            <div className={`overflow-x-hidden bg-slate-950 text-white ml-56 w-full h-screen ${clicked? "overflow-y-hidden" : ""}`}>
                 <Home homeRef={homeRef} projRef={projRef} handleContactClick={handleContactClick} clicked={clicked} setClicked={setClicked}/>
                 <Projects projRef={projRef}/>
                 <Skills skillRef={skillRef}/>
