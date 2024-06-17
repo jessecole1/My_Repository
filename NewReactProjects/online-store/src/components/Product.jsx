@@ -5,8 +5,6 @@ const Product = (props) => {
     const p = props.product;
 
     const onAddItem = props.onAddItem;
-    console.log(p.id);
-    console.log(onAddItem);
 
     return (
         <>

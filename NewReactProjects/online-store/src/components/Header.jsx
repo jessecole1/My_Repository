@@ -6,7 +6,7 @@ const Header = (props) => {
 
     return (
         <>
-        Header
+        <h3>Your cart</h3>
             <p>{cart.items.length}</p>
         </>
     );

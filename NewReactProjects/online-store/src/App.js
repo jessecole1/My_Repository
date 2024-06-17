@@ -12,7 +12,6 @@ function App() {
   })
 
   const handleAddItemToCart = (id) => {
-    console.log("getting here?");
     setShoppingCart((prevShoppingCart) => {
       const updatedItems = [...prevShoppingCart.items];
       const existingItemIndex = updatedItems.findIndex(
@@ -33,7 +32,6 @@ function App() {
           price: newItem.price,
           quantity: 1
         });
-        console.log(shoppingCart);
       }
 
       return {
