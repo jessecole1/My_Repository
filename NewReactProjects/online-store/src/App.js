@@ -9,7 +9,9 @@ function App() {
 
   const [shoppingCart, setShoppingCart] = useState({
     items: []
-  })
+  });
+
+  const [clicked, setClicked] = useState(false);
 
   const handleAddItemToCart = (id) => {
     setShoppingCart((prevShoppingCart) => {
@@ -40,9 +42,13 @@ function App() {
     });
   }
 
+  const handleCartClicked = () => {
+    setClicked(!clicked);
+  }
+
   return (
     <div>
-      <Header shoppingCart={shoppingCart}/>
+      <Header shoppingCart={shoppingCart} clicked={clicked} openCart={handleCartClicked}/>
       <Shop onAddItemToCart={handleAddItemToCart}/>
     </div>
   );
