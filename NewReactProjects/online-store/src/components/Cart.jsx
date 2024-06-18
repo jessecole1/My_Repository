@@ -16,7 +16,7 @@ const Cart = (props) => {
                         <li>{product.price}</li>
                         <p>Quantity: {product.quantity}</p>
                         <button onClick={() => handleCartItemQuantity(product.id, 1)} class="border p-2">+</button>
-                        {/* <button onClick={() => handleCartItemQuantity(product.id, -1)} class="border p-2">-</button> */}
+                        <button onClick={() => handleCartItemQuantity(product.id, -1)} class="border p-2">-</button>
                     </div>
                 ))
             }

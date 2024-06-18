@@ -65,7 +65,12 @@ function App() {
         ...updatedItems[updatedItemIndex]
       }
       updatedItem.quantity += amount;
-      updatedItems[updatedItemIndex] = updatedItem;
+
+      if (updatedItem.quantity <= 0) {
+        updatedItems.splice(updatedItem, 1);
+      } else {
+        updatedItems[updatedItemIndex] = updatedItem;
+      }
 
       return {
         items: updatedItems,
