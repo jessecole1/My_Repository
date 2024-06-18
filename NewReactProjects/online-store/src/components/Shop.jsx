@@ -8,7 +8,7 @@ const Shop = (props) => {
     const onAddItem = props.onAddItemToCart;
 
     return (
-        <>
+        <div class="pt-4">
             <ul>
                 {
                     DUMMY_PRODUCTS.map((product) => (
@@ -18,7 +18,7 @@ const Shop = (props) => {
                     ))
                 }
             </ul>
-        </>
+        </div>
     );
 };
 

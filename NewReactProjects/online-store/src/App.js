@@ -42,13 +42,45 @@ function App() {
     });
   }
 
+  const handleCartItemQuantity = (id, amount) => {
+    
+    // Im guessing that this method mutates the state directly, which is causing problems
+
+    // const updatedItems = [...shoppingCart.items];
+    // console.log("A: " + updatedItems);
+    // const updatedItemIndex = updatedItems.findIndex((item) => item.id === id);
+    // const updatedItem = updatedItems[updatedItemIndex];
+    // updatedItem.quantity += amount;
+
+    // setShoppingCart(updatedItems);
+    // console.log("yes?: " + JSON.stringify(shoppingCart.items));
+
+    // Go with this method:
+    setShoppingCart((prevShoppingCart) => {
+      const updatedItems = [...prevShoppingCart.items];
+      const updatedItemIndex = updatedItems.findIndex((item) => item.id === id);
+
+      // const updatedItem = updatedItems[updatedItemIndex];
+      const updatedItem = {
+        ...updatedItems[updatedItemIndex]
+      }
+      updatedItem.quantity += amount;
+      updatedItems[updatedItemIndex] = updatedItem;
+
+      return {
+        items: updatedItems,
+      };
+    })
+
+  }
+
   const handleCartClicked = () => {
     setClicked(!clicked);
   }
 
   return (
     <div>
-      <Header shoppingCart={shoppingCart} clicked={clicked} openCart={handleCartClicked}/>
+      <Header handleCartItemQuantity={handleCartItemQuantity} shoppingCart={shoppingCart} clicked={clicked} openCart={handleCartClicked}/>
       <Shop onAddItemToCart={handleAddItemToCart}/>
     </div>
   );
