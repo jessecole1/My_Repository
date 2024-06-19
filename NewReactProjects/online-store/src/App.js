@@ -23,7 +23,7 @@ function App() {
 
       if(existingItem) {
         const updatedItem = {
-          existingItem, quantity: existingItem.quantity + 1,
+          ...existingItem, quantity: existingItem.quantity + 1,
         };
         updatedItems[existingItemIndex] = updatedItem;
       } else {
@@ -35,7 +35,6 @@ function App() {
           quantity: 1
         });
       }
-
       return {
         items: updatedItems
       };
@@ -76,6 +75,7 @@ function App() {
         items: updatedItems,
       };
     })
+    console.log(shoppingCart.items.length);
 
   }
 

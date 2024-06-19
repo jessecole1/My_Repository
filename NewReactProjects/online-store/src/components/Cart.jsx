@@ -5,6 +5,9 @@ const Cart = (props) => {
     const shoppingCart = props.shoppingCart.items;
     const handleCartItemQuantity = props.handleCartItemQuantity;
 
+    const totalPrice = shoppingCart.reduce((acc, item) => acc + item.price * item.quantity, 0
+    );
+    console.log(totalPrice);
 
     return (
         <div>
