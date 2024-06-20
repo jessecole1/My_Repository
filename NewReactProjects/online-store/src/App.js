@@ -16,6 +16,7 @@ function App() {
   const handleAddItemToCart = (id) => {
     setShoppingCart((prevShoppingCart) => {
       const updatedItems = [...prevShoppingCart.items];
+      console.log("updatedItems: " + JSON.stringify(updatedItems));
       const existingItemIndex = updatedItems.findIndex(
         (item) => item.id === id
       );
