@@ -1,0 +1,9 @@
+
+
+export default function BlogPostPost() {
+    return (
+        <main>
+            <h1>Blog Post</h1>
+        </main>
+    )
+}
