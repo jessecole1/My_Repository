@@ -21,7 +21,7 @@ const Input = (props) => {
         e.preventDefault();
         console.log(input);
         const completion = await openai.chat.completions.create({
-          messages: [{ role: "system", content: input }],
+          messages: [{ role: "system", content: input + ". You only respond by returning an array, with each paragraph as an item in the array."}],
           model: "gpt-3.5-turbo",
         });
         handleMessage(completion.choices[0].message.content);
@@ -36,9 +36,9 @@ const Input = (props) => {
 
     return (
         <div>
-            <h2>Say something to ChatGPT</h2>
+            <h2>Ask anything</h2>
             <form>
-                <label name="userText">Your text</label>
+                <label name="userText"></label>
                 <input type="text" name="userText" value={input} onChange={(e) => {inputOnchange(e)}}/>
                 <button onClick={(e) => formHandler(e)}>Send</button>
             </form>
