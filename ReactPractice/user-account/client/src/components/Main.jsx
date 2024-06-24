@@ -3,9 +3,6 @@ import axios from 'axios';
 
 const Main = (props) => {
 
-    // const mainMessage = props;
-    // const setMainMessage = props;
-
     useEffect(() => {
         axios.get('http://localhost:8000/')
             .then((res) => {
