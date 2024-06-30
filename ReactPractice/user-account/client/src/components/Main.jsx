@@ -1,7 +1,12 @@
 import React, { useEffect } from 'react';
 import axios from 'axios';
 
+import RegisterForm from './RegisterForm';
+
 const Main = (props) => {
+
+    const {email, setEmail, password, setPassword, confirmPassword, setConfirmPassword} = props;
+    
 
     useEffect(() => {
         axios.get('http://localhost:8000/')
@@ -15,10 +20,7 @@ const Main = (props) => {
 
     return (
         <div>
-            <ul>
-            <li>User Account Creation Project</li>
-            <li>{props.mainMessage.message}</li>
-            </ul>
+            <RegisterForm email={email} setEmail={setEmail} password={password} setPassword={setPassword} confirmPassword={confirmPassword} setConfirmPassword={setConfirmPassword} />
         </div>
     );
 };
