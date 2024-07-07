@@ -1,6 +1,7 @@
 import React from 'react';
 import axios from 'axios';
 
+
 const RegisterForm = (props) => {
 
     const {email, setEmail, password, setPassword, confirmPassword, setConfirmPassword} = props;
@@ -12,7 +13,7 @@ const RegisterForm = (props) => {
             email: email,
             password: password,
             confirmPassword: confirmPassword
-        })
+        }, { withCredentials:true })
         .then(res => {
             console.log(res.data);
             setEmail("");

@@ -2,6 +2,7 @@ import React, { useEffect } from 'react';
 import axios from 'axios';
 
 import RegisterForm from './RegisterForm';
+import LoginForm from './LoginForm';
 
 const Main = (props) => {
 
@@ -21,6 +22,7 @@ const Main = (props) => {
     return (
         <div>
             <RegisterForm email={email} setEmail={setEmail} password={password} setPassword={setPassword} confirmPassword={confirmPassword} setConfirmPassword={setConfirmPassword} />
+            {/* <LoginForm email={email} setEmail={setEmail} password={password} setPassword={setPassword} /> */}
         </div>
     );
 };

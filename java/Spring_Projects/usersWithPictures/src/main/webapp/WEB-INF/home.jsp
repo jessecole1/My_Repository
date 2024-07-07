@@ -33,15 +33,15 @@
 							<div class="singlePictureLeftContainer">
 								<img class="postPictureSingle" src="../post-pictures/${pic.getImageName()}"/>
 							</div>
-							<div class="singlePictureRightContainer">
+							<%-- <div class="singlePictureRightContainer">
 								<div class="singlePictureRightContent">
 									<c:forEach var="c" items="${pic}">
 										
 									</c:forEach>
 								</div>
-							</div>
+							</div> --%>
 						</div>
-						<button onclick="viewOnePicture(${pic.getId()})">click</button>
+						<%-- <button onclick="viewOnePicture(${pic.getId()})">click</button> --%>
 						<div class="postBackground">
 							<div class="post">
 								<div class="postTopNav">

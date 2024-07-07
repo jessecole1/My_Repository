@@ -11,9 +11,20 @@ module.exports.index = (request, response) => {
 module.exports.register = (request, response) => {
     User.create(request.body)
         .then((user) => {
-            response.json({ message: "Successful account creation", user: user });
+            const userToken = jwt.sign({
+                id: user._id
+            }, process.env.FIRST_SECRET_KEY);
+
+            response
+                .json({ msg: "success!", user: user})
+                .cookie("usertoken", userToken, {
+                    httpOnly: true
+                });
         })
-        .catch(err => response.json(err));
+        .catch((err) => {
+            response.json(err);
+        });
+        
 }
 
 module.exports.login = async (req, res) => {
@@ -38,4 +49,5 @@ module.exports.login = async (req, res) => {
             httpOnly: true
         })
         .json({ msg: "success!" });
+    console.log("loggin successful...");
 }
