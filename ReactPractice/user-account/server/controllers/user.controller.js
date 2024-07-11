@@ -28,7 +28,9 @@ module.exports.register = (request, response) => {
 }
 
 module.exports.login = async (req, res) => {
+    console.log("getting to the login function...");
     const user = await User.findOne({ email: req.body.email });
+
 
     if(user === null) {
         return res.sendStatus(400);

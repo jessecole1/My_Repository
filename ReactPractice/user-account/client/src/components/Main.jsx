@@ -7,7 +7,7 @@ import LoginForm from './LoginForm';
 const Main = (props) => {
 
     const {email, setEmail, password, setPassword, confirmPassword, setConfirmPassword} = props;
-    
+    const {loginEmail, setLoginEmail, loginPassword, setLoginPassword} = props;
 
     useEffect(() => {
         axios.get('http://localhost:8000/')
@@ -22,7 +22,7 @@ const Main = (props) => {
     return (
         <div>
             <RegisterForm email={email} setEmail={setEmail} password={password} setPassword={setPassword} confirmPassword={confirmPassword} setConfirmPassword={setConfirmPassword} />
-            {/* <LoginForm email={email} setEmail={setEmail} password={password} setPassword={setPassword} /> */}
+            <LoginForm loginEmail={loginEmail} setLoginEmail={setLoginEmail} loginPassword={loginPassword} setLoginPassword={setLoginPassword} />
         </div>
     );
 };
