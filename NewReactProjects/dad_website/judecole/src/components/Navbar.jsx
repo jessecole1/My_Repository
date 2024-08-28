@@ -5,26 +5,22 @@ import { Link } from 'react-router-dom';
 
 const Navbar = () => {
 
-    const tabsArray = [
-        {title: "Home"},
-        {title: "About"},
-        {title: "Blog"}, 
-        {title: "Music"}
-    ]
 
     return (
         <div class="flex flex-row justify-between h-24 ml-24">
             <div>
-                <img src={logo} class=" h-full"/>
+                <Link to={`/`}><img src={logo} class=" h-full"/></Link>
             </div>
             <div class="flex flex-row justify-between items-center w-96 mr-24">
-            {
-                tabsArray.map((i, key) => (
                     <div>
-                        <Link to={`/about`}>{i.title}</Link>
+                        <Link to={`/`}>Home</Link>
                     </div>
-                ))
-            }
+                    <div>
+                        <Link to={`/about`}>About</Link>
+                    </div>
+                    <div>
+                        <Link to={`/music`}>Music</Link>
+                    </div>
             </div>
         </div>
     );
