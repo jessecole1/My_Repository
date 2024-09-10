@@ -61,3 +61,9 @@ module.exports.adminLogout = async (request, response) => {
     response.sendStatus(200);
     console.log("exiting adminLogout method from controller..");
 }
+
+module.exports.getAuthorById = (request, response) => {
+    Admin.findOne({_id:request.params.id})
+    .then(author => {response.json(author); console.log(author)})
+    .catch(err => console.log("Something went wrong getting the author: ", err));
+}

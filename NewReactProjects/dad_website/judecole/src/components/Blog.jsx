@@ -14,6 +14,8 @@ const Blog = () => {
     const {admin, adminLoggedIn} = useMyContext();
     const {title, setTitle, content, setContent} = useBlogContext();
 
+    const [posts, setPosts] = useState([]);
+
 
     const handleNavigateClick = () => {
         navigate("/post/create");
@@ -30,7 +32,7 @@ const Blog = () => {
                     <span></span>
                 )
             }
-            <PostList />
+            <PostList posts={posts} setPosts={setPosts}/>
         </div>
     );
 };

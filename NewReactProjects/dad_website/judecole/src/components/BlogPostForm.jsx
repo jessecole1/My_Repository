@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useMyContext } from './MyProvider';
 import { useBlogContext } from './BlogProvider';
 import { useLocation, useNavigate } from 'react-router-dom';
@@ -13,12 +13,25 @@ const BlogPostForm = () => {
     const {admin} = useMyContext();
     const {title, setTitle, content, setContent} = useBlogContext();
 
+    console.log("admin: " + JSON.stringify(admin));
+
+    // useEffect(() => {
+    //     axios.get("http://localhost:8000/author/get/" + admin._id)
+    //     .then((response) => )
+    // })
+
     const postFormHandler = (e) => {
         e.preventDefault();
         axios.post("http://localhost:8000/post/create", {
             title: title,
             content: content,
-            author: admin._id
+            author: {
+                id: admin._id,
+                firstName: admin.firstName,
+                lastName: admin.lastName,
+                displayName: admin.displayName
+            }
+
         })
         .then(result => {
             setTitle('');

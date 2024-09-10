@@ -4,6 +4,7 @@ const PostController = require("../controllers/post.controller");
 module.exports = (app) => {
     app.get("/", JudeController.index);
     app.get("/posts", PostController.getAllPosts);
+    app.get("/author/get/:id", JudeController.getAuthorById);
     app.post('/admin/register', JudeController.adminRegister);
     app.post("/admin/login", JudeController.adminLogin);
     app.post('/admin/logout', JudeController.adminLogout);
