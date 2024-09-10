@@ -5,12 +5,12 @@ import Navbar from './Navbar'
 import { Link } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
 
+
 const Music = () => {
 
     const songs = songList
 
     const navigate = useNavigate();
-
 
     return (
         <div>

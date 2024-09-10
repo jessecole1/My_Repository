@@ -2,13 +2,23 @@ const Admin = require('../models/admin.model');
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 
+let isLoggedInForAdmin = false;
 
+// HOME PAGE
 module.exports.index = (request, response) => {
+    const adminCookie = request.cookies.admintoken;
+    if (adminCookie) {
+        isLoggedInForAdmin = true;
+    } else {
+        isLoggedInForAdmin = false;
+    }
     response.json({
-        message: "Hello, Worldz!"
+        message: "Hello, Worldz!",
+        loggedInStatus: isLoggedInForAdmin
     });
 }
 
+// REGISTER ADMIN 
 module.exports.adminRegister = (request, response) => {
     console.log("registerAdmin function being called..");
     Admin.create(request.body)
@@ -25,7 +35,7 @@ module.exports.adminRegister = (request, response) => {
                     httpOnly: true
                 });
 
-            response.json({msg: "success!", admin: admin});
+            response.json({msg: "success!", admin: admin, cookie: adminToken});
         })
         .catch((err) => {
             response.json(err);
@@ -34,6 +44,7 @@ module.exports.adminRegister = (request, response) => {
         console.log("exiting adminRegister function..");
 }
 
+// LOGIN ADMIN
 module.exports.adminLogin = async (request, response) => {
     console.log("getting to the adminLogin function..");
     const admin = await Admin.findOne({email: request.body.email});
@@ -47,14 +58,16 @@ module.exports.adminLogin = async (request, response) => {
     const adminToken = jwt.sign({
         id: admin._id
     }, process.env.FIRST_SECRET_KEY);
+    console.log("1: " + adminToken);
 
     response
         .cookie("admintoken", adminToken, {
             httpOnly: true
         })
-        .json({ message: "succes!", admin: admin });
+        .json({ message: "succes!", admin: admin , cookie: adminToken});
 }
 
+// LOGOUT ADMIN
 module.exports.adminLogout = async (request, response) => {
     console.log("entered adminLogout method from controller..");
     response.clearCookie("admintoken");
@@ -62,6 +75,7 @@ module.exports.adminLogout = async (request, response) => {
     console.log("exiting adminLogout method from controller..");
 }
 
+// FIND ONE ADMIN
 module.exports.getAuthorById = (request, response) => {
     Admin.findOne({_id:request.params.id})
     .then(author => {response.json(author); console.log(author)})

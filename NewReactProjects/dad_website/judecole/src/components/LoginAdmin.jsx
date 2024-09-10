@@ -3,6 +3,7 @@ import { useMyContext } from './MyProvider';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import Navbar from './Navbar';
+import Register from './Register';
 import Cookies from 'js-cookie';
 
 const LoginAdmin = () => {
@@ -23,6 +24,7 @@ const LoginAdmin = () => {
 
     const navigate = useNavigate();
 
+    // Handle Admin Login 
     const submitHandler = (e) => {
         e.preventDefault();
         axios.post("http://localhost:8000/admin/login", {
@@ -60,6 +62,9 @@ const LoginAdmin = () => {
                 <input type="password" onChange={(e) => setPassword(e.target.value)} value={password} />
                 <input type="submit" class="border w-1/5 m-auto" />
             </form>
+            <div>
+                <Register />
+            </div>
 
         </div>
     );
