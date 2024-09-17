@@ -1,6 +1,7 @@
 const express = require('express');
 const cors = require('cors');
 const cookieParser = require('cookie-parser');
+const read = require('./read.js');
 
 const app = express();
 
@@ -19,3 +20,4 @@ const port = 8000;
 require('./routes/jude.routes')(app)
 
 app.listen(port, () => {console.log(`Listening on port: ${port}`)});
+// read.readTheFile();

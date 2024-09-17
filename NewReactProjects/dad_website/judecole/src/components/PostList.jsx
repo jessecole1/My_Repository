@@ -7,7 +7,6 @@ const PostList = (props) => {
 
     const {posts, setPosts} = props;
 
-
     useEffect(() => {
         axios.get("http://localhost:8000/posts")
         .then(res => {

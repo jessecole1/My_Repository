@@ -1,28 +1,15 @@
 const mongoose = require('mongoose');
-const Admin = require('./admin.model');
-
-const author = {
-    id: {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: 'adminId',
-        required: true
-    },
-    firstName: {
-        type: String
-    },
-    lastName: {
-        type: String
-    },
-    displayName: {
-        type: String
-    }
-}
+// const Admin = require('./admin.model');
 
 const PostSchema = mongoose.Schema({
     title: {type: String},
+    publishDate: {type: String},
     content: {type: String},
-    createdAt: {type: Date, default: Date.now},
-    author: author
+    category: {type:String},
+    comments: [{type:String}]
+    // originalPostId: {type: String},
+    // postDate: {type: String},
+
     // author: {
     //     type: mongoose.Schema.Types.ObjectId, 
     //     ref: 'Admin', 
@@ -30,5 +17,4 @@ const PostSchema = mongoose.Schema({
     // }
 })
 
-const Post = mongoose.model("Post", PostSchema);
-module.exports = Post;
+module.exports = mongoose.model("Post", PostSchema);
