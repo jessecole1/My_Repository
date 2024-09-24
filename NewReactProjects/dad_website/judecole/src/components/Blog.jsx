@@ -25,13 +25,14 @@ const Blog = () => {
     return (
         <div>
             <Navbar />
-            {
+            {/* {
                 adminLoggedIn ? (
                     <button onClick={handleNavigateClick}>Create New Post</button>
                 ) : (
                     <span></span>
                 )
-            }
+            } */}
+            <button onClick={handleNavigateClick}>Create New Post</button>
             <PostList posts={posts} setPosts={setPosts}/>
         </div>
     );

@@ -16,11 +16,12 @@ const About = () => {
                 <div class="flex-col flex-wrap">
                     <div class="flex-wrap indent-5 text-left">
                         <img class="w-1/10 h-1/6 float-left m-4" src={jude4}></img>
-                        <h3 class="indent-0 text-left text-2xl font-bold">BIO</h3>
-                        <p class="text-left mb-8">
+                            <h1 class="indent-0 text-left text-2xl font-bold">BIO</h1>
+                            <p class="text-left mb-8">
                             The Carbon Cliff/Silvis, IL native’s father made his living as a car salesman, real estate salesman and more than that, full time gambler, with a stay-at-home mom. Cole grew up subconsciously groomed by the country records played in his home, listening to the likes of George Jones, Tammy Wynette, Bobby Bare and Kris Kristofferson, learning from his dad where the hook lay in each song. 
                             <br></br>
-                        </p>
+                            </p>
+                       
                         <p class="text-left mb-8">
                             Hearing Elvis Presley and Meet the Beatles was a game-changer. Picking up a broom and pretending it was a guitar, he eventually became the proud owner of a  60’s Harmony Rocket. At the age of 12 he formed a series of garage bands, eventually quit high school at 18 and, in 1978, took his first-ever flight in a prop plane to Southern California in search of a musical career.
                             <br></br>

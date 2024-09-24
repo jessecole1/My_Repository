@@ -1,0 +1,90 @@
+1. npm install typescript --save-dev
+
+2. npx tsc
+
+create tsconfig.json file with recommended settings
+npx tsc --init
+
+3 main primitives in JavaScript and typescript
+    1. boolean
+    2. number
+    3. string
+2 les common primitives 
+    1. bigint
+    2. symbol
+
+Explicit and Implicit Types 
+Explicit - writing out the type
+    let firstName: string = "Dylan";
+Implicit - TypeScript will 'guess' the type, based on the assigned value
+    let firstName = "Dylan";
+
+Special Types
+any - type that disables type checking, effectively allowing all types to be used
+    let u: any = true;
+    u = "string"; // No error 
+unknown - similar, but safer alternative to any. 
+    TypeScript will prevent unknown types from being used. 
+never - effectively throws an error whenever its defined 
+    let x: never = true; // Error: Type 'boolean' is not assignable to type 'never'.
+undefined & null - types that refer to the JavaScript primitives undefined and null respectively. 
+
+Arrays 
+    const names: string[] = [];
+    names.push("Dylan"); // no error 
+    names.push(3); // Error: Argument of type 'number' is not assignable to parameter of type 'string'.
+Readonly - keyword can prevent arrays from being changed. 
+    const names: readonly string[] = ["Dylan"];
+    names.push("Jack"); // Error: Property 'push' does not exist on type 'readonly string[]'.
+Type Inference - TypeScript can infer the type of an array if it has values. 
+    const numbers = [1, 2, 3]; // inferred to type number[]
+    numbers.push(4); // no error
+    numbers.push("2"); // Error: Argument of type "String" is not assignable to parameter of type 'number'.
+
+Tuples
+    A tuple is a typed array with a pre-defined length and types for each index. 
+    // define our tuple
+    let ourTupe: [number, boolean, string];
+
+    // initialize correctly
+    ourTuple = [5, false, 'Coding God was here'];
+    // Must be initialized in the right order, or will throw an error 
+Readonly Tuples 
+    Good practice to add safety if an extra index is trying to be added
+Named Tuples - allows us to provide context for our values at each index. 
+    const graph: [x: number, y: number] = [55.2, 41.3];
+Destructuring Tuples - Since tupes are arrays we can also destructure them. 
+    const graph: [number, number] = [55.2, 41.3];
+    const [x, y] = graph;
+
+Object Types 
+    TypeScript has a specific syntax for typing objects. 
+    const car: { type: string, model: string, year: number } = {
+        type: "Toyota",
+        model: "Corolla",
+        year: 2009
+    };
+Type Inference - TypeScript can infer the types of properties based on their values.
+    const car = {
+        type: "Toyota",
+    };
+    car.type = "Ford"; // No error
+    car.type = 2; // Error: Type 'number' is not assignable to type 'string'.
+Optional Properties - properties that don't have to be defined in the object definition.
+        Example without an optional property
+    const car: {type: string, mileage: number} = { // Error: expecting a mileage property but got none, during initialization
+        type: "Toyota";
+    };
+    car.mileage = 2000;
+        Example with an optional property
+    const car: {type: string, mileage?: number} = { // no error
+        type: "Toyota";
+    }
+    car.mileage = 2000;
+Index Signatures
+    Index signatures can be used for objects without a defined list of properties. 
+    const nameAgeMap: { [index: string]: number } = {};
+    nameAgeMap.Jack = 25; // no error
+    nameAgeMap.Mark = 50; // no error
+    console.log(nameAgeMap) -> // { Jack: 25, Mark: 50 }
+    nameAgeMap.Joe = "Thirty"; // error: type 'string' is not assignable to type 'number'.

@@ -3,10 +3,10 @@ const mongoose = require('mongoose');
 
 const PostSchema = mongoose.Schema({
     title: {type: String},
-    publishDate: {type: String},
+    publishDate: {type: Date},
     content: {type: String},
     category: {type:String},
-    comments: [{type:String}]
+    comments: {type: Array}
     // originalPostId: {type: String},
     // postDate: {type: String},
 

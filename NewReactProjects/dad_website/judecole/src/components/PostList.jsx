@@ -7,10 +7,18 @@ const PostList = (props) => {
 
     const {posts, setPosts} = props;
 
+    const [orderedPostsByDates, setOrderedPostsByDates] = useState([])
+
+    const arrangeDateOrder = (postList) => {
+        return postList.sort((a, b) => Date.parse(b.publishDate) - Date.parse(a.publishDate));
+        
+    }
+
+
     useEffect(() => {
         axios.get("http://localhost:8000/posts")
         .then(res => {
-            setPosts(res.data.postList);
+            setOrderedPostsByDates(arrangeDateOrder(res.data.postList));
         })
         .catch(err => {
             console.log(err);
@@ -21,7 +29,7 @@ const PostList = (props) => {
 
         <div>
             {
-                posts.map((post, index) => {
+                orderedPostsByDates.map((post, index) => {
                     return (
                         <div>
                             <Post post={post}/>

@@ -4,14 +4,20 @@ const axios = require('axios');
 console.log("entering read.js file..");
 
 const saveHandler = (data) => {
-    console.log("DATA: " + JSON.stringify(data.category));
+    // console.log("DATA: " + JSON.stringify(data.comments));
+    
   
         axios.post("http://localhost:8000/post/create", {
             title: data.title, 
             publishDate: data.publishDate,
             content: data.content,
             category: data.category,
-            comments: data.comments
+            comments: data.comments,
+            author: {
+                firstName: "Jude",
+                lastName: "Cole",
+                displayName: "Bandini55"
+            }
             // originalPostId: data.originalPostId,
             // postDate: data.postDate,
         })
@@ -24,23 +30,21 @@ const parseItemHandler = (items) => {
     // let onePost = {};
     let num = 0;
     for (let i = 0; i < items.length; i++) {
-        console.log(items[i].title);
         if (items[i].category === undefined) {console.log("undefined category item found")}
         else if (items[i].category.__cdata === "Uncategorized") {
             console.log("uncategorized item found..");
+            let oneDate = new Date(items[i].pubDate);
             let onePost = {
                 title: items[i].title,
-                publishDate: items[i].pubDate,
+                publishDate: oneDate,
                 content: items[i].encoded[0].__cdata,
                 category: items[i].category.__cdata,
                 comments: items[i].comment
-                // originalPostId: items[i].post_id,
-                // postDate: items[i].post_date,
             }
-            // console.log("hopefully? " + onePost);
+            // console.log("comments: " + JSON.stringify(items[i].comment));
+
             saveHandler(onePost);
         }
-        // console.log("onePost: " + JSON.stringify(onePost));
     }
 }
 

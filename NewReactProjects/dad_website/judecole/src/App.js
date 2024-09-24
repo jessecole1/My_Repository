@@ -7,6 +7,7 @@ import Music from './components/Music';
 import Blog from './components/Blog';
 import Song from './components/Song';
 import Register from './components/Register';
+import SinglePost from './components/SinglePost';
 import LoginAdmin from './components/LoginAdmin';
 import BlogPostForm from './components/BlogPostForm';
 import MyProvider from './components/MyProvider';
@@ -25,6 +26,7 @@ function App() {
             <Route element={<Song />} path="/music/:id" />
             <Route element={<Register />} path="/register" />
             <Route element={<LoginAdmin />} path="/login" />
+            <Route element={<SinglePost />} path="post/:title" />
             <Route element={
               <BlogProvider>
                 <Blog />
